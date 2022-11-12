@@ -183,12 +183,12 @@ function BatDauSC() {
       } else {
         json2["KhachHangDoi"] = "Khách Đợi";
       }
-      if (ojb[a].KhachRuaXe) {
-      } else {
-        $("#DKRUAXetitle").html(ojb[a].BienSoXe);
-        $("#RuaXeModal").modal("hide");
-        $("#RuaXeModal").modal("show");
-      }
+      // if (ojb[a].KhachRuaXe) {
+      // } else {
+      //   $("#DKRUAXetitle").html(ojb[a].BienSoXe);
+      //   $("#RuaXeModal").modal("hide");
+      //   $("#RuaXeModal").modal("show");
+      // }
       if (ojb[a].TDHenGiaoXe) {
       } else {
         json2["TDHenGiaoXe"] = TimesClick(
