@@ -287,7 +287,7 @@ function canhBaoThanhCong(tieude, noidung) {
     $("#alert").html($("#alert").html() + alert);
 }
 
-function checkvaluebienso(myValue) {
+function checkMasterData(myValue) {
   var thongtinkhachhang
   myValue = myValue.replace(" ", "");
   myValue = myValue.replace("-", "");
