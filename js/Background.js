@@ -286,8 +286,12 @@ function canhBaoThanhCong(tieude, noidung) {
     "</div>" +
     $("#alert").html($("#alert").html() + alert);
 }
-var thongtinkhachhang
-function checkvaluebienso(bienso) {
-  thongtinkhachhang = MasterData.filter(function (r) { return r.BienSoXe == bienso })
+
+function checkvaluebienso(myValue) {
+  var thongtinkhachhang
+  myValue = myValue.replace(" ", "");
+  myValue = myValue.replace("-", "");
+  myValue = myValue.replace(".", "");
+  return thongtinkhachhang = MasterData.filter(function (r) { return r.BienSoXe == myValue })
 
 }

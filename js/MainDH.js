@@ -385,7 +385,7 @@ function changvalueBS() {
 
 
   }
-  var thongtin = thongtinkhachhang[0]
+  var thongtin = checkvaluebienso($("#BienSoXe").val())[0]
   if (thongtin) {
     document.getElementById("SoDT").value = thongtin.DTNMangXe
     document.getElementById("KhuVuc").value = thongtin.KhuVuc

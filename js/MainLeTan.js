@@ -276,7 +276,7 @@ function changvalue() {
       }
       return;
     }
-  } var thongtin = thongtinkhachhang[0]
+  } var thongtin = checkvaluebienso($("#BienSoXe").val())[0]
   if (thongtin) {
     document.getElementById("TenKH").value = thongtin.NguoiMangXe
     var covan = thongtin.CVDV
