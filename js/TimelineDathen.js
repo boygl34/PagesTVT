@@ -56,6 +56,7 @@ var options = {
   editable: true,
   autoResize: true,
   zoomable: false,
+  moveable: false,
   onAdd: function (item, callback) {
     $("#CoVanDichVu").html("");
     getData(urlTX);

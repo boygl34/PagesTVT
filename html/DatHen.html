@@ -1,44 +1,41 @@
-<div class="container-fluid px-4">
-  <div class="card mb-4">
-    <div class="card-header">
-      <div class="row">
-        <div class="col-7">
-          <i class="fas fa-table me-1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample"></i>
-          Đặt Hẹn TVT <i onclick="backwardtime()" style="position: relative;left: 12px;" class="fa fa-backward"
-            aria-hidden="true"></i>
-          <input class="inputdate" style="position: relative;left: 12px;" type="date" id="datefield"
-            onchange="changdate(this.value)">
-          <i onclick="forwardtime()" style="position: relative;left: 12px;" class="fa fa-forward"
-            aria-hidden="true"></i>
-        </div>
-
-
-      </div>
-    </div>
-
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-12 col-lg-6">
-
-          <a>Sáng</a>
-          <div id="mytimeline"></div>
-        </div>
-        <div class="col-sm-12 col-lg-6">
-          <a>Chiều</a>
-          <div id="mytimeline2"></div>
-        </div>
-      </div>
-    </div>
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        <iframe style="height: 500px"
-          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=526093834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+<!-- <div class="container-fluid px-4"> -->
+<div class="card mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-7">
+        <i class="fas fa-table me-1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+          aria-controls="collapseExample"></i>
+        Đặt Hẹn TVT
+        <i onclick="backwardtime()" style="position: relative; left: 12px" class="fa fa-backward"
+          aria-hidden="true"></i>
+        <input class="inputdate" style="position: relative; left: 12px" type="date" id="datefield"
+          onchange="changdate(this.value)" />
+        <i onclick="forwardtime()" style="position: relative; left: 12px" class="fa fa-forward" aria-hidden="true"></i>
       </div>
     </div>
   </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12 col-lg-6">
+        <a>Sáng</a>
+        <div id="mytimeline"></div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <a>Chiều</a>
+        <div id="mytimeline2"></div>
+      </div>
+    </div>
+  </div>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <iframe style="height: 500px"
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=526093834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+    </div>
+  </div>
 </div>
-</div>
+
+<!-- </div> -->
 
 <!--Modal SCCC-->
 <div class="modal fade" id="ModalSCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

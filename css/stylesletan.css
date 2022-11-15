@@ -16,14 +16,18 @@ select:invalid {
 
 .btn-group-xs>.btn,
 .btn-xs {
-  padding: 0.25rem 0.4rem;
-  font-size: 0.875rem;
-  line-height: 0.5;
-  border-radius: 0.2rem;
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
 }
 
 #dataTable td:nth-child(10) {
   font-size: 0.5px;
+}
+
+#dataTable td:nth-child(1) {
+  font-size: 25px;
 }
 
 table.dataTable thead {
@@ -52,14 +56,29 @@ table.dataTableHen thead {
   width: 100%;
 }
 
+#dataTableHen {
+  font-size: 15.5px;
+}
+
 #dataTable td {
   height: 50px;
   vertical-align: middle;
+  font-size: 15.5px;
+}
+
+#dataTableHen td:nth-child(7) {
+  width: 35%;
+  font-size: 8.5px;
+}
+
+#dataTableHen td:nth-child(2) {
+  font-size: 25.5px;
 }
 
 #dataTableHen td:nth-child(8) {
   font-size: 0.5px;
 }
+
 
 #dataTableHen td {
   height: 50px;

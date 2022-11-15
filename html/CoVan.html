@@ -1,118 +1,117 @@
 <main>
-  <div class="container-fluid px-4">
+  <!-- <div class="container-fluid px-4"> -->
 
-    <div class="row>">
-      <div id="LichCoVan"></div>
-    </div>
-    <div class="row">
-      <div class="col-lg-2">
-        <form id="myForm" class="p-2 border border-light rounded" style="background: #9bb7d4">
-          <p class="h4 mb-4 text-center" id="tieude"></p>
-          <div id="message">
-            <div class="alert alert-success">Hello!!!</div>
+  <div class="row>">
+    <div id="LichCoVan"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+      <form id="myForm" class="p-2 border border-light rounded" style="background: #9bb7d4">
+        <p class="h4 mb-4 text-center" id="tieude"></p>
+        <div id="message">
+          <div class="alert alert-success">Hello!!!</div>
+        </div>
+        <input type="text" id="MaSo" name="MaSo" value="" style="display: none" />
+
+        <div class="form-group">
+          <label for="BienSo">Biển Số</label>
+          <input type="text" class="form-control" id="BienSoXe" name="BienSo" placeholder="Biển Số" required
+            style=" font-weight: bold" onchange="changvalue()" onkeyup="this.value = suabienso(this.value)" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <button type="button" class="btn btn-primary" id="KhachRX" value="Rửa Xe" onclick="KhachRua()">
+              Rửa Xe
+            </button>
           </div>
-          <input type="text" id="MaSo" name="MaSo" value="" style="display: none" />
+          <div class="form-group col-md-6">
+            <button type="button" class="btn btn-danger" id="KhachDoi" value="Khách Đợi" onclick="Khachdoi()">
+              Khách Đợi
+            </button>
+          </div>
+        </div>
 
-          <div class="form-group">
-            <label for="BienSo">Biển Số</label>
-            <input type="text" class="form-control" id="BienSoXe" name="BienSo" placeholder="Biển Số" required
-              style=" font-weight: bold" onchange="changvalue()" onkeyup="this.value = suabienso(this.value)"
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect1">Loại Hình GJ </label>
+            <select class="form-control" id="LoaiHinh" name="LoaiHinh" required>
+              '
+              <option value=""></option>
+              ' '
+              <option value="EM">EM</option>
+              ' '
+              <option value="EM60">EM60</option>
+              ' '
+              <option value="SCC">SCC</option>
+              ' '
+              <option value="Báo Giá SCC">Báo Giá SCC</option>
+              ' '
+              <option value="FIR">FIR</option>
+              '
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect1">Loại Hình BP </label>
+            <select class="form-control" id="LoaiHinhBP" name="LoaiHinhBP" required>
+              '
+              <option value=""></option>
+              ' '
+              <option value="Đồng Sơn">Đồng Sơn</option>
+              ' '
+              <option value="Báo Giá BH">Báo Giá BH</option>
+              ' '
+              <option value="FIR">FIR</option>
+              '
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <label for="NgayGiaoXe">Ngày Giao Xe</label>
+            <input type="text" data-date-format="dd/mm/yyyy" class="form-control Ngay" id="NgayGiaoXe" name="NgayGiaoXe"
               required />
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <button type="button" class="btn btn-primary" id="KhachRX" value="Rửa Xe" onclick="KhachRua()">
-                Rửa Xe
-              </button>
-            </div>
-            <div class="form-group col-md-6">
-              <button type="button" class="btn btn-danger" id="KhachDoi" value="Khách Đợi" onclick="Khachdoi()">
-                Khách Đợi
-              </button>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="exampleFormControlSelect1">Loại Hình GJ </label>
-              <select class="form-control" id="LoaiHinh" name="LoaiHinh" required>
-                '
-                <option value=""></option>
-                ' '
-                <option value="EM">EM</option>
-                ' '
-                <option value="EM60">EM60</option>
-                ' '
-                <option value="SCC">SCC</option>
-                ' '
-                <option value="Báo Giá SCC">Báo Giá SCC</option>
-                ' '
-                <option value="FIR">FIR</option>
-                '
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="exampleFormControlSelect1">Loại Hình BP </label>
-              <select class="form-control" id="LoaiHinhBP" name="LoaiHinhBP" required>
-                '
-                <option value=""></option>
-                ' '
-                <option value="Đồng Sơn">Đồng Sơn</option>
-                ' '
-                <option value="Báo Giá BH">Báo Giá BH</option>
-                ' '
-                <option value="FIR">FIR</option>
-                '
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-8">
-              <label for="NgayGiaoXe">Ngày Giao Xe</label>
-              <input type="text" data-date-format="dd/mm/yyyy" class="form-control Ngay" id="NgayGiaoXe"
-                name="NgayGiaoXe" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-8" id="divruaxe">
-              <label for="NgayGiaoXe">Thời Điểm Rửa Xe</label>
-              <input type="text" data-date-format="dd/mm/yyyy" class="form-control Ngay2" id="NgayRuaXe"
-                name="NgayRuaXe" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div id="NutNhan"></div>
-            &emsp;
-
-            <input class="btn btn-secondary" type="reset" value="Reset" />
-          </div>
-        </form>
-      </div>
-      <div class="col-lg-10">
-        <div id="tablehen" class="table-responsive">
-          <table id="data-table" onclick="clickTableTiepNhan()" class="table table-dark table-sm table-hover row-border"
-            style="font-weight: bold; width: 100%; background-color: black">
-            <thead style=" font-weight: bold;background-color: #1155cc;">
-              <tr>
-                <th style="width: 15%">Biển Số</th>
-                <th style="width: 20%">Tên KH</th>
-                <th>Trang Thái</th>
-                <th>LH SCC</th>
-                <th>LH ĐS</th>
-                <th>Rửa Xe</th>
-                <th>KhĐợi</th>
-
-                <th>Giờ Hẹn</th>
-                <th>Tiến Độ(h)</th>
-              </tr>
-            </thead>
-            <tbody id="table-body"></tbody>
-          </table>
         </div>
+        <div class="form-row">
+          <div class="form-group col-md-8" id="divruaxe">
+            <label for="NgayGiaoXe">Thời Điểm Rửa Xe</label>
+            <input type="text" data-date-format="dd/mm/yyyy" class="form-control Ngay2" id="NgayRuaXe" name="NgayRuaXe"
+              required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div id="NutNhan"></div>
+          &emsp;
+
+          <input class="btn btn-secondary" type="reset" value="Reset" />
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-10">
+      <div id="tablehen" class="table-responsive">
+        <table id="data-table" onclick="clickTableTiepNhan()" class="table table-dark table-sm table-hover row-border"
+          style="font-weight: bold; width: 100%; background-color: black">
+          <thead style=" font-weight: bold;background-color: #1155cc;">
+            <tr>
+              <th style="width: 15%">Biển Số</th>
+              <th style="width: 20%">Tên KH</th>
+              <th>Trang Thái</th>
+              <th>LH SCC</th>
+              <th>LH ĐS</th>
+              <th>Rửa Xe</th>
+              <th>KhĐợi</th>
+
+              <th>Giờ Hẹn</th>
+              <th>Tiến Độ(h)</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
       </div>
     </div>
   </div>
+  <!-- </div> -->
   <!-- Button trigger modal -->
 </main>
 

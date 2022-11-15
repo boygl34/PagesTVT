@@ -1,75 +1,75 @@
 <main style="background-color: #4d4e50;">
-    <div class="container-fluid px-4">
-        <!--bat dau Thông tin card -->
-        <div class="row" style="display: none">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Primary Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white">
-                            <i class="fas fa-angle-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Warning Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white">
-                            <i class="fas fa-angle-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Success Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white">
-                            <i class="fas fa-angle-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Danger Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white">
-                            <i class="fas fa-angle-right"></i>
-                        </div>
+    <!-- <div class="container-fluid px-4"> -->
+    <!--bat dau Thông tin card -->
+    <div class="row" style="display: none">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Primary Card</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white">
+                        <i class="fas fa-angle-right"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <!--ket thuc Thông tin card -->
-        <!--  Màng hình làm việc chính o đây-->
-        <div class="card mb-4">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-7">
-                        <i class="fas fa-table me-1" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                            aria-expanded="false" aria-controls="collapseExample"></i>
-                        Tiến Độ SCC
-                        <i onclick="backwardtime()" style="position: relative;left: 12px;" class="fa fa-backward"
-                            aria-hidden="true"></i>
-                        <input class="inputdate" style="position: relative;left: 12px;" type="date" id="datefield"
-                            onchange="changdate(this.value)">
-                        <i onclick="forwardtime()" style="position: relative;left: 12px;" class="fa fa-forward"
-                            aria-hidden="true"></i>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">Warning Card</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white">
+                        <i class="fas fa-angle-right"></i>
                     </div>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <iframe style="height: 500px"
-                                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=526093834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">Success Card</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white">
+                        <i class="fas fa-angle-right"></i>
                     </div>
-                    <!-- <div class="form-check col-2 ">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Danger Card</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white">
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--ket thuc Thông tin card -->
+    <!--  Màng hình làm việc chính o đây-->
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-7">
+                    <i class="fas fa-table me-1" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                        aria-expanded="false" aria-controls="collapseExample"></i>
+                    Tiến Độ SCC
+                    <i onclick="backwardtime()" style="position: relative;left: 12px;" class="fa fa-backward"
+                        aria-hidden="true"></i>
+                    <input class="inputdate" style="position: relative;left: 12px;" type="date" id="datefield"
+                        onchange="changdate(this.value)">
+                    <i onclick="forwardtime()" style="position: relative;left: 12px;" class="fa fa-forward"
+                        aria-hidden="true"></i>
+                </div>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <iframe style="height: 500px"
+                            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=526093834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                    </div>
+                </div>
+                <!-- <div class="form-check col-2 ">
                         <input class="form-check-input" id="checkbox-3" type="checkbox" value="" onchange="LoadTimeLine ()">
                         <label class="form-check-label" for="checkbox-3">Đã HT</label>
                     </div>
@@ -78,63 +78,63 @@
                         <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
                     </div>
                      -->
-                </div>
-            </div>
-
-            <div class="card-body" id="MangHinhLamViec">
-                <!--  Màng hình  đây-->
-                <div class="row">
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group col-xl-3" role="group" style="border: 1px">
-                            <p class="btn btn-warning panel cho">Chờ</p>
-                            <p class="btn btn-success panel dang">Đang</p>
-                            <p class="btn btn-success panel đã" style="background-color: magenta">Đã</p>
-                            <p class="btn btn-danger panel dung">Dừng</p>
-                            <p class="btn btn-primary panel hẹn">Hẹn</p>
-                        </div>
-                        <div class="btn-group col-xl-3 " role="group" aria-label="Second group">
-                            <div class="form-check col-6">
-                                <input class="form-check-input" id="checkbox-3" type="checkbox" value=""
-                                    onchange="clearitem()" />
-                                <label class="form-check-label" for="checkbox-3">Đã HT</label>
-                            </div>
-                            <div class="form-check col-6">
-                                <input class="form-check-input" id="checkbox-hen" type="checkbox" value=""
-                                    onchange="clearitem()" />
-                                <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
-                            </div>
-                        </div>
-                        <div class="btn-group col-xl-3" role="group" id="ThuTuGiaoXeEM">
-
-                        </div>
-                        <div class="btn-group col-xl-3" role="group" id="ThuTuGiaoXeSCC" style="display: none;">
-                            <p class="btn btn-success panel cho">Bạo</p>
-                            <p class="btn btn-primary panel dang">Hoan</p>
-
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-1" id="TabChoSC">
-                        <p class="btn btn-warning" style="width: 100%">Chờ SC</p>
-                        <div class="btn-group-vertical " id="XeChoSuaChua" aria-label="Toolbar with button groups">
-                        </div>
-                        <!-- <div class="items" id="XeChoSuaChua"></div> -->
-                    </div>
-                    <div class="col-xl-10" id="mytimeline" ondragover="event.preventDefault()" ondrop="onDrop(event)">
-                    </div>
-                    <div class="col-xl-1" id="TabDungCV">
-                        <p class="btn btn-danger" style="width: 100%">Dừng CV</p>
-
-                        <div class="items" id="XeDungCV"></div>
-                    </div>
-                </div>
-                <!--  Màng hình  đây-->
             </div>
         </div>
+
+        <div class="card-body" id="MangHinhLamViec">
+            <!--  Màng hình  đây-->
+            <div class="row">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group col-xl-3" role="group" style="border: 1px">
+                        <p class="btn btn-warning panel cho">Chờ</p>
+                        <p class="btn btn-success panel dang">Đang</p>
+                        <p class="btn btn-success panel đã" style="background-color: magenta">Đã</p>
+                        <p class="btn btn-danger panel dung">Dừng</p>
+                        <p class="btn btn-primary panel hẹn">Hẹn</p>
+                    </div>
+                    <div class="btn-group col-xl-3 " role="group" aria-label="Second group">
+                        <div class="form-check col-6">
+                            <input class="form-check-input" id="checkbox-3" type="checkbox" value=""
+                                onchange="clearitem()" />
+                            <label class="form-check-label" for="checkbox-3">Đã HT</label>
+                        </div>
+                        <div class="form-check col-6">
+                            <input class="form-check-input" id="checkbox-hen" type="checkbox" value=""
+                                onchange="clearitem()" />
+                            <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
+                        </div>
+                    </div>
+                    <div class="btn-group col-xl-3" role="group" id="ThuTuGiaoXeEM">
+
+                    </div>
+                    <div class="btn-group col-xl-3" role="group" id="ThuTuGiaoXeSCC" style="display: none;">
+                        <p class="btn btn-success panel cho">Bạo</p>
+                        <p class="btn btn-primary panel dang">Hoan</p>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-1" id="TabChoSC">
+                    <p class="btn btn-warning" style="width: 100%">Chờ SC</p>
+                    <div class="btn-group-vertical " id="XeChoSuaChua" aria-label="Toolbar with button groups">
+                    </div>
+                    <!-- <div class="items" id="XeChoSuaChua"></div> -->
+                </div>
+                <div class="col-xl-10" id="mytimeline" ondragover="event.preventDefault()" ondrop="onDrop(event)">
+                </div>
+                <div class="col-xl-1" id="TabDungCV">
+                    <p class="btn btn-danger" style="width: 100%">Dừng CV</p>
+
+                    <div class="items" id="XeDungCV"></div>
+                </div>
+            </div>
+            <!--  Màng hình  đây-->
+        </div>
     </div>
+    <!-- </div> -->
 </main>
 <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid px-4">
