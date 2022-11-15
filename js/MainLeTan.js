@@ -276,6 +276,12 @@ function changvalue() {
       }
       return;
     }
+  } var thongtin = thongtinkhachhang[0]
+  if (thongtin) {
+    document.getElementById("TenKH").value = thongtin.NguoiMangXe
+    var covan = thongtin.CVDV
+    covan = covan.slice(covan.lastIndexOf(" ") + 1, covan.length)
+    document.getElementById("CoVanDichVu").value = covan
   }
 }
 
@@ -602,47 +608,7 @@ function TrangThaiHen(NgayHen) {
   return TrangThaiHen;
 }
 
-function suabienso(myValue) {
-  var myValue2 = myValue.toUpperCase();
-  myValue = myValue.replace(" ", "");
-  myValue = myValue.replace("-", "");
-  myValue = myValue.replace(".", "");
-  if (myValue.length > 5) {
-    myValue = myValue.replace("[h] ", "");
-    myValue = myValue.replace("[H] ", "");
-    myValue = myValue.replace("[L] ", "");
-    var ins = myValue.indexOf("-");
-    var BiensoLD = myValue.slice(2, 4).toUpperCase();
-    if (ins == "-1" && BiensoLD == "LD") {
-      myValue = myValue.slice(0, 4) + "-" + myValue.slice(4, myValue.length);
-    }
-    if (ins == "-1" && BiensoLD != "LD") {
-      myValue = myValue.slice(0, 3) + "-" + myValue.slice(3, myValue.length);
-    }
-    var myValue1 = myValue.replace(myValue.charAt(myValue.indexOf(".")), "");
-    var soxe = myValue1.slice(myValue1.indexOf("-") + 1, myValue1.length);
-    var aa = myValue1.slice(myValue1.length - 2, myValue1.length);
-    if (soxe.length == 5) {
-      var aaaa =
-        soxe.charAt(0) +
-        soxe.charAt(1) +
-        soxe.charAt(2) +
-        soxe.charAt(3) +
-        soxe.charAt(4);
-      var bbbb =
-        soxe.charAt(0) +
-        soxe.charAt(1) +
-        soxe.charAt(2) +
-        "." +
-        soxe.charAt(3) +
-        soxe.charAt(4);
-      var myValue2 = myValue1.toString(6).replace(aaaa, bbbb).toUpperCase();
-    } else {
-      var myValue2 = myValue1.toUpperCase();
-    }
-  }
-  return myValue2;
-}
+
 function CoVanDropDown(values) {
   var list = document.getElementById("CoVanDichVu");
   for (var i = 0; i < values.length; i++) {

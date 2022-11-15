@@ -215,6 +215,7 @@ function DangKyHen() {
         LoaiHinhDongSon: $('#LoaiHinhDongSon').val(),
         LoaiHinhSuaChua: $('#LoaiHinhSuaChua').val(),
         ThoiGianHen: $('#ThoiGianHen').val(),
+        KhuVuc: $('#KhuVuc').val(),
         TDNgayHen: ngayGiohen($('#ThoiGianHen').val()).ngaythang,
         GioHen: ngayGiohen($('#ThoiGianHen').val()).giophut,
         KhachHangHen: khachhen,
