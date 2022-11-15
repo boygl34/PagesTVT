@@ -72,7 +72,7 @@
   box-shadow: rgba(128, 128, 128, 0.5) 5px 5px 20px;
 }
 
-.vis-drag-right::before {
+/* .vis-drag-right::before {
   padding-top: 5px;
   padding-left: 10px;
   font-family: "Font Awesome 5 Free";
@@ -90,7 +90,7 @@
   display: inline-flex;
   position: absolute;
   vertical-align: middle;
-}
+} */
 
 .vis-item.vis-range .vis-drag-left {
   position: absolute;

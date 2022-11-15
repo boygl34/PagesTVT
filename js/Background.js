@@ -1,7 +1,7 @@
 
 
 $.ajax({
-  url: "https://big-road-newsstand.glitch.me/ThongSo/",
+  url: "https://deciduous-pentagonal-powder.glitch.me/ThongSo/",
   type: 'GET',
   success: function (data) {
     localStorage.setItem("ThongSo", JSON.stringify(data))
@@ -188,7 +188,7 @@ function suabienso(myValue) {
   myValue = myValue.replace("-", "");
   myValue = myValue.replace(".", "");
 
-  checkvaluebienso(myValue)
+
   if (myValue.length > 5) {
     myValue = myValue.replace("[h] ", "");
     myValue = myValue.replace("[H] ", "");
