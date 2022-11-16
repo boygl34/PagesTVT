@@ -132,9 +132,16 @@ function checkPhanQuyen() {
     document.getElementById("PQPhuKien").style.display = "block"
     document.getElementById("PQKinhDoanh").style.display = "block"
     document.getElementById("PQManHinh").style.display = "block"
+    document.getElementById("PQCoVan").style.display = "block"
   }
   if (BoPhan == "Dịch Vụ") {
     document.getElementById("PQDichVu2").style.display = "block"
+    if (PhanQuyen == "admin" || PhanQuyen == "LeTan") {
+      document.getElementById("fonmid").style.display = "block"
+    } else { document.getElementById("tableid").style.width = "100%" }
+    if (PhanQuyen == "CoVandichvu" || PhanQuyen == "admin") {
+      document.getElementById("PQCoVan").style.display = "block"
+    }
   }
   if (BoPhan == "Phụ Kien") {
     document.getElementById("PQPhuKien").style.display = "block"

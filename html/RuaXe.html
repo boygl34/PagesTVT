@@ -118,7 +118,7 @@
     function LoadTimeLine(use) {
         document.getElementById("loading").style.display = "none"
         var dataArray = useCaher
-        var dataArray0 = dataArray.filter(function (r) { return r.KhachRuaXe === "Rửa Xe" && r.TDHenGiaoXe && r.LoaiHinhDongSon !== "Báo Giá BH" })
+        var dataArray0 = dataArray.filter(function (r) { return r.KhachRuaXe === "Rửa Xe" && r.TDHenGiaoXe })
         var ngaygiaoxebc = new Date()
         // var dataArray0= dataArray0.filter(function(r){
         //     var daygx=DoiNgayDangKy(r.TDHenGiaoXe).getDate()

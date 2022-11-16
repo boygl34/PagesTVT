@@ -12,7 +12,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-3" id="fonmid">
+                <div class="col-lg-3" id="fonmid" style="display: none;">
                     <!-- ## The html code of the form goes here -->
                     <!-- ## This is included in the Index.html page using "include('Form')" function -->
 
@@ -185,130 +185,7 @@
     <!-- </div> -->
 </main>
 <!--Modal SCCC-->
-<div class="modal fade" id="ModalSCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Sữa Chữa Chung</h5>
-                <h5 style="float: right" id="biensoscc"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="FormSCC" autocomplete="off">
-                    <div id="mesenge">
-                        <div class="alert alert-success">WellCome!!</div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-6" style="display: none">
-                            <label for="MaSo">Mã Số</label>
-                            <input required class="form-control" id="MaSo" name="MaSo" disabled />
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="KhoangSuaChua">Biển Số Xe</label>
-                            <input required class="form-control" id="BienSoXe" name="BienSoXe" disabled />
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="CoVanDichVu">Cố Vấn</label>
-                            <select required class="form-control" id="CoVanDichVu" name="CoVanDichVu"
-                                onchange="CoVanChange()">
-                                <option></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="KhoangSuaChua">Khoang Sữa Chữa</label>
-                            <select required class="form-control" id="KhoangSuaChua" name="KhoangSuaChua"
-                                onchange="KhoangSCChang()">
-                                '
-                                <option value="none"></option>
-                                '
-                            </select>
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="TrangThai">Trạng Thái</label>
-                            <input required class="form-control" id="TrangThai" disabled name="TrangThai" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-9">
-                            <label for="GioBatDauSCC">Giờ Bắt Đầu</label>
-                            <input required type="text" class="form-control" id="GioBatDauSCC" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-12">
-                            <div class="slidecontainer">
-                                <label class="control-label" for="ThoiGianSC">Thời Gian SCT</label>
-                                <input type="range" min="1" max="60" class="slider" id="rangerThoiGianSCC" />
-                                <input required type="number" id="inputThoiGianSCC" onchange="GioKetThucSCC()"
-                                    class="form-control col-4" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-8">
-                            <label for="GioKetThucSC">Giờ Kết Thúc</label>
-                            <input required type="text" class="form-control Ngay" id="GioKetThucSC" />
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="KhachRuaXe">Rửa Xe</label>
-                            <select class="form-control" id="KhachRX" required onchange="RuaXechange()">
-                                <option></option>
-                                <option value="Không Rửa">Không Rửa</option>
-                                <option value="Rửa Xe">Rửa Xe</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row col-12">
-                        <div class="form-group col-4">
-                            <label for="NhomKTV">Nhóm</label>
-                            <select required type="text" class="form-control" list="listTenNhanVien" id="NhomKTV"
-                                onchange="changeNhom()">
-                                <option></option>
-                            </select>
-                        </div>
-                        <div class="form-group col-4" id="KTV1SCC">
-                            <label for="KyThuatVien1">KTV1</label>
-                            <select required type="text" class="form-control" list="listTenNhanVien" id="KyThuatVien1"
-                                onchange="KTV1change()">
-                                <option></option>
-                            </select>
-                        </div>
-                        <div class="form-group col-4" id="KTV2SCC">
-                            <label for="KyThuatVien2">KTV2</label>
-                            <select required type="text" class="form-control" list="listTenNhanVien" id="KyThuatVien2"
-                                onchange="KTV2change()">
-                                <option></option>
-                            </select>
-                        </div>
-                        <datalist id="listTenNhanVien">
-                            <option></option>
-                        </datalist>
-                        <datalist id="listCoVan">
-                            <option></option>
-                        </datalist>
-                    </div>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary me-2" onclick="CapNhatGioSC()">
-                                Cập Nhật Giờ KT!
-                            </button>
-                        </div>
-                        <div class="btn-group" role="group" aria-label="Third group" id="buttonSCC"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="row">
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="js/Background.js"></script>
 <script src="js/Onload.js"></script>
 <script src="js/MainLeTan.js"></script>
