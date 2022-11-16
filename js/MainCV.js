@@ -101,6 +101,10 @@ function LoadTimeLine() {
     if (r.TrangThaiXuong == "05 Đang Sửa Chữa") {
       ColCD.innerHTML = "Đang SC";
       row.setAttribute("class", "DangSuaChua");
+      if (r.KhachRuaXe == "" || r.KhachRuaXe == null) {
+        alert(`${r.BienSoXe} chưa có thông tin rửa xe`)
+        row.setAttribute("class", "DungCongViec");
+      }
     }
     if (r.TrangThaiXuong == "05 Dừng Công Việc") {
       ColCD.innerHTML = "Dừng CV";

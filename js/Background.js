@@ -124,6 +124,9 @@ function checkPhanQuyen() {
   var PhanQuyen = localStorage.getItem("PhanQuyen");
   var BoPhan = localStorage.getItem("BoPhan")
   console.log(BoPhan)
+  if (PhanQuyen == "admin" || PhanQuyen == "LeTan") {
+    document.getElementById("fonmid").style.display = "block"
+  }
   if (PhanQuyen == "admin") { document.getElementById("Setting").style.display = "block" } else {
     document.getElementById("Setting").style.display = "none"
   }
@@ -136,9 +139,7 @@ function checkPhanQuyen() {
   }
   if (BoPhan == "Dịch Vụ") {
     document.getElementById("PQDichVu2").style.display = "block"
-    if (PhanQuyen == "admin" || PhanQuyen == "LeTan") {
-      document.getElementById("fonmid").style.display = "block"
-    } else { document.getElementById("tableid").style.width = "100%" }
+
     if (PhanQuyen == "CoVandichvu" || PhanQuyen == "admin") {
       document.getElementById("PQCoVan").style.display = "block"
     }
