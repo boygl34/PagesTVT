@@ -66,8 +66,8 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" onclick="gethtml('html/setting.html')">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li><a class="dropdown-item" id="Setting" onclick="gethtml('html/setting.html')">Settings</a></li>
+
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
@@ -91,38 +91,43 @@
                         </a>
 
                         <div class="sb-sidenav-menu-heading"></div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-columns"></i>
-                            </div>
-                            Dịch Vụ
-                            <div class="sb-sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
+                        <div id="PQDichVu2" style="display:none;">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+                                aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Dịch Vụ
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
+
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" onclick="gethtml('html/DatHen.html')">Đặt Hẹn</a>
-                                <a class="nav-link" onclick="gethtml('html/LeTan.html')">Lễ Tân</a>
+                                <a style="display: block;" class="nav-link" onclick="gethtml('html/DatHen.html')">Đặt
+                                    Hẹn</a>
+                                <a style="display: block;" class="nav-link" onclick="gethtml('html/LeTan.html')">Lễ
+                                    Tân</a>
                                 <a class="nav-link" onclick="gethtml('html/CoVan.html')">Cố Vấn</a>
                                 <a class="nav-link" onclick="gethtml('html/TienDoScc.html')">Tiến Độ SCC</a>
                                 <a class="nav-link" onclick="gethtml('html/TienDoDongSon.html')">Tiến Độ ĐS</a>
                             </nav>
                         </div>
-
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts-kd" aria-expanded="false"
-                            aria-controls="collapseLayouts-kd" style="display:none ;">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-columns"></i>
-                            </div>
-                            Kinh Doanh
-                            <div class="sb-sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
+                        <div style="display:none ;" id="PQKinhDoanh">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-kd"
+                                aria-expanded="false" aria-controls="collapseLayouts-kd" s>
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Kinh Doanh
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
                         <div class="collapse" id="collapseLayouts-kd" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
@@ -130,18 +135,18 @@
                                 <a class="nav-link" onclick="gethtml('html/PDS.html')">PDS</a>
                             </nav>
                         </div>
-
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts-pk" aria-expanded="false"
-                            aria-controls="collapseLayouts-pk" style="display:none ;">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-columns"></i>
-                            </div>
-                            Phụ Kiện
-                            <div class="sb-sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
+                        <div id="PQPhuKien" style="display:none ;">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-pk"
+                                aria-expanded="false" aria-controls="collapseLayouts-pk">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Phụ Kiện
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
                         <div class="collapse" id="collapseLayouts-pk" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
@@ -149,16 +154,18 @@
                                 <a class="nav-link" onclick="gethtml('html/TienDoScc.html')">Tiến Độ PK</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-mh"
-                            aria-expanded="false" aria-controls="collapseLayouts-mh">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-columns"></i>
-                            </div>
-                            Màn Hình
-                            <div class="sb-sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
+                        <div style="display: none;" id="PQManHinh">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-mh"
+                                aria-expanded="false" aria-controls="collapseLayouts-mh">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Màn Hình
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
                         <div class="collapse" id="collapseLayouts-mh" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
@@ -170,53 +177,7 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link collapsed" style="display: none" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-book-open"></i>
-                            </div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow">
-                                        <i class="fas fa-angle-down"></i>
-                                    </div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                    aria-controls="pagesCollapseError">
-                                    Error
-                                    <div class="sb-sidenav-collapse-arrow">
-                                        <i class="fas fa-angle-down"></i>
-                                    </div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div>
+
                         <div class="sb-sidenav-menu-heading">Addons</div>
                         <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon">
@@ -237,7 +198,6 @@
             </main>
         </div>
     </div>
-
     <!--Modal SCCC-->
     <script>
         checkdangnhap();
