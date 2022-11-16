@@ -210,7 +210,7 @@ function BatDauSC() {
 setgiaoxe()
 function setgiaoxe() {
   $.ajax({
-    url: "https://big-road-newsstand.glitch.me/ThongSo/",
+    url: urlThongSo,
     type: 'GET',
     success: function (data) {
       localStorage.setItem("ThongSo", JSON.stringify(data))
@@ -248,7 +248,7 @@ function ThuTuGiaoXe(value) {
     }
     var json = { value: thutumoi }
 
-    fetch("https://big-road-newsstand.glitch.me/ThongSo/ThuTuEM", {
+    fetch(urlThongSo, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(json),
