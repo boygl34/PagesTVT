@@ -367,12 +367,72 @@ function CapNhat() {
   }
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
+function DangKyCoVan() {
+  if ($("#KhachDoi").val() == "") {
+    alert("Thông Tin Khách Đợi");
+    return false;
+  }
+  if ($("#KhachRX").val() == "") {
+    alert("Thông Tin Rửa Xe");
+    return false;
+  }
+  if ($("#LoaiHinh").val() == "" && $("#LoaiHinhBP").val() == "") {
+    alert("chưa Có Loại Hình");
+    return false;
+  }
+  if (
+    $("#LoaiHinh").val() == "Báo Giá SCC" ||
+    $("#LoaiHinhBP").val() == "Báo Giá BH"
+  ) {
+    $("#NgayGiaoXe").val("");
+  } else {
+    if ($("#NgayGiaoXe").val() == "") {
+      alert("chưa Có Ngày Giao Xe");
+      return false;
+    }
+  }
+  document.getElementById("MaSo").value = TaoMaSo() + $("#BienSoXe").val();
+  var json2 = {
+    MaSo: $("#MaSo").val(),
+    BienSoXe: $("#BienSoXe").val(),
+    LoaiHinhSuaChua: $("#LoaiHinh").val(),
+    LoaiHinhDongSon: $("#LoaiHinhBP").val(),
+    TDKetThucTiepKhach: TimesClick(),
+    TrangThaiXuong: "04 Đã Tiếp Nhận",
+    CoVanDichVu: TenCoVan,
+    KhachHangDoi: $("#KhachDoi").val(),
+    KhachRuaXe: $("#KhachRX").val(),
+    TDHenGiaoXe: $("#NgayGiaoXe").val()
+  };
+  if (LoaiHinh.value) {
+    json2["TrangThaiSCC"] = "Chờ SC";
+  } else {
+    json2["TrangThaiSCC"] = "";
+  }
+  if (LoaiHinhBP.value) {
+    json2["CongDoanDongSon"] = "Chờ SC";
+    json2["TrangThaiDongSon"] = "Chờ SC";
+  } else {
+    json2["CongDoanDongSon"] = "";
+    json2["TrangThaiDongSon"] = "";
+  }
 
+
+
+
+  if (checkID($("#MaSo").val())) {
+    postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
+  } else {
+    postData(json2, urlTX, "POST");
+  }
+}
 function changvalue() {
   fetch(urlTX + "?BienSoXe=" + $("#BienSoXe").val())
     .then((response) => response.json())
     .then((data) => {
       data = data[0];
+      document.getElementById("NutNhan").innerHTML =
+        '<button type="button" class="btn btn-primary" onclick="DangKyCoVan()" >Đăng Ký</button>'
       if (data.MaSo) {
         document.getElementById("MaSo").value = data.MaSo;
       }
@@ -461,10 +521,7 @@ function changvalue() {
         document.getElementById("NutNhan").innerHTML =
           '<button type="button" class="btn btn-primary" onclick="GiaoXe()" >Giao Xe</button> <button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>';
       }
-      if (
-        data.LoaiHinhSuaChua == "Báo Giá SCC" &&
-        data.TrangThaiXuong == "04 Đã Tiếp Nhận"
-      ) {
+      if (data.LoaiHinhSuaChua == "Báo Giá SCC" && data.TrangThaiXuong == "04 Đã Tiếp Nhận") {
         document.getElementById("NutNhan").innerHTML =
           '<button type="button" class="btn btn-primary" onclick="GiaoXe()" >Giao Xe</button> <button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>';
       }
