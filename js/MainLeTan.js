@@ -281,7 +281,7 @@ function changvalue() {
     document.getElementById("TenKH").value = thongtin.NguoiMangXe
     var covan = thongtin.CVDV
     covan = covan.slice(covan.lastIndexOf(" ") + 1, covan.length)
-    document.getElementById("CoVanDichVu").value = covan
+    //document.getElementById("CoVanDichVu").value = covan
   }
 }
 
