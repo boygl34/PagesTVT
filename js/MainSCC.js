@@ -391,15 +391,11 @@ function CoVanlist(values) {
   }
 }
 function CapNhatGioSC() {
-  if (document.getElementById("GioKetThucSC").value == "") {
-    $("#mesenge").html(
-      '<div class="alert alert-danger" role="alert">Chưa Có thời gian sc</div>'
-    );
-    var json2 = {
-      TimeEndGJ: $("#GioKetThucSC").val(),
-    };
-    postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
-  }
+
+  var json2 = {
+    TimeEndGJ: $("#GioKetThucSC").val(),
+  };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 function GioKetThucSCC() {
   var homnay = new Date();

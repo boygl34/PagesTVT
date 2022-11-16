@@ -160,7 +160,7 @@
             </div>
             <div class="modal-body">
                 <form id="FormSCC" autocomplete="off">
-                    <div id="mesenge">
+                    <div id="mesenge" style="display: none;">
                         <div class="alert alert-success">WellCome!!</div>
                     </div>
 
@@ -196,14 +196,14 @@
                             <input required class="form-control" id="TrangThai" disabled name="TrangThai" />
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row" style="display: none;">
                         <div class="form-group col-9">
                             <label for="GioBatDauSCC">Giờ Bắt Đầu</label>
                             <input required type="text" class="form-control" id="GioBatDauSCC"
                                 onchange="GioKetThucSCC()" />
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row" style="display: none;">
                         <div class="col-12">
                             <div class="slidecontainer">
                                 <label class="control-label" for="ThoiGianSC">Thời Gian SCT</label>
@@ -217,7 +217,8 @@
                     <div class="form-row">
                         <div class="form-group col-8">
                             <label for="GioKetThucSC">Giờ Kết Thúc</label>
-                            <input required type="text" class="form-control Ngay" id="GioKetThucSC" />
+                            <input required type="text" class="form-control Ngay" id="GioKetThucSC"
+                                onchange="CapNhatGioSC()" />
                         </div>
                         <div class="form-group col-4" style="display:none">
                             <label for="KhachRuaXe">Rửa Xe</label>
@@ -258,7 +259,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="btn-group mr-2" role="group" aria-label="First group" style="display: none;">
                                 <button type="button" class="btn btn-primary me-2" onclick="CapNhatGioSC()">
                                     Cập Nhật Giờ KT!
                                 </button>
