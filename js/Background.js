@@ -127,7 +127,7 @@ function checkPhanQuyen() {
   if (PhanQuyen == "admin") { document.getElementById("Setting").style.display = "block" } else {
     document.getElementById("Setting").style.display = "none"
   }
-  if (BoPhan == "admin") {
+  if (BoPhan == "admin" || PhanQuyen == "admin") {
     document.getElementById("PQDichVu2").style.display = "block"
     document.getElementById("PQPhuKien").style.display = "block"
     document.getElementById("PQKinhDoanh").style.display = "block"
