@@ -315,6 +315,7 @@ function handleDragStart(event) {
     KTV1 = "Vinh";
     KTV2 = "Hưng";
   }
+  console.log(timelineProperties.group);
   if (timelineProperties.group == "EM 02") {
     NhomSC = "EM";
     KTV1 = "Đ Anh";
