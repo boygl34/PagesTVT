@@ -1,30 +1,38 @@
-<div class="row ">
-    <div class=" col-4">
-        <label for="NhomKTV">Nhóm</label>
-        <select required type="text" id="NhomKTV" onchange="changeNhom()">
-            <option></option>
-        </select>
-    </div>
-    <div class="col-4" id="KTV1SCC">
-        <label for="KyThuatVien1">KTV1</label>
-        <select required type="text" id="KyThuatVien1" onchange="KTV1change()">
-            <option></option>
-        </select>
-    </div>
-</div>
+<main>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="NhomKTV">Nhóm</label>
+            <select required type="text" class="form-control" list="listTenNhanVien" id="NhomKTV"
+                onchange="changeNhom()">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group col-6" id="KTV1SCC">
+            <label for="KyThuatVien1">KTV1</label>
+            <select required type="text" class="form-control" list="listTenNhanVien" id="KyThuatVien1"
+                onchange="KTV1change()">
+                <option></option>
+            </select>
+        </div>
 
-<div class="row">
-    <div id="DangSC">
-    </div>
-    <div id="ChoSC">
-    </div>
-</div>
 
+        <div class="row">
+            <div id="DangSC">
+            </div>
+            <div id="DungCV">
+            </div>
+            <div id="ChoSC">
+            </div>
+        </div>
+</main>
 <script>
+
+
     function LoadTimeLine() {
-        var KTV = "Hoan"
+        var KTV = localStorage.getItem("TenKTV")
         var dataktv = useCaher.filter(function (r) { return r.KyThuatVien1 == KTV || r.KyThuatVien2 == KTV })
         $("#DangSC").html("")
+        $("#DungCV").html("")
         $("#ChoSC").html("")
         dataktv.forEach(r => {
             if (r.TrangThaiSCC == "Đang SC") {
@@ -34,8 +42,8 @@
                                         <div class="card bg-success text-white mb-4">Đang SC
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <h1 class="col">${r.BienSoXe}</h1>
-                                                    <h2 class="col">${doithoigian(r.TDHenGiaoXe)}</h2>
+                                                    <h2 class="col">${r.BienSoXe}</h2>
+                                                    <h5 class="col">${doithoigian(r.TDHenGiaoXe)}</h5>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
@@ -47,9 +55,9 @@
                                                 </div>
                                             </div>
                                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                                <button class="btn btn-warning">Kết Thúc</button>
+                                                <button class="btn btn-warning" onclick="ketthuc(${r.id},"${r.KhachRuaXe}")>Kết Thúc</button>
                                                 <div class="small text-white">
-                                                    <button class="btn btn-danger">Dừng CV</button>
+                                                    <button class="btn btn-danger" onclick="dungcv(${r.id})>Dừng CV</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,15 +67,15 @@
 
 
             }
-            if (r.TrangThaiSCC == "Đang SC") {
+            if (r.TrangThaiSCC == "Chờ SC") {
                 $("#ChoSC").html($("#ChoSC").html() +
                     `
                                     <div class="col-xl-3 col-md-6">
                                         <div class="card bg-primary text-white mb-4">Chờ SC
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <h1 class="col">${r.BienSoXe}</h1>
-                                                    <h2 class="col">${doithoigian(r.TDHenGiaoXe)}</h2>
+                                                    <h2class="col">${r.BienSoXe}</h2>
+                                                    <h5 class="col">${doithoigian(r.TDHenGiaoXe)}</h5>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
@@ -81,7 +89,35 @@
                                             <div class="card-footer d-flex align-items-center justify-content-between">
 
                                                 <div class="small text-white">
-                                                    <button class="btn btn-success">Bắt Đầu</button>
+                                                    <button class="btn btn-success" onclick="batdau(${r.id})">Bắt Đầu</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`)
+            }
+            if (r.TrangThaiSCC == "Dừng SC") {
+                $("#DungCV").html($("#DungCV").html() +
+                    `
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-danger text-white mb-4">Dừng CV
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <h2class="col">${r.BienSoXe}</h2>
+                                                    <h5 class="col">${doithoigian(r.TDHenGiaoXe)}</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5>${r.LoaiHinhSuaChua} ${r.CoVanDichVu}</h5>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5>${r.KhachRuaXe}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+
+                                                <div class="small text-white">
+                                                    <button class="btn btn-success" onclick="batdau(${r.id})">Bắt Đầu</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,5 +141,85 @@
 
 
         return NgayThang;
+    }
+
+    NhomSC(NhomKTV);
+    function NhomSC(values) {
+        var list = document.getElementById("NhomKTV");
+        for (var i = 0; i < values.length; i++) {
+            var option = document.createElement("option");
+            option.value = values[i];
+            option.text = values[i];
+            list.appendChild(option);
+        }
+        $("#NhomKTV").val(localStorage.getItem("Nhom"))
+        changeNhom()
+
+
+    }
+    function changeNhom() {
+
+        var nhom = document.getElementById("NhomKTV").value;
+
+        if (nhom == "Bạo") {
+            NhanVienDropDown(KTVBao);
+        }
+        if (nhom == "Hoan") {
+            NhanVienDropDown(KTVHoan);
+        }
+        if (nhom == "EM") {
+            NhanVienDropDown(KTVEM);
+        }
+    }
+    function NhanVienDropDown(values) {
+        var list = document.getElementById("KyThuatVien1");
+        var option = document.createElement("option");
+        list.innerHTML = "";
+        option.value = "";
+        option.text = "";
+        list.appendChild(option);
+        for (var i = 0; i < values.length; i++) {
+            var option = document.createElement("option");
+            option.value = values[i];
+            option.text = values[i];
+            list.appendChild(option);
+        }
+        $("#KyThuatVien1").val(localStorage.getItem("TenKTV"))
+
+    }
+    KTV1change = () => {
+        localStorage.setItem("TenKTV", $("#KyThuatVien1").val())
+        localStorage.setItem("Nhom", $("#NhomKTV").val())
+        LoadTimeLine()
+    }
+    $("#NhomKTV").val(localStorage.getItem("Nhom"))
+    $("#KyThuatVien1").val(localStorage.getItem("TenKTV"))
+
+
+    function batdau(id) {
+        var json2 = {
+            TimeStartGJ: TimesClick(),
+            TrangThaiSCC: "Đang SC",
+            TrangThaiXuong: "05 Đang Sửa Chữa"
+
+        };
+        postData(json2, urlTX + "/" + id, "PATCH");
+    }
+    function ketthuc(id, RuaXe) {
+        var json2 = {
+            TimeEndGJ: TimesClick(),
+            TrangThaiSCC: "Đã SC",
+            TrangThaiXuong: "08 Chờ Giao Xe"
+        };
+        if (RuaXe == "Rửa Xe") { json2[TrangThaiXuong] = "06 Chờ Rửa Xe" }
+        postData(json2, urlTX + "/" + id, "PATCH");
+    }
+    function dungcv(id) {
+        var json2 = {
+            TimeStopGJ: TimesClick(),
+            TrangThaiSCC: "Dừng SC",
+            TrangThaiXuong: "05 Dừng Công Việc"
+        };
+        postData(json2, urlTX + "/" + id, "PATCH");
     }
 </script>
