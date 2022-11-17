@@ -1,0 +1,109 @@
+<div class="row ">
+    <div class=" col-4">
+        <label for="NhomKTV">Nhóm</label>
+        <select required type="text" id="NhomKTV" onchange="changeNhom()">
+            <option></option>
+        </select>
+    </div>
+    <div class="col-4" id="KTV1SCC">
+        <label for="KyThuatVien1">KTV1</label>
+        <select required type="text" id="KyThuatVien1" onchange="KTV1change()">
+            <option></option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div id="DangSC">
+    </div>
+    <div id="ChoSC">
+    </div>
+</div>
+
+<script>
+    function LoadTimeLine() {
+        var KTV = "Hoan"
+        var dataktv = useCaher.filter(function (r) { return r.KyThuatVien1 == KTV || r.KyThuatVien2 == KTV })
+        $("#DangSC").html("")
+        $("#ChoSC").html("")
+        dataktv.forEach(r => {
+            if (r.TrangThaiSCC == "Đang SC") {
+                $("#DangSC").html($("#DangSC").html() +
+                    `
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-success text-white mb-4">Đang SC
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <h1 class="col">${r.BienSoXe}</h1>
+                                                    <h2 class="col">${doithoigian(r.TDHenGiaoXe)}</h2>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5>${r.LoaiHinhSuaChua} ${r.CoVanDichVu}</h5>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5>${r.KhachRuaXe}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                                <button class="btn btn-warning">Kết Thúc</button>
+                                                <div class="small text-white">
+                                                    <button class="btn btn-danger">Dừng CV</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`)
+
+
+
+
+            }
+            if (r.TrangThaiSCC == "Đang SC") {
+                $("#ChoSC").html($("#ChoSC").html() +
+                    `
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-primary text-white mb-4">Chờ SC
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <h1 class="col">${r.BienSoXe}</h1>
+                                                    <h2 class="col">${doithoigian(r.TDHenGiaoXe)}</h2>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5>${r.LoaiHinhSuaChua} ${r.CoVanDichVu}</h5>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5>${r.KhachRuaXe}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+
+                                                <div class="small text-white">
+                                                    <button class="btn btn-success">Bắt Đầu</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`)
+
+
+
+
+            }
+        });
+        document.getElementById("loading").style.display = "none"
+    }
+
+    doithoigian = (value) => {
+        var Thang = value.slice(3, 5);
+        var Ngay = value.slice(0, 2);
+        var Nam = value.slice(6, 10);
+        var Gio = value.slice(11, 13);
+        var Phut = value.slice(14, 16);
+        var NgayThang = Ngay + "/" + Thang + " " + Gio + ":" + Phut
+
+
+        return NgayThang;
+    }
+</script>
