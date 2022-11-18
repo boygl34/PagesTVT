@@ -9,7 +9,7 @@
                 </select>
             </div>
             <div class="form-group col-6" id="KTV1SCC">
-                <label for="KyThuatVien1">KTV1</label>
+                <label for="KyThuatVien1">KTV</label>
                 <select required type="text" class="form-control" id="KyThuatVien1" onchange="KTV1change()">
                     <option></option>
                 </select>
@@ -194,7 +194,7 @@
         localStorage.setItem("TenKTV", "none")
         localStorage.setItem("Nhom", $("#NhomKTV").val())
         var nhom = localStorage.getItem("Nhom")
-
+        $("#KyThuatVien1").val("")
         LoadTimeLine()
         if (nhom == "Bạo") {
             NhanVienDropDown(KTVBao);
