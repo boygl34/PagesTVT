@@ -225,4 +225,20 @@
         };
         postData(json2, urlTX + "/" + id, "PATCH");
     }
+
+    function postData(data, url, methor) {
+        fetch(url, {
+            method: methor, // or 'PUT'
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                getData();
+
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
 </script>
