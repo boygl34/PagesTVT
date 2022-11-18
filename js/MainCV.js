@@ -8,7 +8,7 @@ function postData(data, url, methor) {
     .then((data) => {
       getData(urlTX);
       $("#message").html("<div class='alert alert-success'>Thành Công</div>");
-      document.getElementById("NutNhan").innerHTML = "";
+      $("#NutNhan").html("")
       document.getElementById("myForm").reset();
     })
     .catch((error) => {
