@@ -201,9 +201,7 @@ function BatDauSC() {
     }
   }
   ThuTuGiaoXe($("#KhoangSuaChua").val())
-  $("#mesenge").html(
-    '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
-  );
+
   document.getElementById("contextMenu").style.display = "none"
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
@@ -216,6 +214,7 @@ function setgiaoxe() {
       localStorage.setItem("ThongSo", JSON.stringify(data))
       ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
       ThuTuEM = Object.values(ThongSo.filter(function (r) { return r.id == "ThuTuEM" })[0].value)
+
       $("#ThuTuGiaoXeEM").html('<p class="btn btn-success ">' + ThuTuEM[0] + '</p>')
       for (var a = 1; a < ThuTuEM.length; a++) {
         $("#ThuTuGiaoXeEM").html($("#ThuTuGiaoXeEM").html() +
@@ -232,8 +231,6 @@ function setgiaoxe() {
 function ThuTuGiaoXe(value) {
   ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
   ThuTuEM = Object.values(ThongSo.filter(function (r) { return r.id == "ThuTuEM" })[0].value)
-
-
   var index = ThuTuEM.indexOf(value)
   if (index >= 0) {
     var a1 = ThuTuEM.slice(0, index);
@@ -241,14 +238,12 @@ function ThuTuGiaoXe(value) {
     var new_arr = a1.concat(a2);
     new_arr = new_arr.concat(ThuTuEM[index])
     var thutumoi = {}
-
-
     for (a in new_arr) {
       thutumoi["ThuTuEM" + a] = new_arr[a]
     }
     var json = { value: thutumoi }
-
-    fetch(urlThongSo, {
+    console.log(urlThongSo);
+    fetch(urlThongSo + "ThuTuEM", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(json),
@@ -308,9 +303,6 @@ function BatDauSC2() {
         }
       }
       ThuTuGiaoXe($("#KhoangSuaChua").val())
-      $("#mesenge").html(
-        '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
-      );
       document.getElementById("contextMenu").style.display = "none"
       postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 
