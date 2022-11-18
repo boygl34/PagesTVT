@@ -4,26 +4,24 @@
         <div class="row">
             <div class="form-group col-6">
                 <label for="NhomKTV">Nhóm</label>
-                <select required type="text" class="form-control" list="listTenNhanVien" id="NhomKTV"
-                    onchange="changeNhom()">
+                <select required type="text" class="form-control" id="NhomKTV" onchange="changeNhom()">
                     <option></option>
                 </select>
             </div>
             <div class="form-group col-6" id="KTV1SCC">
                 <label for="KyThuatVien1">KTV1</label>
-                <select required type="text" class="form-control" list="listTenNhanVien" id="KyThuatVien1"
-                    onchange="KTV1change()">
+                <select required type="text" class="form-control" id="KyThuatVien1" onchange="KTV1change()">
                     <option></option>
                 </select>
             </div>
-
-
             <div class="row">
                 <div id="DangSC">
                 </div>
                 <div id="DungCV">
                 </div>
                 <div id="ChoSC">
+                </div>
+                <div id="NhomSCC">
                 </div>
             </div>
         </div>
@@ -34,10 +32,49 @@
 
     function LoadTimeLine() {
         var KTV = localStorage.getItem("TenKTV")
+        var NhomSCC = localStorage.getItem("Nhom")
+
+        var datanhom = useCaher.filter(function (r) { return r.NhomKTV == NhomSCC && r.TrangThaiSCC == "Chờ SC" })
         var dataktv = useCaher.filter(function (r) { return r.KyThuatVien1 == KTV || r.KyThuatVien2 == KTV })
         $("#DangSC").html("")
         $("#DungCV").html("")
         $("#ChoSC").html("")
+        $("#NhomSCC").html("")
+
+        datanhom.forEach(r => {
+            if (r.KhachRuaXe == null) { r.KhachRuaXe = "None" }
+            $("#NhomSCC").html($("#NhomSCC").html() + `
+            <div class="col-xl-4 col-md-6">
+                                        <div class="card bg-secondary text-white mb-4">Đang SC ${r.KhoangSuaChua}
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <h3 class="col">${r.BienSoXe}</h3>
+                                                    <h3 class="col">${doithoigian(r.TDHenGiaoXe)}</h3>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h3>${r.LoaiHinhSuaChua} ${r.CoVanDichVu}</h3>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h3>${r.KhachRuaXe}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                                
+                                                <div class="small text-white">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+            
+            `)
+
+        })
+
+
         dataktv.forEach(r => {
             if (r.KhachRuaXe == null) { r.KhachRuaXe = "None" }
             if (r.TrangThaiSCC == "Đang SC") {
@@ -165,9 +202,7 @@
     function changeNhom() {
 
         var nhom = document.getElementById("NhomKTV").value;
-        $("#DangSC").html("")
-        $("#DungCV").html("")
-        $("#ChoSC").html("")
+
         if (nhom == "Bạo") {
             NhanVienDropDown(KTVBao);
         }
@@ -177,6 +212,7 @@
         if (nhom == "EM") {
             NhanVienDropDown(KTVEM);
         }
+
     }
     function NhanVienDropDown(values) {
         var list = document.getElementById("KyThuatVien1");
