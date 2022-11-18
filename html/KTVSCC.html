@@ -35,6 +35,7 @@
         $("#DungCV").html("")
         $("#ChoSC").html("")
         dataktv.forEach(r => {
+            if (r.KhachRuaXe == null) { r.KhachRuaXe = "None" }
             if (r.TrangThaiSCC == "Đang SC") {
                 $("#DangSC").html($("#DangSC").html() +
                     `
