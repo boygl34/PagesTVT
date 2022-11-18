@@ -254,7 +254,7 @@
             TrangThaiSCC: "Đã SC",
             TrangThaiXuong: "08 Chờ Giao Xe"
         };
-        if (RuaXe == "Rửa Xe") { json2[TrangThaiXuong] = "06 Chờ Rửa Xe" }
+        if (RuaXe == "Rửa Xe") { json2["TrangThaiXuong"] = "06 Chờ Rửa Xe" }
         postData(json2, urlTX + "/" + id, "PATCH");
     }
     function dungcv(id) {
