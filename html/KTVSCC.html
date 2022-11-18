@@ -191,10 +191,9 @@
         changeNhom()
     }
     function changeNhom() {
-        localStorage.setItem("TenKTV", "none")
+
         localStorage.setItem("Nhom", $("#NhomKTV").val())
         var nhom = localStorage.getItem("Nhom")
-        $("#KyThuatVien1").val("")
         LoadTimeLine()
         if (nhom == "Bạo") {
             NhanVienDropDown(KTVBao);
