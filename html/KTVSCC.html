@@ -132,15 +132,17 @@
     }
 
     doithoigian = (value) => {
-        var Thang = value.slice(3, 5);
-        var Ngay = value.slice(0, 2);
-        var Nam = value.slice(6, 10);
-        var Gio = value.slice(11, 13);
-        var Phut = value.slice(14, 16);
-        var NgayThang = Ngay + "/" + Thang + " " + Gio + ":" + Phut
-
-
-        return NgayThang;
+        try {
+            var Thang = value.slice(3, 5);
+            var Ngay = value.slice(0, 2);
+            var Nam = value.slice(6, 10);
+            var Gio = value.slice(11, 13);
+            var Phut = value.slice(14, 16);
+            var NgayThang = Ngay + "/" + Thang + " " + Gio + ":" + Phut
+            return NgayThang;
+        } catch {
+            return "None"
+        }
     }
 
     NhomSC(NhomKTV);
