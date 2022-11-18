@@ -33,14 +33,12 @@
     function LoadTimeLine() {
         var KTV = localStorage.getItem("TenKTV")
         var NhomSCC = localStorage.getItem("Nhom")
-
-        var datanhom = useCaher.filter(function (r) { return r.NhomKTV == NhomSCC && r.TrangThaiSCC == "Chờ SC" })
-        var dataktv = useCaher.filter(function (r) { return r.KyThuatVien1 == KTV || r.KyThuatVien2 == KTV })
+        var dataktv = useCaher.filter(function (r) { return r.NhomKTV == NhomSCC && (r.KyThuatVien1 == KTV || r.KyThuatVien2 == KTV) })
         $("#DangSC").html("")
         $("#DungCV").html("")
         $("#ChoSC").html("")
         $("#NhomSCC").html("")
-
+        var datanhom = useCaher.filter(function (r) { return r.NhomKTV == NhomSCC && r.TrangThaiSCC == "Chờ SC" })
         datanhom.forEach(r => {
             if (r.KhachRuaXe == null) { r.KhachRuaXe = "None" }
             $("#NhomSCC").html($("#NhomSCC").html() + `
@@ -73,8 +71,6 @@
             `)
 
         })
-
-
         dataktv.forEach(r => {
             if (r.KhachRuaXe == null) { r.KhachRuaXe = "None" }
             if (r.TrangThaiSCC == "Đang SC") {
@@ -104,10 +100,6 @@
                                             </div>
                                         </div>
                                     </div>`)
-
-
-
-
             }
             if (r.TrangThaiSCC == "Chờ SC") {
                 $("#ChoSC").html($("#ChoSC").html() +
@@ -164,10 +156,6 @@
                                             </div>
                                         </div>
                                     </div>`)
-
-
-
-
             }
         });
         document.getElementById("loading").style.display = "none"
@@ -200,8 +188,11 @@
         changeNhom()
     }
     function changeNhom() {
-
         var nhom = document.getElementById("NhomKTV").value;
+        $("#NhomSCC").html("")
+        $("#DangSC").html("")
+        $("#DungCV").html("")
+        $("#ChoSC").html("")
 
         if (nhom == "Bạo") {
             NhanVienDropDown(KTVBao);
