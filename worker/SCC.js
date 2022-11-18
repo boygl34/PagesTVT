@@ -2,7 +2,7 @@
 
 var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
 getData()
-setInterval(getData, 90000)
+setInterval(getData, 60000)
 function getData() {
     fetch(urlTX, {
         method: "GET", // or 'PUT'
