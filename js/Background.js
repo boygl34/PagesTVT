@@ -125,31 +125,38 @@ function checkPhanQuyen() {
   var BoPhan = localStorage.getItem("BoPhan")
   console.log(BoPhan)
   if (PhanQuyen == "admin" || PhanQuyen == "LeTan") {
-
     $("#fonmid").show();
   }
-  if (PhanQuyen == "admin") { document.getElementById("Setting").style.display = "block" } else {
-    document.getElementById("Setting").style.display = "none"
+  if (PhanQuyen == "admin") {
+    $("#Setting").show()
+
+  } else {
+    $("#Setting").hide()
+
   }
   if (BoPhan == "admin" || PhanQuyen == "admin") {
-    document.getElementById("PQDichVu2").style.display = "block"
-    document.getElementById("PQPhuKien").style.display = "block"
-    document.getElementById("PQKinhDoanh").style.display = "block"
-    document.getElementById("PQManHinh").style.display = "block"
-    document.getElementById("PQCoVan").style.display = "block"
+    $("#PQDichVu2").show()
+    $("#PQPhuKien").show()
+    $("#PQKinhDoanh").show()
+    $("#PQManHinh").show()
+    $("#PQCoVan").show()
+
   }
   if (BoPhan == "Dịch Vụ") {
-    document.getElementById("PQDichVu2").style.display = "block"
+    $("#PQDichVu2").show()
 
     if (PhanQuyen == "CoVandichvu" || PhanQuyen == "admin") {
-      document.getElementById("PQCoVan").style.display = "block"
+      $("#PQCoVan").show()
+
     }
   }
   if (BoPhan == "Phụ Kien") {
-    document.getElementById("PQPhuKien").style.display = "block"
+    $("#PQPhuKien").show()
+
   }
   if (BoPhan == "Kinh Doanh") {
-    document.getElementById("PQKinhDoanh").style.display = "block"
+    $("#PQKinhDoanh").show()
+
   }
 
 }
