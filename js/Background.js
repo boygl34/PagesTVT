@@ -123,7 +123,6 @@ checkPhanQuyen();
 function checkPhanQuyen() {
   var PhanQuyen = localStorage.getItem("PhanQuyen");
   var BoPhan = localStorage.getItem("BoPhan")
-  console.log(BoPhan)
   if (PhanQuyen == "admin" || PhanQuyen == "LeTan") {
     $("#fonmid").show();
   }
