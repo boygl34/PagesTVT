@@ -520,6 +520,7 @@ function LoadTimeLine() {
     row.appendChild(MaSo);
     tbodyhen.appendChild(row);
   });
+  $("#loading").hide()
 }
 
 function clickTableTiepNhan() {
