@@ -270,11 +270,13 @@ $(".Ngay2").datetimepicker({
 });
 
 function datevalue(value) {
-  var NgayHoanThanh = new Date(value);
-  NgayHoanThanh = new Date(NgayHoanThanh * 1 + 7 * 60 * 60 * 1000);
-  var aa = NgayHoanThanh.toJSON();
-  var bb = aa.slice(0, aa.length - 5);
-  return bb;
+  try {
+    var NgayHoanThanh = new Date(value);
+    NgayHoanThanh = new Date(NgayHoanThanh * 1 + 7 * 60 * 60 * 1000);
+    var aa = NgayHoanThanh.toJSON();
+    var bb = aa.slice(0, aa.length - 5);
+    return bb;
+  } catch { return "" }
 }
 function TaoMaSo(ngayhen) {
   var Thang = ngayhen.slice(3, 5);

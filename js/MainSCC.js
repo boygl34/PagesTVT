@@ -452,11 +452,11 @@ function changvalue() {
     $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>");
     if (ojb[a].BienSoXe == BienSoXe.value) {
       if (ojb[a].TDHenGiaoXe) {
-        $("#mesenge").html(
-          "<div class='alert alert-success'>Giờ Giao Xe : " +
-          datevalue(DoiNgayDangKy(ojb[a].TDHenGiaoXe)) +
-          "</div>"
-        );
+        // $("#mesenge").html(
+        //   "<div class='alert alert-success'>Giờ Giao Xe : " +
+        //   datevalue(DoiNgayDangKy(ojb[a].TDHenGiaoXe)) +
+        //   "</div>"
+        // );
       }
       if (ojb[a].MaSo) {
         document.getElementById("MaSo").value = ojb[a].MaSo;
