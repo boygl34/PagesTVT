@@ -683,3 +683,28 @@ function DKrualai() {
     }
   }
 }
+
+$(".Ngay").datetimepicker({
+  format: "dd/mm/yyyy HH:MM:00 ",
+  uiLibrary: "bootstrap4",
+  modal: true,
+  footer: true,
+  datepicker: {
+    disableDates: function (date) {
+      const currentDate = new Date().setHours(0, 0, 0, 0);
+      return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
+    },
+  },
+});
+$(".Ngay2").datetimepicker({
+  format: "dd/mm/yyyy HH:MM:00 ",
+  uiLibrary: "bootstrap4",
+  modal: true,
+  footer: true,
+  datepicker: {
+    disableDates: function (date) {
+      const currentDate = new Date().setHours(0, 0, 0, 0);
+      return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
+    },
+  },
+});

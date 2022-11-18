@@ -167,7 +167,9 @@
     function changeNhom() {
 
         var nhom = document.getElementById("NhomKTV").value;
-
+        $("#DangSC").html("")
+        $("#DungCV").html("")
+        $("#ChoSC").html("")
         if (nhom == "Bạo") {
             NhanVienDropDown(KTVBao);
         }
