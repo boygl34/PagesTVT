@@ -51,6 +51,7 @@
 <main id="tablehen">
     <div class="container-fluid px-4 " style="background-color:#212529 ;">
         <h1 style="font-weight:bold;text-align:center;color:white;" id="tieude">THÔNG TIN RỬA XE </h1>
+        <div id="timeline"></div>
         <table id="data-table" class=" table table-dark  table-sm table-hover  row-border"
             style="text-align:left;vertical-align: middle;font-weight:bold;width:98%;background-color:#212529">
             <thead>
@@ -114,29 +115,77 @@
             if (ojb[a].MaSo == MaSo) { return ojb[a].id }
         }
     }
+    var containerCV = document.getElementById("timeline");
+    var groupsCV = new vis.DataSet();
+    var itemsCV = new vis.DataSet();
+    groupsCV.add({
+        id: "Rửa Xe",
+        content: "Rửa Xe",
+    });
+    var optionsCV = {
+        hiddenDates: [
+            //{start: '2017-03-05 00:00:00',end: '2017-03-06 00:00:00',repeat: 'weekly'},
+            // {
+            //     start: "2017-03-04 17:30:00",
+            //     end: "2017-03-05 07:30:00",
+            //     repeat: "daily",
+            // },
+        ],
+        stack: true,
+        start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
+        editable: false,
+        end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
+        margin: {
+            item: 0, // distance between items
+            axis: 0, // distance between items and the time axis
+        },
+        orientation: "top",
+        timeAxis: { scale: "minute", step: 30 },
+        orientation: "top",
+    };
+
+    var timelineCV = new vis.Timeline(containerCV, itemsCV, groupsCV, optionsCV);
     LoadTimeLine()
     function LoadTimeLine(use) {
         document.getElementById("loading").style.display = "none"
         var dataArray = useCaher
         var dataArray0 = dataArray.filter(function (r) { return r.KhachRuaXe === "Rửa Xe" && r.TDHenGiaoXe })
         var ngaygiaoxebc = new Date()
-        // var dataArray0= dataArray0.filter(function(r){
-        //     var daygx=DoiNgayDangKy(r.TDHenGiaoXe).getDate()
-        //     var monthgx = DoiNgayDangKy(r.TDHenGiaoXe).getMonth()
-        //     var yeargx = DoiNgayDangKy(r.TDHenGiaoXe).getYear()
-
-        // return (daygx>=ngaygiaoxebc.getDate()&&monthgx==ngaygiaoxebc.getMonth()&&yeargx==ngaygiaoxebc.getYear())})
-
         dataArray0 = dataArray0.filter(function (r) { return r.TrangThaiXuong !== "08 Chờ Giao Xe" })
         dataArray0.sort(function (a, b) { return (a.TrangThaiXuong.toLowerCase() < b.TrangThaiXuong.toLowerCase() ? 1 : -1); })
-
         var tbodyTim = document.getElementById('table-body-RuaXe')
         tbodyTim.innerHTML = ""
         dataArray0.forEach(function (r) {
+            var option1 = {
+                start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
+                end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
+            };
+            timelineCV.setOptions(option1);
 
+
+            if (
+                r.KhachRuaXe == "Rửa Xe" &&
+                r.TrangThaiXuong != "08 Chờ Giao Xe" &&
+                r.TimeEndGJ
+            ) {
+                var classname2 = "orange";
+                if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
+                    classname2 = "green";
+                }
+                itemsCV.add({
+                    className: classname2,
+
+                    group: "Rửa Xe",
+                    //type: "point",
+                    start: new Date(DoiNgayDangKy(r.TimeEndGJ)),
+                    end: new Date(
+                        1000 * 60 * 14 + new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf()
+                    ),
+                    content: r.BienSoXe + " " + r.CoVanDichVu,
+                });
+            }
             var row = document.createElement("tr");
             var tbodyTim = document.getElementById('table-body-RuaXe')
-
             var ColNutNhan = document.createElement("td");
             ColNutNhan.innerHTML = ""
             if (r.TrangThaiXuong == "06 Chờ Rửa Xe") {
@@ -147,8 +196,6 @@
                 ColNutNhan.innerHTML = "<button type='button' class='btn btn-danger ' onclick='HuyRuaXe(this);'>Delete!</button>&ensp;<button type='button' class='btn btn-warning ' onclick='KetThucRuaXe(this);'>End!</button>";
                 row.setAttribute('class', 'DangRuaXe')
             }
-
-
             row.appendChild(ColNutNhan);
             var ColBienSo = document.createElement("td");
             ColBienSo.innerHTML = r.BienSoXe
