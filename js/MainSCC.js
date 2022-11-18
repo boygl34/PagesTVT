@@ -242,7 +242,7 @@ function ThuTuGiaoXe(value) {
       thutumoi["ThuTuEM" + a] = new_arr[a]
     }
     var json = { value: thutumoi }
-    console.log(urlThongSo);
+
     fetch(urlThongSo + "ThuTuEM", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
