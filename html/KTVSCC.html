@@ -27,6 +27,12 @@
         </div>
 
 </main>
+<style>
+    .Hen::before {
+        content: "🅗 ";
+    }
+</style>
+
 <script>
 
 
@@ -42,13 +48,14 @@
             var datanhom = useCaher.filter(function (r) { return r.NhomKTV == NhomSCC && r.TrangThaiSCC == "Chờ SC" })
             datanhom.forEach(r => {
                 if (r.KhachRuaXe == null) { r.KhachRuaXe = "None" }
+                if (r.KhachHangHen == "Khách Hẹn") { r.KhachHangHen = "Hen" };
                 $("#NhomSCC").html($("#NhomSCC").html() + `
             <div class="col-xl-4 col-md-6">
                                         <div class="card bg-secondary text-white mb-4">Đang SC ${r.KhoangSuaChua}
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <h3 class="col">${r.BienSoXe}</h3>
-                                                    <h3 class="col">${doithoigian(r.TDHenGiaoXe)}</h3>
+                                                    <h3 class="col-7 ${r.KhachHangHen}">${r.BienSoXe}</h3>
+                                                    <h5 class="col-5">${doithoigian(r.TDHenGiaoXe)}</h5>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
@@ -74,6 +81,7 @@
             })
             dataktv.forEach(r => {
                 if (r.KhachRuaXe == null) { r.KhachRuaXe = "None" }
+                if (r.KhachHangHen == "Khách Hẹn") { r.KhachHangHen = "Hen" };
                 if (r.TrangThaiSCC == "Đang SC") {
                     $("#DangSC").html($("#DangSC").html() +
                         `
@@ -81,14 +89,14 @@
                                         <div class="card bg-success text-white mb-4">Đang SC ${r.KhoangSuaChua}
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <h3 class="col">${r.BienSoXe}</h3>
-                                                    <h3 class="col">${doithoigian(r.TDHenGiaoXe)}</h3>
+                                                    <h3 class="col-7 ${r.KhachHangHen}">${r.BienSoXe}</h3>
+                                                    <h5 class="col-5">${doithoigian(r.TDHenGiaoXe)}</h5>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col">
+                                                    <div class="col-7">
                                                         <h3>${r.LoaiHinhSuaChua} ${r.CoVanDichVu}</h3>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-5">
                                                         <h3>${r.KhachRuaXe}</h3>
                                                     </div>
                                                 </div>
@@ -109,14 +117,14 @@
                                         <div class="card bg-primary text-white mb-4">Chờ SC ${r.KhoangSuaChua}
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <h3 class="col">${r.BienSoXe}</h3>
-                                                    <h3 class="col">${doithoigian(r.TDHenGiaoXe)}</h3>
+                                                    <h3 class="col-7 ${r.KhachHangHen}">${r.BienSoXe}</h3>
+                                                    <h5 class="col-5">${doithoigian(r.TDHenGiaoXe)}</h5>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col">
+                                                    <div class="col-7">
                                                         <h3>${r.LoaiHinhSuaChua} ${r.CoVanDichVu}</h3>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-5">
                                                         <h3>${r.KhachRuaXe}</h3>
                                                     </div>
                                                 </div>
@@ -137,14 +145,14 @@
                                         <div class="card bg-danger text-white mb-4">Dừng CV ${r.KhoangSuaChua}
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <h3 class="col">${r.BienSoXe}</h3>
-                                                    <h3 class="col">${doithoigian(r.TDHenGiaoXe)}</h3>
+                                                    <h3 class="col-7 ${r.KhachHangHen}">${r.BienSoXe}</h3>
+                                                    <h5 class="col-5">${doithoigian(r.TDHenGiaoXe)}</h5>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col">
+                                                    <div class="col-7">
                                                         <h3>${r.LoaiHinhSuaChua} ${r.CoVanDichVu}</h3>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-5">
                                                         <h3>${r.KhachRuaXe}</h3>
                                                     </div>
                                                 </div>
