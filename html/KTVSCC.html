@@ -38,12 +38,12 @@
             if (r.TrangThaiSCC == "Đang SC") {
                 $("#DangSC").html($("#DangSC").html() +
                     `
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="card bg-success text-white mb-4">Đang SC
+                                    <div class="col-xl-4 col-md-6">
+                                        <div class="card bg-success text-white mb-4">Đang SC ${r.KhoangSuaChua}
                                             <div class="card-body">
                                                 <div class="row">
                                                     <h2 class="col">${r.BienSoXe}</h2>
-                                                    <h2class="col">${doithoigian(r.TDHenGiaoXe)}</h2>
+                                                    <h2 class="col">${doithoigian(r.TDHenGiaoXe)}</h2>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
@@ -70,11 +70,11 @@
             if (r.TrangThaiSCC == "Chờ SC") {
                 $("#ChoSC").html($("#ChoSC").html() +
                     `
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="card bg-primary text-white mb-4">Chờ SC
+                                    <div class="col-xl-4 col-md-6">
+                                        <div class="card bg-primary text-white mb-4">Chờ SC ${r.KhoangSuaChua}
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <h2class="col">${r.BienSoXe}</h2>
+                                                    <h2 class="col">${r.BienSoXe}</h2>
                                                     <h2 class="col">${doithoigian(r.TDHenGiaoXe)}</h2>
                                                 </div>
                                                 <div class="row">
@@ -98,8 +98,8 @@
             if (r.TrangThaiSCC == "Dừng SC") {
                 $("#DungCV").html($("#DungCV").html() +
                     `
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="card bg-danger text-white mb-4">Dừng CV
+                                    <div class="col-xl-4 col-md-6">
+                                        <div class="card bg-danger text-white mb-4">Dừng CV ${r.KhoangSuaChua}
                                             <div class="card-body">
                                                 <div class="row">
                                                     <h2class="col">${r.BienSoXe}</h2>
