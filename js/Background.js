@@ -125,7 +125,8 @@ function checkPhanQuyen() {
   var BoPhan = localStorage.getItem("BoPhan")
   console.log(BoPhan)
   if (PhanQuyen == "admin" || PhanQuyen == "LeTan") {
-    document.getElementById("fonmid").style.display = "block"
+
+    $("#fonmid").show();
   }
   if (PhanQuyen == "admin") { document.getElementById("Setting").style.display = "block" } else {
     document.getElementById("Setting").style.display = "none"
