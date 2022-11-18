@@ -497,8 +497,11 @@ function changvalue() {
           '<button type="button" class="btn btn-primary" onclick="KetThucTiepNhan()" >Kết Thúc Tiếp Nhận</button>';
       }
       if (data.TrangThaiXuong == "08 Chờ Giao Xe") {
+
         document.getElementById("NutNhan").innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="GiaoXe()" >Giao Xe</button><button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>';
+          `<button type="button"id="bnt-DangKyshow" onclick="DKrualai()" class="btn btn-success" >DK Rửa Lại</button>
+
+          <button type="button" class="btn btn-primary" onclick="GiaoXe()" >Giao Xe</button><button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button`
       }
       if (
         data.TrangThaiXuong == "06 Chờ Rửa Xe" ||
