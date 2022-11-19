@@ -148,6 +148,7 @@
     LoadTimeLine()
     function LoadTimeLine(use) {
         document.getElementById("loading").style.display = "none"
+        itemsCV.clear()
         var dataArray = useCaher
         var dataArray0 = dataArray.filter(function (r) { return r.KhachRuaXe === "Rửa Xe" && r.TDHenGiaoXe })
         var ngaygiaoxebc = new Date()
