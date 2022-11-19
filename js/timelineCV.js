@@ -27,8 +27,8 @@ var optionsCV = {
     axis: 0, // distance between items and the time axis
   },
   orientation: "top",
-  start: new Date(new Date().valueOf()).setHours(6),
-  end: new Date(new Date().valueOf()).setHours(17),
+  start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
+  end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
   timeAxis: { scale: "minute", step: 30 },
   orientation: "top",
 };
@@ -37,6 +37,11 @@ var timelineCV = new vis.Timeline(containerCV, itemsCV, groupsCV, optionsCV);
 loadDataCV();
 function loadDataCV() {
   itemsCV.clear();
+  var option1 = {
+    start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
+    end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
+  };
+  timelineCV.setOptions(option1);
   var dataArray0 = useCaher;
   for (var a in dataArray0) {
     r = dataArray0[a];
