@@ -230,7 +230,7 @@ function LoadTimeLine() {
         var classname2 = "orange";
         if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
           classname2 = "green";
-          if (endwwash < new Date().valueOf()) { endwwash = new Date() }
+          if (endwwash.valueOf() < new Date().valueOf()) { endwwash = new Date() }
         }
         items.add({
           className: classname2,

@@ -76,7 +76,7 @@ function loadDataCV() {
       var classname2 = "orange";
       if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
         classname2 = "green";
-        if (endwwash < new Date().valueOf()) { endwwash = new Date() }
+        if (endwwash.valueOf() < new Date().valueOf()) { endwwash = new Date() }
       }
       itemsCV.add({
         className: classname2,
