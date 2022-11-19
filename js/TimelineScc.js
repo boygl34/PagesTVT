@@ -223,15 +223,22 @@ function LoadTimeLine() {
 
 
       if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
+        var startwash = new Date(DoiNgayDangKy(r.TimeEndGJ))
+
+        if (r.TimeStartWash) { startwash = new Date(DoiNgayDangKy(r.TimeStartWash)) }
+        var endwwash = new Date(1000 * 60 * 14 + startwash.valueOf())
         var classname2 = "orange";
-        if (r.TrangThaiXuong == "07 Đang Rửa Xe") { classname2 = "green"; }
-        items.update({
+        if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
+          classname2 = "green";
+          if (endwwash < new Date().valueOf()) { endwwash = new Date() }
+        }
+        items.add({
           className: classname2,
           id: r.BienSoXe + "_RuaXe",
           group: "Rửa Xe",
-          start: end,
-          end: endRX,
-          editable: edit1,
+          //type: "point",
+          start: startwash,
+          end: endwwash,
           content: r.BienSoXe + " " + r.CoVanDichVu,
         });
       }
