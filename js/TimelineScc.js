@@ -1,6 +1,23 @@
 var items = new vis.DataSet();
 var container = document.getElementById("mytimeline");
+var containerRX = document.getElementById("timelineRX");
 var groups = new vis.DataSet();
+var groupRX = new vis.DataSet()
+var optionsRX = {
+  stack: true,
+  start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
+  editable: false,
+  end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
+  margin: {
+    item: 0, // distance between items
+    axis: 0, // distance between items and the time axis
+  },
+  timeAxis: { scale: "minute", step: 15 },
+  editable: false,
+  autoResize: true,
+  zoomable: false,
+  moveable: false,
+};
 var options = {
   hiddenDates: [
     {
@@ -59,13 +76,13 @@ for (i in KhoangSC) {
 
 
 }
-groups.add({
+groupRX.add({
   id: "Rửa Xe",
   content: "Rửa Xe",
 });
 
 var timeline = new vis.Timeline(container, items, groups, options);
-
+var timelineRX = new vis.Timeline(containerRX, items, groupRX, optionsRX);
 $("#mytimeline").mouseleave(function () {
   document.getElementById("contextMenu2").style.display = "none";
 });
@@ -135,7 +152,12 @@ function LoadTimeLine() {
 
   var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
-  console.log("update");
+
+  var option1 = {
+    start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
+    end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
+  };
+  timelineRX.setOptions(option1);
   for (var a in dataArray1) {
     r = dataArray1[a];
     var hoanthanh = document.getElementById("checkbox-3").checked;
@@ -209,7 +231,6 @@ function LoadTimeLine() {
           group: "Rửa Xe",
           start: end,
           end: endRX,
-          type: "point",
           editable: edit1,
           content: r.BienSoXe + " " + r.CoVanDichVu,
         });
