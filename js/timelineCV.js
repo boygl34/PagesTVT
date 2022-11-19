@@ -68,24 +68,23 @@ function loadDataCV() {
       });
     }
 
-    if (
-      r.KhachRuaXe == "Rửa Xe" &&
-      r.TrangThaiXuong != "08 Chờ Giao Xe" &&
-      r.TimeEndGJ
-    ) {
+    if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
+      var startwash = new Date(DoiNgayDangKy(r.TimeEndGJ))
+
+      if (r.TimeStartWash) { startwash = new Date(DoiNgayDangKy(r.TimeStartWash)) }
+      var endwwash = new Date(1000 * 60 * 14 + startwash.valueOf())
       var classname2 = "orange";
       if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
         classname2 = "green";
+        if (endwwash < new Date().valueOf()) { endwwash = new Date() }
       }
       itemsCV.add({
         className: classname2,
         id: r.BienSoXe + "_RuaXe",
         group: "Rửa Xe",
         //type: "point",
-        start: new Date(DoiNgayDangKy(r.TimeEndGJ)),
-        end: new Date(
-          1000 * 60 * 14 + new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf()
-        ),
+        start: startwash,
+        end: endwwash,
         content: r.BienSoXe + " " + r.CoVanDichVu,
       });
     }
