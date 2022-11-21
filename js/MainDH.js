@@ -387,9 +387,15 @@ function changvalueBS() {
   }
   var thongtin = checkMasterData($("#BienSoXe").val())[0]
   if (thongtin) {
-    document.getElementById("SoDT").value = thongtin["Điện thoại người mang xe"]
     document.getElementById("KhuVuc").value = thongtin["Quận/Huyện"]
-    document.getElementById("TenKH").value = thongtin["Người mang xe"]
+    if (thongtin["Điện thoại người mang xe"]) {
+      document.getElementById("SoDT").value = thongtin["Điện thoại người mang xe"]
+      document.getElementById("TenKH").value = thongtin["Người mang xe"]
+    } else {
+      document.getElementById("SoDT").value = thongtin["Điện thoại KH"]
+      document.getElementById("TenKH").value = thongtin["Tên KH"]
+    }
+
   }
 }
 
