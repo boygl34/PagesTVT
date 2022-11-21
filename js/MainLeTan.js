@@ -278,7 +278,7 @@ function changvalue() {
     }
   } var thongtin = checkMasterData($("#BienSoXe").val())[0]
   if (thongtin) {
-    document.getElementById("TenKH").value = thongtin.NguoiMangXe
+    document.getElementById("TenKH").value = thongtin["Người mang xe"]
     var covan = thongtin.CVDV
     covan = covan.slice(covan.lastIndexOf(" ") + 1, covan.length)
     //document.getElementById("CoVanDichVu").value = covan
