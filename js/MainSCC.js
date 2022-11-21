@@ -137,27 +137,19 @@ function DungCongViecGJ() {
 }
 function BatDauSC() {
   if (document.getElementById("KyThuatVien1").value == "") {
-    $("#mesenge").html(
-      '<div class="alert alert-danger" role="alert"> Chưa Có Tên KTV!</div>'
-    );
+    alert("Chưa Có KTV");
     return false;
   }
   if (document.getElementById("GioKetThucSC").value == "") {
-    $("#mesenge").html(
-      '<div class="alert alert-danger" role="alert">Chưa Có Thời Gian Sữa Chữa!</div>'
-    );
+    alert("Chưa Có Giờ KT");
     return false;
   }
   if (document.getElementById("KhoangSuaChua").value == "") {
-    $("#mesenge").html(
-      '<div class="alert alert-danger" role="alert"> Chưa Có Khoang Làm Việc!</div>'
-    );
+    alert("Chưa Có Khoang SC");
     return false;
   }
   if (document.getElementById("CoVanDichVu").value == "") {
-    $("#mesenge").html(
-      '<div class="alert alert-danger" role="alert"> Chưa Có Cố Vấn!</div>'
-    );
+    alert("Chưa Có Cố Vấn");
     return false;
   }
   var json2 = {
@@ -254,6 +246,10 @@ function ThuTuGiaoXe(value) {
 function BatDauSC2() {
   if (document.getElementById("KyThuatVien1").value == "") {
     alert("Chưa Có KTV");
+    return false;
+  }
+  if (document.getElementById("CoVanDichVu").value == "") {
+    alert("Chưa Có Cố Vấn");
     return false;
   }
   var GioKetThucChip = new Date(
