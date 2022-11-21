@@ -60,7 +60,7 @@ function loadDataCV() {
       itemsCV.add({
         id: r.BienSoXe + "_Giao" + a,
         group: r.CoVanDichVu,
-        className: "blue",
+        className: "blue Giao",
         start: new Date(DoiNgayDangKy(r.TDHenGiaoXe)),
         end: new Date(
           1000 * 60 * 29 + new Date(DoiNgayDangKy(r.TDHenGiaoXe)).valueOf()

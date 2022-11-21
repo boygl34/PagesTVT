@@ -65,6 +65,7 @@
 }
 
 .vis-item {
+  padding-left: 10px;
   border-color: black;
   font-family: Arial, sans-serif;
   background-color: orange;
@@ -112,6 +113,8 @@
   color: white;
 }
 
+
+
 .vis-sunday {
   background-color: rgba(255, 0, 0, 0.282);
 }
@@ -121,6 +124,9 @@
   border-color: darkred;
   color: white;
 }
+
+
+
 
 .vis-h12 {
   background-color: rgb(235, 115, 205);
