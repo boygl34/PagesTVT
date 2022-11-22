@@ -1,6 +1,18 @@
+.vis-item {
+
+  padding-left: 10px;
+  border-color: black;
+  border-radius: 40px;
+  font-family: Arial, sans-serif;
+  background-color: orange;
+  font-size: 10pt;
+  box-shadow: rgba(128, 128, 128, 0.5) 5px 5px 20px;
+}
+
 .vis-item.orange {
   background-color: gold;
   border-color: orange;
+  border-radius: 10px;
 }
 
 .vis-item.green.vis-selected {
@@ -8,6 +20,7 @@
   color: rgb(3, 3, 3);
   border-color: rgb(157, 155, 149);
   z-index: 2;
+  border-radius: 10px;
 }
 
 .vis-item.orange.vis-selected {
@@ -39,6 +52,7 @@
 }
 
 .vis-item.green {
+  border-radius: 10px;
   background-color: greenyellow;
   border-color: green;
   font-weight: bold;
@@ -64,14 +78,7 @@
   color: whitesmoke;
 }
 
-.vis-item {
-  padding-left: 10px;
-  border-color: black;
-  font-family: Arial, sans-serif;
-  background-color: orange;
-  font-size: 10pt;
-  box-shadow: rgba(128, 128, 128, 0.5) 5px 5px 20px;
-}
+
 
 /* .vis-drag-right::before {
   padding-top: 5px;
