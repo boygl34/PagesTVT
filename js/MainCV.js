@@ -437,12 +437,12 @@ function changvalue() {
         if (data.KhachRuaXe == "Rửa Xe") {
           buttonkd.value = "Rửa Xe";
           buttonkd.innerHTML = "Rửa Xe";
-          document.getElementById("divruaxe").style.display = "block";
+          //document.getElementById("divruaxe").style.display = "block";
           buttonkd.removeAttribute("class", "btn-primary");
           buttonkd.setAttribute("class", " btn btn-success");
         } else {
           buttonkd.value = "Không Rửa";
-          document.getElementById("divruaxe").style.display = "none";
+          // document.getElementById("divruaxe").style.display = "none";
           buttonkd.innerHTML = "Không Rửa";
           buttonkd.removeAttribute("class", "btn-primary");
           buttonkd.setAttribute("class", "btn btn-success");
