@@ -554,7 +554,11 @@ function clickTableTiepNhan() {
 
 function canhBao(tieude, noidung, canhbao) {
 
-  var AlertS = `<div class="alert alert-${canhbao} alert-solid" role="alert"><Strong>${tieude}</Strong>:${noidung}!</div>`
+  var AlertS = `<div class="alert alert-${canhbao} alert-dismissible fade show" role="alert">
+  <h5 class="alert-heading">${tieude}</h5>
+  ${noidung}
+  <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>`
   $("#alert").html($("#alert").html() + AlertS);
 }
 
