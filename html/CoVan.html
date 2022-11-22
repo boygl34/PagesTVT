@@ -83,10 +83,11 @@
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group " id="divruaxe">
+              <div class="form-group " id="divruaxe" style="display:none ;">
                 <label for="NgayGiaoXe">Thời Điểm Rửa Xe</label>
                 <input type="text" class="form-control Ngay2" id="NgayRuaXe" name="NgayRuaXe" required />
               </div>
+
             </div>
             <div class="form-row">
               <div id="NutNhan"></div>
@@ -164,13 +165,13 @@
     var buttonkd = document.getElementById("KhachRX");
     if (buttonkd.value == "Rửa Xe") {
       buttonkd.value = "Không Rửa";
-      document.getElementById("divruaxe").style.display = "none";
+      // document.getElementById("divruaxe").style.display = "none";
       buttonkd.innerHTML = "Không Rửa";
       buttonkd.removeAttribute("class", "btn-primary");
       buttonkd.setAttribute("class", " btn btn-success");
     } else {
       buttonkd.value = "Rửa Xe";
-      document.getElementById("divruaxe").style.display = "block";
+      //document.getElementById("divruaxe").style.display = "block";
       buttonkd.innerHTML = "Rửa Xe";
       buttonkd.removeAttribute("class", "btn-success");
       buttonkd.setAttribute("class", "btn btn-primary");

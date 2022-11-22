@@ -407,7 +407,8 @@ function changvalue() {
     .then((data) => {
       data = data[0];
       document.getElementById("NutNhan").innerHTML =
-        '<button type="button" class="btn btn-primary" onclick="DangKyCoVan()" >Đăng Ký</button>'
+        '<button type="button" class="btn btn-primary" onclick="DangKyCoVan()" >Đăng Ký Dịch Vụ</button>' +
+        '<button type="button" class="btn btn-warning" onclick="DKruaXe()" >Đăng Ký Rửa Xe</button>'
       if (data.MaSo) {
         document.getElementById("MaSo").value = data.MaSo;
       }
