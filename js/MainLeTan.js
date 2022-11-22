@@ -686,7 +686,7 @@ function canhBao() {
   $("#alert").html("");
   for (let a in NhomCV) {
     try {
-      $.get("https://deciduous-pentagonal-powder.glitch.me/Setting/" + NhomCV[a],
+      $.get(urlSetting + NhomCV[a],
         function (ketqua) {
           if (ketqua.TrangThai == "DungTN") {
             var alert =
