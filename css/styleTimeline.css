@@ -1,11 +1,12 @@
 .vis-item {
 
-  padding-left: 10px;
+
   border-color: black;
   border-radius: 40px;
   font-family: Arial, sans-serif;
   background-color: orange;
   font-size: 10pt;
+  font-weight: bolder;
   box-shadow: rgba(128, 128, 128, 0.5) 5px 5px 20px;
 }
 
