@@ -266,8 +266,7 @@ function BatDauSC2() {
     NhomKTV: $("#NhomKTV").val(),
     BaiDauXe: $("#KhoangSuaChua").val(),
   };
-  var ojb = useCaher;
-  var ojb = useCaher;
+
   var ojb = useCaher;
   for (var a in ojb) {
     if (ojb[a].MaSo == document.getElementById("MaSo").value) {
