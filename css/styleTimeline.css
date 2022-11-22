@@ -60,6 +60,14 @@
   color: black;
 }
 
+.vis-item.green.RuaXe::before {
+  content: "OK";
+}
+
+.vis-item.orange.RuaXe::before {
+  content: "OK";
+}
+
 .vis-labelset .vis-label {
   position: relative;
   left: 0px;

@@ -7,17 +7,24 @@ var optionsRX = {
   stack: true,
   start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
   editable: false,
+  onMove: function (item) {
+    document.getElementById("loading").style.display = "block"
+    DangKyRuaXeTL(item);
+  },
   end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
   margin: {
     item: 0, // distance between items
     axis: 0, // distance between items and the time axis
   },
   timeAxis: { scale: "minute", step: 15 },
-  editable: false,
+  editable: true,
   autoResize: true,
   zoomable: false,
-  moveable: false,
+  moveable: true,
 };
+
+
+
 var options = {
   hiddenDates: [
     {
@@ -224,17 +231,21 @@ function LoadTimeLine() {
 
       if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
         var startwash = new Date(DoiNgayDangKy(r.TimeEndGJ))
-
-        if (r.TimeStartWash) { startwash = new Date(DoiNgayDangKy(r.TimeStartWash)) }
-        var endwwash = new Date(1000 * 60 * 14 + startwash.valueOf())
         var classname2 = "orange";
+        if (r.TimeStartWash) {
+          startwash = new Date(DoiNgayDangKy(r.TimeStartWash))
+          classname2 += " RuaXe"
+        }
+        var endwwash = new Date(1000 * 60 * 14 + startwash.valueOf())
+
         if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
           classname2 = "green";
+          classname2 += " RuaXe"
           if (endwwash.valueOf() < new Date().valueOf()) { endwwash = new Date() }
         }
         items.add({
           className: classname2,
-          id: r.BienSoXe + "_RuaXe",
+          id: r.MaSo + "_RuaXe",
           group: "Rửa Xe",
           //type: "point",
           start: startwash,
@@ -516,3 +527,14 @@ function forwardtime() {
   timeline.setOptions(option1);
   document.getElementById("datefield").value = today;
 }
+function DangKyRuaXeTL(item) {
+  var MaSoChip = item.id.slice(0, item.id.lastIndexOf("_"));
+  alert(MaSoChip)
+  var json2 = {
+    TimeStartWash: TimesClick(item.start),
+    TimeEndGJ: TimesClick(new Date(1000 * 60 * 14 + new Date(item.start).valueOf())),
+
+  };
+  postData(json2, urlTX + "/" + checkID(MaSoChip), "PATCH");
+}
+
