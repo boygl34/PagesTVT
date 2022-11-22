@@ -117,7 +117,7 @@ timeline.on("contextmenu", function (props) {
   $("#biensomenu").html("");
   document.getElementById("FormSCC").reset();
   if (props.item) {
-    console.log(props);
+    //console.log(props);
     if (document.getElementById("contextMenu").style.display == "block") {
       document.getElementById("contextMenu").style.display = "none";
     } else {
@@ -354,7 +354,7 @@ function handleDragStart(event) {
     KTV1 = "Vinh";
     KTV2 = "Hưng";
   }
-  console.log(timelineProperties.group);
+
   if (timelineProperties.group == "EM 02") {
     NhomSC = "EM";
     KTV1 = "Đ Anh";
@@ -401,15 +401,27 @@ function handleDragStart(event) {
     KTV2 = "";
   }
 
+  var xedangSc = useCaher.filter(function (r) { return r.KhoangSuaChua == timelineProperties.group })
+  var startr = TimesClick(new Date(timelineProperties.time))
+  var endr = TimesClick(new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf()))
+  var timess = new Date()
+  for (i in xedangSc) {
+    var r = xedangSc[i]
+    if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() > timess.valueOf()) {
+      timess = new Date(DoiNgayDangKy(r.TimeEndGJ))
+      startr = TimesClick(new Date(1000 * 1 * 60 + new Date(timess).valueOf()))
+      endr = TimesClick(new Date(1000 * 60 * ChipGJ + new Date(timess).valueOf()))
+    }
+  }
+
+
+  console.log(startr, endr)
   //if (confirm(text) == true) {
   var json2 = {
-    TimeStartGJ: TimesClick(new Date(timelineProperties.time)),
+    TimeStartGJ: startr,
     TrangThaiSCC: "Chờ SC",
-    //TrangThaiXuong: "04 Đã Tiếp Nhận",
     KhoangSuaChua: timelineProperties.group,
-    TimeEndGJ: TimesClick(
-      new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf())
-    ),
+    TimeEndGJ: endr,
     KyThuatVien1: KTV1,
     KyThuatVien2: KTV2,
     NhomKTV: NhomSC,
@@ -529,7 +541,7 @@ function forwardtime() {
 }
 function DangKyRuaXeTL(item) {
   var MaSoChip = item.id.slice(0, item.id.lastIndexOf("_"));
-  alert(MaSoChip)
+
   var json2 = {
     TimeStartWash: TimesClick(item.start),
     TimeEndGJ: TimesClick(new Date(1000 * 60 * 14 + new Date(item.start).valueOf())),
