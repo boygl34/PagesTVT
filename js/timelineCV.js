@@ -21,6 +21,8 @@ var optionsCV = {
   stack: true,
   start: new Date(),
   editable: false,
+  autoResize: true,
+  zoomable: false,
   end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
   margin: {
     item: 0, // distance between items

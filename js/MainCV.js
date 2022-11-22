@@ -675,3 +675,48 @@ $(".Ngay2").datetimepicker({
     },
   },
 });
+function DungTN() {
+  var result = prompt("Lý do dừng:", "");
+  if (result != null) {
+    var json2 = {
+      TrangThai: "DungTN",
+      LyDo: result,
+      ThoiGianDung: TimesClick()
+    }
+    $.ajax({
+      url: urlSetting + localStorage.getItem("Ten"),
+      type: 'PATCH',
+      data: json2
+    })
+    setTimeout(CheckTrangThaiTN, 2000)
+
+  }
+}
+function BATDAUTIEPNHAN() {
+  let text = "Bạn bắt đầu tiếp nhận lại ?"
+  if (confirm(text) == true) {
+    var json2 = {
+      TrangThai: "DangTN",
+      LyDo: "",
+      ThoiGianDung: ""
+    }
+    $.ajax({
+      url: urlSetting + localStorage.getItem("Ten"),
+      type: 'PATCH',
+      data: json2
+    })
+    hidemodal()
+    document.getElementById("checkboxdungTN").checked = false
+  }
+}
+CheckTrangThaiTN()
+function CheckTrangThaiTN() {
+  $.get(urlSetting + localStorage.getItem("Ten"), function (ketqua) {
+    if (ketqua.TrangThai == "DungTN") {
+      document.getElementById("checkboxdungTN").checked = true
+      $('#exampleModal').modal('show')
+      $('#thongtindung').html("Lý Do : " + ketqua.LyDo + "<br> Từ lúc : " + ketqua.ThoiGianDung)
+    }
+
+  });
+}  

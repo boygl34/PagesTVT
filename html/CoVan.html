@@ -3,9 +3,13 @@
   <div class="card mb-4">
     <div class="card-header">
       <div class="row">
-        <div class="col-5">
+        <div class="col-3">
           <i class="fas fa-table me-1"></i>
           Cố Vấn Dịch Vụ
+        </div>
+        <div class=" col-4">
+          <input class="form-check-input" id="checkboxdungTN" type="checkbox" value="" onchange="DungTN()" />
+          <label class="form-check-label" for="checkbox-3">Dừng Tiếp Nhận</label>
         </div>
       </div>
     </div>
@@ -128,8 +132,8 @@
 </main>
 
 <!-- Modal -->
-<div class="modal" id="exampleModal" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog"
-  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -146,6 +150,8 @@
     </div>
   </div>
 </div>
+
+
 <script>
   function Khachdoi() {
     var buttonkd = document.getElementById("KhachDoi");

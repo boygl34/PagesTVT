@@ -38,6 +38,7 @@ var ListXe = ["Camry", "Inova", "Fortuner", "Altis", "Altis Cross", "Veloz", "Wi
 var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
 var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";
 var urlThongSo = "https://deciduous-pentagonal-powder.glitch.me/ThongSo/";
+var urlSetting = "https://deciduous-pentagonal-powder.glitch.me/Setting/";
 var KhuVucVT = ["Bà Rịa", "Vũng Tàu", "Long Điền", "Phú Mỹ", "Đất Đỏ", "Châu Đức", "Xuyên Mộc", "Côn Đảo", "KV Khác"];
 var useCaher;
 var MasterData
