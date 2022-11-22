@@ -129,51 +129,22 @@ function LoadTimeLine() {
       ColGH.textContent = "";
     }
 
-    if (
-      r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||
-      r.TrangThaiXuong == "02 Chuẩn Bị Tiếp"
-    ) {
-      var time =
-        Math.round(
-          ((new Date() - new Date(DoiNgayDangKy(r.TDGapLeTan))) / (60 * 1000)) *
-          1
-        ) / 1;
-      ColTime.innerHTML = time + " P";
-      if (time > 15) {
-        canhBao(
-          "Chờ Tiếp Nhận",
-          "Bạn có xe " + r.BienSoXe + "chờ tiếp " + time + "Phút",
-          "danger"
-        );
-      }
+    if (r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
+      var time = Math.round((new Date() - new Date(DoiNgayDangKy(r.TDGapLeTan))) / (60 * 1000) * 1) / 1
+      ColTime.innerHTML = time + " P"
+      if (time > 15) { canhBao("Chờ Tiếp Nhận", "Bạn có xe " + r.BienSoXe + "chờ tiếp " + time + "Phút", "danger") }
     }
     if (r.TrangThaiXuong == "03 Đang Tiếp Nhận") {
-      var time =
-        Math.round(
-          ((new Date() - new Date(DoiNgayDangKy(r.TDBDTiepKhach))) /
-            (60 * 1000)) *
-          1
-        ) / 1;
-      ColTime.innerHTML = time + " P";
-      if (time > 30) {
-        canhBao(
-          "Tiếp Nhận",
-          "Bạn Tiếp nhận xe " + r.BienSoXe + " quá lâu " + time + "Phút",
-          "danger"
-        );
-      }
+      var time = Math.round((new Date() - new Date(DoiNgayDangKy(r.TDBDTiepKhach))) / (60 * 1000) * 1) / 1
+      ColTime.innerHTML = time + " P"
+      if (time > 30) { canhBao("Tiếp Nhận", "Bạn Tiếp nhận xe " + r.BienSoXe + " quá lâu " + time + "Phút", "danger") }
     }
     if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
-      canhBao("Rửa Xe", "Bạn Có Xe " + r.BienSoXe + " Đang Rửa ", "success");
+      canhBao("Rửa Xe", "Bạn Có Xe " + r.BienSoXe + " Đang Rửa ", "success")
     }
     if (r.TrangThaiXuong == "08 Chờ Giao Xe") {
-      canhBao(
-        "Giao Xe",
-        "Bạn có xe " + r.BienSoXe + " Đang Chờ Giao",
-        "primary"
-      );
+      canhBao("Giao Xe", "Bạn có xe " + r.BienSoXe + " Đang Chờ Giao", "primary")
     }
-
     if (
       r.TrangThaiXuong == "05 Đang Sửa Chữa" ||
       r.TrangThaiXuong == "06 Chờ Rửa Xe" ||
@@ -582,18 +553,9 @@ function clickTableTiepNhan() {
 }
 
 function canhBao(tieude, noidung, canhbao) {
-  var alert =
-    '<div class="alert alert-' +
-    canhbao +
-    ' alert-dismissible fade show"  role="alert">' +
-    "<strong>" +
-    tieude +
-    "! </strong>" +
-    noidung +
-    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-    '<span aria-hidden="true">&times;</span>' +
-    "</button></div>";
-  $("#alert").html($("#alert").html() + alert);
+
+  var AlertS = `<div class="alert alert-${canhbao} alert-solid" role="alert"><Strong>${tieude}</Strong>:${noidung}!</div>`
+  $("#alert").html($("#alert").html() + AlertS);
 }
 
 function DKruaXe() {
