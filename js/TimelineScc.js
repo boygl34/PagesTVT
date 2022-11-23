@@ -17,7 +17,7 @@ var optionsRX = {
     axis: 0, // distance between items and the time axis
   },
   timeAxis: { scale: "minute", step: 15 },
-  editable: true,
+  editable: false,
   autoResize: true,
   zoomable: false,
   moveable: true,
