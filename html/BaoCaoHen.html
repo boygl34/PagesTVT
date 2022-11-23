@@ -49,6 +49,7 @@
                     <th>Khu Vực</th>
                     <th>NH Hẹn</th>
                     <th>TD Hẹn</th>
+                    <th>Trạng Thái</th>
 
                 </tr>
             </thead>
@@ -66,6 +67,7 @@
         var ThangHenH = $("#ThangHen").val() * 1
         var NamHenH = $("#NamHen").val() * 1
         var url
+        document.getElementById("loading").style.display = "block"
         if ($("#TrangThaiHen").val() == "Hủy Hẹn") {
             url = 'https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen=Hủy Hẹn'
         } else { url = 'https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen!=Hủy Hẹn' }
@@ -73,15 +75,15 @@
             url: url,
             type: 'GET',
             success: function (data) {
-
                 var data2 = data.filter(function (r) {
-                    var monthgx = DoiNgayDangKy(r.ThoiGianHen).getMonth() + 1;
-                    var yeargx = DoiNgayDangKy(r.ThoiGianHen).getFullYear();
-                    console.log(monthgx, ThangHenH, yeargx, NamHenH)
-                    return (monthgx == ThangHenH && yeargx == NamHenH);
+                    if (r.ThoiGianHen) {
+                        var monthgx = DoiNgayDangKy(r.ThoiGianHen).getMonth() + 1;
+                        var yeargx = DoiNgayDangKy(r.ThoiGianHen).getFullYear();
+                        return (monthgx == ThangHenH && yeargx == NamHenH)
+                    }
                 });
-                console.log(data)
-                document.getElementById("loading").style.display = "none"
+
+
                 $('#tableBaoCao').DataTable({
                     data: data2,
                     paging: true,
@@ -105,6 +107,7 @@
                         { data: 'KhuVuc', "defaultContent": "" },
                         { data: 'NguoiDatHen', "defaultContent": "" },
                         { data: 'ThoiGianHen', "defaultContent": "" },
+                        { data: 'TrangThaiHen', "defaultContent": "" },
 
                     ],
                     // columnDefs: [
@@ -115,7 +118,7 @@
                     // ],
 
                 });
-
+                document.getElementById("loading").style.display = "none"
             }
         })
     }
