@@ -206,14 +206,13 @@ function CapNhat() {
 function changvalue() {
   var ojb = useCaher;
   getValueALL();
-  NutNhan.innerHTML = "";
+  $("#NutNhan").html("")
   document.getElementById("MaSo").value = TaoMaSo() + $("#BienSoXe").val();
   $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>");
-  NutNhan.innerHTML =
-    '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>';
+
+  $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>')
   for (var a in ojb) {
-    NutNhan.innerHTML =
-      '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>';
+    $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>')
     if (ojb[a].BienSoXe == $("#BienSoXe").val()) {
       document.getElementById("BienSoXe").value = ojb[a].BienSoXe;
       if (ojb[a].MaSo) {
@@ -253,26 +252,22 @@ function changvalue() {
       if (ojb[a].TrangThaiXuong) {
         document.getElementById("ThongTin").value = ojb[a].TrangThaiXuong;
       }
-      NutNhan.innerHTML = "";
+      $("#NutNhan").html("");
       if (
         ojb[a].TrangThaiXuong == "00 Có Hẹn" ||
         ojb[a].TrangThaiXuong == "01 Đã Vào Cổng"
       ) {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>';
+        $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>')
       }
       if (ojb[a].TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>&emsp; <button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>';
+        $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>&emsp; <button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>')
       }
       if (ojb[a].TrangThaiXuong == "02 Chờ Tiếp Nhận") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChuanBi()" >Chuẩn Bị Tiếp</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>';
+        $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChuanBi()" >Chuẩn Bị Tiếp</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>')
       }
       if (ojb[a].MaSo !== TaoMaSo() + ojb[a].BienSoXe) {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>';
-        document.getElementById("SoThe").value = "";
+        $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>')
+        document.getElementById("SoThe").value = ""; f
       }
       return;
     }
@@ -529,8 +524,8 @@ function clickTableTiepNhan() {
     table.rows[i].onclick = function () {
       var BienSoXe = this.cells[0].innerHTML;
       $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>");
-      NutNhan.innerHTML = "";
-      NutNhan2.innerHTML = "";
+      $("#NutNhan").html("")
+      $("#NutNhan2").html("")
       document.getElementById("myForm").reset();
       document.getElementById("MaSo").value = this.cells[9].innerHTML;
       if (BienSoXe.indexOf(" ") != -1) {
@@ -549,21 +544,16 @@ function clickTableTiepNhan() {
       document.getElementById("CoVanDichVu").value = this.cells[6].innerHTML;
       changvalue();
       if (this.cells[7].innerHTML == "Chờ Tiếp Nhận") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChuanBi()" >Chuẩn Bị Tiếp</button>';
-        NutNhan2.innerHTML =
-          '<button type="button" class="btn btn-success" onclick="DangTiepNhan()" >Bắt Đầu Tiếp Khách</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>';
+        $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChuanBi()" >Chuẩn Bị Tiếp</button>')
+        $("#NutNhan2").html('<button type="button" class="btn btn-success" onclick="DangTiepNhan()" >Bắt Đầu Tiếp Khách</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>')
       }
       if (this.cells[7].innerHTML == "Chuẩn Bị Tiếp") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>';
-        NutNhan2.innerHTML =
-          '<button type="button" class="btn btn-success" onclick="DangTiepNhan()" >Bắt Đầu Tiếp Khách</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>';
+        $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>')
+        $("#NutNhan2").html('<button type="button" class="btn btn-success" onclick="DangTiepNhan()" >Bắt Đầu Tiếp Khách</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>')
       }
       if (this.cells[7].innerHTML == "Đang Tiếp Nhận") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>';
-        NutNhan2.innerHTML = "";
+        $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>')
+        $("#NutNhan2").html("")
       }
     };
   }
@@ -574,7 +564,7 @@ function clickTableTiepNhanHen() {
   for (var i = 1; i < table.rows.length; i++) {
     table.rows[i].onclick = function () {
       document.getElementById("myForm").reset();
-      NutNhan.innerHTML = "";
+      $("#NutNhan").html("")
       document.getElementById("BienSoXe").value = this.cells[1].innerHTML;
       document.getElementById("GioHen").value = this.cells[0].innerHTML;
       document.getElementById("LoaiHinh").value = this.cells[4].innerHTML;
@@ -583,8 +573,7 @@ function clickTableTiepNhanHen() {
       document.getElementById("NoiDungCV").value = this.cells[5].innerHTML;
       document.getElementById("MaSo").value = this.cells[7].innerHTML;
       changvalue();
-      NutNhan.innerHTML =
-        '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>';
+      $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>')
     };
   }
 }
