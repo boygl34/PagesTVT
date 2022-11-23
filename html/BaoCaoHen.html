@@ -3,6 +3,42 @@
         <h1 style="font-weight:bold;text-align:center;" id="tieude">Hủy Hẹn</h1>
 
         <table id="tableBaoCao">
+            <div class="row">
+                <div class="form-row col-2">
+                    <label for="GioBatDauSCC">Tháng</label>
+                    <select required class="form-control " id="ThangHen" onchange="loaddata()">
+                        <option value="1">01</option>
+                        <option value="2">02</option>
+                        <option value="3">03</option>
+                        <option value="4">04</option>
+                        <option value="5">05</option>
+                        <option value="6">06</option>
+                        <option value="7">07</option>
+                        <option value="8">08</option>
+                        <option value="9">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div class="form-row col-2">
+                    <label for="GioBatDauSCC">Năm</label>
+                    <select required class="form-control " id="NamHen" onchange="loaddata()">
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                    </select>
+                </div>
+                <div class="form-row col-2">
+                    <label for="GioBatDauSCC">Trạng Thai</label>
+                    <select required class="form-control " id="TrangThaiHen" onchange="loaddata()">
+
+                        <option value="Hủy Hẹn">Hủy Hẹn</option>
+                        <option value="!Hủy Hẹn">Có Vào</option>
+
+                    </select>
+                </div>
+            </div>
             <thead>
                 <tr>
                     <th>Biển Số</th>
@@ -26,41 +62,73 @@
         document.getElementById("loading").style.display = "none"
     }
 
-    $.ajax({
-        url: "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen=Hủy Hẹn",
-        type: 'GET',
-        success: function (data) {
-            document.getElementById("loading").style.display = "none"
-            $('#tableBaoCao').DataTable({
-                data: data,
-                paging: true,
-                destroy: true,
-                ordering: true,
-                info: true,
-                searching: true,
-                createdRow: function (row, data, dataIndex, cells) {
-                    // if (data.TrangThaiDongSon == "Đang SC") { $(row).addClass('DangSuaChua'); }
-                    // if (data.TrangThaiDongSon == "Chờ SC") { $(row).addClass('ChoSuaChua'); }
-                    // if (data.TrangThaiDongSon == "Dừng SC") { $(row).addClass('DungSuaChua'); }
-                    // $(cells[6]).html(Doingay(DoiNgayDangKy(data.TDHenGiaoXe)))
-                    // $(cells[7]).html(Doingay(DoiNgayDangKy(data.TDKetThucSX)))
-                },
-                columns: [
-                    { data: 'BienSoXe', "defaultContent": "" },
-                    { data: 'TenKH', "defaultContent": "" },
-                    { data: 'SoDT', "defaultContent": "" },
-                    { data: 'LoaiHinhSuaChua', "defaultContent": "" },
-                    { data: 'LoaiHinhDongSon', "defaultContent": "" },
-                    { data: 'KhuVuc', "defaultContent": "" },
-                    { data: 'NguoiDatHen', "defaultContent": "" },
-                    { data: 'ThoiGianHen', "defaultContent": "" },
+    function loaddata() {
+        var ThangHenH = $("#ThangHen").val() * 1
+        var NamHenH = $("#NamHen").val() * 1
+        var url
+        if ($("#TrangThaiHen").val() == "Hủy Hẹn") {
+            url = 'https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen=Hủy Hẹn'
+        } else { url = 'https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen!=Hủy Hẹn' }
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (data) {
 
-                ],
+                var data2 = data.filter(function (r) {
+                    var monthgx = DoiNgayDangKy(r.ThoiGianHen).getMonth() + 1;
+                    var yeargx = DoiNgayDangKy(r.ThoiGianHen).getFullYear();
+                    console.log(monthgx, ThangHenH, yeargx, NamHenH)
+                    return (monthgx == ThangHenH && yeargx == NamHenH);
+                });
+                console.log(data)
+                document.getElementById("loading").style.display = "none"
+                $('#tableBaoCao').DataTable({
+                    data: data2,
+                    paging: true,
+                    destroy: true,
+                    ordering: true,
+                    info: true,
+                    searching: true,
+                    createdRow: function (row, data, dataIndex, cells) {
+                        // if (data.TrangThaiDongSon == "Đang SC") { $(row).addClass('DangSuaChua'); }
+                        // if (data.TrangThaiDongSon == "Chờ SC") { $(row).addClass('ChoSuaChua'); }
+                        // if (data.TrangThaiDongSon == "Dừng SC") { $(row).addClass('DungSuaChua'); }
+                        // $(cells[6]).html(Doingay(DoiNgayDangKy(data.TDHenGiaoXe)))
+                        // $(cells[7]).html(Doingay(DoiNgayDangKy(data.TDKetThucSX)))
+                    },
+                    columns: [
+                        { data: 'BienSoXe', "defaultContent": "" },
+                        { data: 'TenKH', "defaultContent": "" },
+                        { data: 'SoDT', "defaultContent": "" },
+                        { data: 'LoaiHinhSuaChua', "defaultContent": "" },
+                        { data: 'LoaiHinhDongSon', "defaultContent": "" },
+                        { data: 'KhuVuc', "defaultContent": "" },
+                        { data: 'NguoiDatHen', "defaultContent": "" },
+                        { data: 'ThoiGianHen', "defaultContent": "" },
 
-            });
+                    ],
+                    // columnDefs: [
+                    //     {
+                    //         targets: 8,
+                    //         render: DataTable.render.datetime('Do MMM YYYY'),
+                    //     },
+                    // ],
 
-        }
-    })
+                });
 
-
+            }
+        })
+    }
+    $(".Ngay").datepicker({
+        format: "dd/mm/yyyy",
+        uiLibrary: "bootstrap4",
+        modal: true,
+        footer: true,
+        datepicker: {
+            disableDates: function (date) {
+                const currentDate = new Date().setHours(0, 0, 0, 0);
+                return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
+            },
+        },
+    });
 </script>
