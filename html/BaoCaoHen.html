@@ -34,7 +34,7 @@
                     <select required class="form-control " id="TrangThaiHen" onchange="loaddata()">
 
                         <option value="Hủy Hẹn">Hủy Hẹn</option>
-                        <option value="!Hủy Hẹn">Có Vào</option>
+                        <option value="Có Vào">Có Vào</option>
 
                     </select>
                 </div>
@@ -66,20 +66,23 @@
     function loaddata() {
         var ThangHenH = $("#ThangHen").val() * 1
         var NamHenH = $("#NamHen").val() * 1
-        var url
+        var url = 'https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?KhachHangHen=Hẹn Vãn Lai&KhachHangHen=Khách Hẹn'
         document.getElementById("loading").style.display = "block"
-        if ($("#TrangThaiHen").val() == "Hủy Hẹn") {
-            url = 'https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen=Hủy Hẹn'
-        } else { url = 'https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen!=Hủy Hẹn' }
+
         $.ajax({
             url: url,
             type: 'GET',
             success: function (data) {
                 var data2 = data.filter(function (r) {
-                    if (r.ThoiGianHen) {
+                    if (r.ThoiGianHen && $("#TrangThaiHen").val() == "Hủy Hẹn") {
                         var monthgx = DoiNgayDangKy(r.ThoiGianHen).getMonth() + 1;
                         var yeargx = DoiNgayDangKy(r.ThoiGianHen).getFullYear();
-                        return (monthgx == ThangHenH && yeargx == NamHenH)
+                        return (monthgx == ThangHenH && yeargx == NamHenH && r.TrangThaiHen == "Hủy Hẹn")
+                    }
+                    if (r.ThoiGianHen && $("#TrangThaiHen").val() == "Có Vào") {
+                        var monthgx = DoiNgayDangKy(r.ThoiGianHen).getMonth() + 1;
+                        var yeargx = DoiNgayDangKy(r.ThoiGianHen).getFullYear();
+                        return (monthgx == ThangHenH && yeargx == NamHenH && r.TrangThaiHen != "Hủy Hẹn")
                     }
                 });
 
