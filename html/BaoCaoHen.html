@@ -1,0 +1,66 @@
+<main id="tablehen">
+    <div class="container-fluid px-4 " style="background-color:white ;">
+        <h1 style="font-weight:bold;text-align:center;" id="tieude">Hủy Hẹn</h1>
+
+        <table id="tableBaoCao">
+            <thead>
+                <tr>
+                    <th>Biển Số</th>
+                    <th>Tên KH</th>
+                    <th>Số ĐT</th>
+                    <th>Loại Hình SCC</th>
+                    <th>Loại Hình ĐS</th>
+                    <th>Khu Vực</th>
+                    <th>NH Hẹn</th>
+                    <th>TD Hẹn</th>
+
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+</main>
+
+<script>
+    LoadTimeLine = () => {
+        document.getElementById("loading").style.display = "none"
+    }
+
+    $.ajax({
+        url: "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao?TrangThaiHen=Hủy Hẹn",
+        type: 'GET',
+        success: function (data) {
+            document.getElementById("loading").style.display = "none"
+            $('#tableBaoCao').DataTable({
+                data: data,
+                paging: true,
+                destroy: true,
+                ordering: true,
+                info: true,
+                searching: true,
+                createdRow: function (row, data, dataIndex, cells) {
+                    // if (data.TrangThaiDongSon == "Đang SC") { $(row).addClass('DangSuaChua'); }
+                    // if (data.TrangThaiDongSon == "Chờ SC") { $(row).addClass('ChoSuaChua'); }
+                    // if (data.TrangThaiDongSon == "Dừng SC") { $(row).addClass('DungSuaChua'); }
+                    // $(cells[6]).html(Doingay(DoiNgayDangKy(data.TDHenGiaoXe)))
+                    // $(cells[7]).html(Doingay(DoiNgayDangKy(data.TDKetThucSX)))
+                },
+                columns: [
+                    { data: 'BienSoXe', "defaultContent": "" },
+                    { data: 'TenKH', "defaultContent": "" },
+                    { data: 'SoDT', "defaultContent": "" },
+                    { data: 'LoaiHinhSuaChua', "defaultContent": "" },
+                    { data: 'LoaiHinhDongSon', "defaultContent": "" },
+                    { data: 'KhuVuc', "defaultContent": "" },
+                    { data: 'NguoiDatHen', "defaultContent": "" },
+                    { data: 'ThoiGianHen', "defaultContent": "" },
+
+                ],
+
+            });
+
+        }
+    })
+
+
+</script>
