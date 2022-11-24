@@ -1,5 +1,5 @@
 //getData(urlTX).then(DanhSachCoVan()).then(loadData ())
-
+startWorker2()
 DanhSachCoVan2();
 
 function postData(data, url, methor) {

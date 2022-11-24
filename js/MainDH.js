@@ -1,6 +1,6 @@
 
 
-
+startWorker2()
 function postData(data, url, methor) {
   fetch(url, {
     method: methor, // or 'PUT'
@@ -386,6 +386,7 @@ function changvalueBS() {
 
   }
   var thongtin = checkMasterData($("#BienSoXe").val())[0]
+  console.log(thongtin);
   if (thongtin) {
     document.getElementById("KhuVuc").value = thongtin["Quận/Huyện"]
     if (thongtin["Điện thoại người mang xe"]) {

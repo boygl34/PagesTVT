@@ -103,19 +103,7 @@
   vertical-align: middle;
 } */
 
-.vis-item.vis-range .vis-drag-left {
-  position: absolute;
-  cursor: e-resize;
-  /* border: 1px solid black; */
 
-}
-
-.vis-item.vis-range .vis-drag-right {
-  position: absolute;
-  cursor: e-resize;
-  /* border: 1px solid black; */
-
-}
 
 .vis-item.red {
   background-color: red;
@@ -138,9 +126,7 @@
 
 
 
-.vis-h12 {
-  background-color: rgb(235, 115, 205);
-}
+
 
 .vis-item.magenta {
   background-color: magenta;
@@ -268,4 +254,8 @@
     background-color: pink;
     font-size: 13pt;
   }
+}
+
+.vis-h12 {
+  background-color: rgb(235, 115, 205);
 }
