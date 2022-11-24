@@ -9,7 +9,7 @@ $.ajax({
   }
 })
 startWorker()
-startWorker2()
+
 // getData();
 
 // var timerRunner = 0
@@ -59,6 +59,7 @@ function startWorker2() {
     }
     r.onmessage = function (event) {
       MasterData = event.data
+
     };
   }
 }
