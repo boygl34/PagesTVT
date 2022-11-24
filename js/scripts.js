@@ -40,7 +40,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
 function hidemodal() {
   $(".modal").modal("hide");
 }
-
+function hidealert() {
+  $(".modal").modal("hide");
+}
 function gethtml(value) {
   localStorage.setItem("TabDaDong", value);
   $("#layoutSidenav_content").html("")
