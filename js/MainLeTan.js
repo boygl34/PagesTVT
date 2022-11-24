@@ -687,7 +687,7 @@ function canhBao() {
               ketqua.ThoiGianDung +
               "<br>Lý Do :" +
               ketqua.LyDo +
-              '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+              '<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">' +
               '<span aria-hidden="true">&times;</span>' +
               "</button></div>";
             $("#alert").html($("#alert").html() + alert);
