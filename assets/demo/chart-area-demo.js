@@ -93,10 +93,76 @@ var myPieChart2 = new Chart(pie, {
     labels: ["Bão Dưỡng", "SCC", "Dồng Sơn", "BGSCC", "BGBH"],
     datasets: [{
       data: [],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#26a145'],
+      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#ec65ce'],
     }],
   },
 })
+var tuan = document.getElementById("myBarChart");
+var mybarChart = new Chart(tuan, {
+  type: 'bar',
+  data: {
+    labels: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7",],
+    datasets: [{
+      label: "BD",
+      backgroundColor: '#007bff',
+      borderColor: "rgba(2,117,216,1)",
+      data: [],
+    }, {
+      label: "SCC",
+      backgroundColor: '#dc3545',
+      borderColor: "rgba(2,117,216,1)",
+      data: [],
+    }, {
+      label: "ĐS",
+      backgroundColor: '#ffc107',
+      borderColor: "rgba(2,117,216,1)",
+      data: [],
+    }, {
+      label: "BGSCC",
+      backgroundColor: '#28a745',
+      borderColor: "rgba(2,117,216,1)",
+      data: [],
+    }, {
+      label: "BGBH",
+      backgroundColor: '#ec65ce',
+      borderColor: "rgba(2,117,216,1)",
+      data: [],
+    }
+
+
+    ],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'week'
+        },
+        gridLines: {
+          display: true
+        },
+        ticks: {
+          maxTicksLimit: 6
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          // max: 15000,
+          // maxTicksLimit: 5
+        },
+        gridLines: {
+          display: true
+        }
+      }],
+    },
+    legend: {
+      display: true
+    }
+  }
+});
+
+
 console.log(myLineChart)
 
 function TaoBaoCao() {
@@ -109,10 +175,13 @@ function TaoBaoCao() {
     myLineChart.data.datasets[1].data = ketqua.data.BaoCaoHen[1].map(function (r) { return r })
     myLineChart.data.datasets[2].data = ketqua.data.BaoCaoHen[4].map(function (r) { return r })
     //ketqua.data.BaoCaoHen[4].map(function (r) { return r })
-
     myLineChart.update()
-
-
+    mybarChart.data.datasets[0].data = ketqua.data.BaoCaoTuan[0].map(function (r) { return r })
+    mybarChart.data.datasets[1].data = ketqua.data.BaoCaoTuan[1].map(function (r) { return r })
+    mybarChart.data.datasets[2].data = ketqua.data.BaoCaoTuan[2].map(function (r) { return r })
+    mybarChart.data.datasets[3].data = ketqua.data.BaoCaoTuan[3].map(function (r) { return r })
+    mybarChart.data.datasets[4].data = ketqua.data.BaoCaoTuan[4].map(function (r) { return r })
+    mybarChart.update()
     getpiedata()
 
 
@@ -132,10 +201,17 @@ function getpiedata() {
 
 $.get(url + $("#TheoNam").val(), function (ketqua) {
   databc = ketqua.data
+  console.log(databc);
   myLineChart.data.labels = ketqua.data.BaoCaoTiep[0].map(function (r) { return r })
   myLineChart.data.datasets[0].data = ketqua.data.BaoCaoTiep[2].map(function (r) { return r })
   myLineChart.data.datasets[1].data = ketqua.data.BaoCaoHen[1].map(function (r) { return r })
   myLineChart.data.datasets[2].data = ketqua.data.BaoCaoHen[4].map(function (r) { return r })
   myLineChart.update()
+  mybarChart.data.datasets[0].data = ketqua.data.BaoCaoTuan[0].map(function (r) { return r })
+  mybarChart.data.datasets[1].data = ketqua.data.BaoCaoTuan[1].map(function (r) { return r })
+  mybarChart.data.datasets[2].data = ketqua.data.BaoCaoTuan[2].map(function (r) { return r })
+  mybarChart.data.datasets[3].data = ketqua.data.BaoCaoTuan[3].map(function (r) { return r })
+  mybarChart.data.datasets[4].data = ketqua.data.BaoCaoTuan[4].map(function (r) { return r })
+  mybarChart.update()
   getpiedata()
 });
