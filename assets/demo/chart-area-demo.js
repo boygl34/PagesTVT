@@ -276,6 +276,10 @@ function TaoBaoCao() {
 
 
     myGioChart.data.labels = ketqua.data.BaoCaoGio[0].map(function (r) { return r })
+    myGioChart.data.datasets[0].data = ketqua.data.BaoCaoGio[1].map(function (r) { return r })
+    myGioChart.data.datasets[1].data = ketqua.data.BaoCaoGio[4].map(function (r) { return r })
+    myGioChart.data.datasets[2].data = ketqua.data.BaoCaoGio[5].map(function (r) { return r })
+    myGioChart.data.datasets[3].data = ketqua.data.BaoCaoGio[6].map(function (r) { return r })
     myGioChart.update()
 
     getpiedata()
