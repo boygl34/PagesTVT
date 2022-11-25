@@ -30,7 +30,7 @@ var myLineChart = new Chart(ctx, {
       label: "Xe Hẹn",
       lineTension: 0.3,
       backgroundColor: "rgba(153, 102, 255, 0.2)",
-      borderColor: "rgba(2,117,216,1)",
+      borderColor: "#ec65ce",
       pointRadius: 4,
       pointBackgroundColor: "rgba(153, 102, 255, 0.2)",
       pointBorderColor: "rgba(153, 102, 255, 0.2)",
@@ -162,6 +162,97 @@ var mybarChart = new Chart(tuan, {
   }
 });
 
+var chartGio = document.getElementById("myGioChart");
+var myGioChart = new Chart(chartGio, {
+  type: 'line',
+  data: {
+    labels: [],//ketqua.data.BaoCaoTiep[0].map(function (r) { return r }),
+    datasets: [{
+      label: "Total",
+      lineTension: 0.3,
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: "rgba(2,17,216,1)",
+      pointRadius: 4,
+      pointBackgroundColor: "'rgba(54, 162, 235, 0.2)'",
+      pointBorderColor: "'rgba(54, 162, 235, 0.2)'45",
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: "rgba(2,17,216,1)",
+      pointHitRadius: 50,
+      pointBorderWidth: 2,
+      data: [3] //ketqua.data.BaoCaoTiep[2].map(function (r) { return r }),
+    },
+    {
+      label: "DB",
+      lineTension: 0.3,
+      backgroundColor: "rgba(153, 102, 255, 0.2)",
+      borderColor: "#ec65ce",
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(153, 102, 255, 0.2)",
+      pointBorderColor: "rgba(153, 102, 255, 0.2)",
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+      pointHitRadius: 50,
+      pointBorderWidth: 2,
+      data: [2]//ketqua.data.BaoCaoHen[1].map(function (r) { return r }),
+    },
+    {
+      label: "SCC",
+      lineTension: 0.3,
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
+      borderColor: "rgba(2,50,216,1)",
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(255, 99, 132, 0.2)",
+      pointBorderColor: "rgba(255,255,255,0.8)",
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: "rgba(255, 99, 132, 0.2)",
+      pointHitRadius: 50,
+      pointBorderWidth: 2,
+      data: [1]//ketqua.data.BaoCaoHen[4].map(function (r) { return r }),
+    }, {
+      label: "ĐS",
+      lineTension: 0.3,
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
+      borderColor: "rgba(2,50,216,1)",
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(255, 99, 132, 0.2)",
+      pointBorderColor: "rgba(255,255,255,0.8)",
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: "rgba(255, 99, 132, 0.2)",
+      pointHitRadius: 50,
+      pointBorderWidth: 2,
+      data: [1]//ketqua.data.BaoCaoHen[4].map(function (r) { return r }),
+    }
+    ],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'date'
+        },
+        gridLines: {
+          display: true
+        },
+        ticks: {
+          maxTicksLimit: 10
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          //max: auto,
+          //maxTicksLimit: 5
+        },
+        gridLines: {
+          color: "rgba(0, 0, 0, .125)",
+        }
+      }],
+    },
+    legend: {
+      display: true
+    }
+  }
+});
 
 console.log(myLineChart)
 
@@ -182,6 +273,11 @@ function TaoBaoCao() {
     mybarChart.data.datasets[3].data = ketqua.data.BaoCaoTuan[3].map(function (r) { return r })
     mybarChart.data.datasets[4].data = ketqua.data.BaoCaoTuan[4].map(function (r) { return r })
     mybarChart.update()
+
+
+    myGioChart.data.labels = ketqua.data.BaoCaoGio[0].map(function (r) { return r })
+    myGioChart.update()
+
     getpiedata()
 
 
@@ -213,5 +309,11 @@ $.get(url + $("#TheoNam").val(), function (ketqua) {
   mybarChart.data.datasets[3].data = ketqua.data.BaoCaoTuan[3].map(function (r) { return r })
   mybarChart.data.datasets[4].data = ketqua.data.BaoCaoTuan[4].map(function (r) { return r })
   mybarChart.update()
+  myGioChart.data.labels = ketqua.data.BaoCaoGio[0].map(function (r) { return r })
+  myGioChart.data.datasets[0].data = ketqua.data.BaoCaoGio[1].map(function (r) { return r })
+  myGioChart.data.datasets[1].data = ketqua.data.BaoCaoGio[4].map(function (r) { return r })
+  myGioChart.data.datasets[2].data = ketqua.data.BaoCaoGio[5].map(function (r) { return r })
+  myGioChart.data.datasets[3].data = ketqua.data.BaoCaoGio[6].map(function (r) { return r })
+  myGioChart.update()
   getpiedata()
 });

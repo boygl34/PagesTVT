@@ -67,24 +67,26 @@
                             </select>
                         </div>
                         <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-    <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                <div>
-                    <a href="#">Privacy Policy</a>
-                    &middot;
-                    <a href="#">Terms &amp; Conditions</a>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar me-1"></i>
+                            Xe Vào Theo Giờ
+                        </div>
+                        <div class="card-body"><canvas id="myGioChart" width="100%" height="50"></canvas></div>
+                        <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+                    </div>
                 </div>
             </div>
+
         </div>
-    </footer>
+    </main>
+
 </div>
 <script>
     LoadTimeLine = () => {
