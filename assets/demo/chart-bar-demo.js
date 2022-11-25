@@ -3,7 +3,7 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
+var tuan = document.getElementById("myBarChart");
 var url = "https://fresh-shimmering-sorrel.glitch.me/BaoCao/11-2022"
 
 $.get(url, function (ketqua) {
