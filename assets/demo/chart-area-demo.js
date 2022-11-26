@@ -90,7 +90,7 @@ var pie = document.getElementById("myPieChart");
 var myPieChart2 = new Chart(pie, {
   type: 'pie',
   data: {
-    labels: ["Bão Dưỡng", "SCC", "Dồng Sơn", "BGSCC", "BGBH"],
+    labels: ["Bão Dưỡng", "SCC", "Đồng Sơn", "BGSCC", "BGBH"],
     datasets: [{
       data: [],
       backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#ec65ce'],
@@ -167,9 +167,11 @@ var myGioChart = new Chart(chartGio, {
   type: 'line',
   data: {
     labels: [],//ketqua.data.BaoCaoTiep[0].map(function (r) { return r }),
+    dataset: { stepped: "middle" },
     datasets: [{
       label: "Total",
       lineTension: 0.3,
+
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
       borderColor: "rgba(2,17,216,1)",
       pointRadius: 4,
@@ -277,6 +279,7 @@ function TaoBaoCao() {
 
     myGioChart.data.labels = ketqua.data.BaoCaoGio[0].map(function (r) { return r })
     myGioChart.data.datasets[0].data = ketqua.data.BaoCaoGio[1].map(function (r) { return r })
+    myGioChart.data.datasets[0].forEach(dataset => { dataset.stepped = 'middle'; });
     myGioChart.data.datasets[1].data = ketqua.data.BaoCaoGio[4].map(function (r) { return r })
     myGioChart.data.datasets[2].data = ketqua.data.BaoCaoGio[5].map(function (r) { return r })
     myGioChart.data.datasets[3].data = ketqua.data.BaoCaoGio[6].map(function (r) { return r })
