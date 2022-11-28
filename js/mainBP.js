@@ -217,7 +217,7 @@ function clickbienso(value) {
 
 
 function changvalue() {
-  $("#alert").html("<div class='alert alert-success'>Hello!!</div>");
+  $("#alert2").html("<div class='alert alert-success'>Hello!!</div>");
   var ojb = useCaher;
   for (var a in ojb) {
     if (ojb[a].BienSoXe == BienSoXe.value) {
@@ -231,7 +231,7 @@ function changvalue() {
         ojb[a].TrangThaiDongSon
       );
       if (ojb[a].TDHenGiaoXe) {
-        $("#alert").html(
+        $("#alert2").html(
           "<div class='alert alert-success'>Ngày Giao Xe : " +
           ojb[a].TDHenGiaoXe +
           "</div>"
@@ -786,7 +786,7 @@ function ChangCongDoan(CongDoan) {
 
 function StartDong() {
   if (document.getElementById("KTVDS1").value == "") {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Chưa Có Tên KTV</div>'
     );
     return false;
@@ -794,7 +794,7 @@ function StartDong() {
   var timehientai = new Date().valueOf();
   var timeKT = new Date(document.getElementById("NgayKTSC").value).valueOf();
   if (timehientai > timeKT) {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Sai Gio Ket Thuc</div>'
     );
     return false;
@@ -810,12 +810,12 @@ function StartDong() {
     TrangThaiDongSon: "Đang SC",
   };
 
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function StartNen() {
   if (document.getElementById("KTVDS1").value == "") {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Chưa Có Tên KTV</div>'
     );
     return false;
@@ -823,7 +823,7 @@ function StartNen() {
   var timehientai = new Date().valueOf();
   var timeKT = new Date(document.getElementById("NgayKTSC").value).valueOf();
   if (timehientai > timeKT) {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Sai Gio Ket Thuc</div>'
     );
     return false;
@@ -838,12 +838,12 @@ function StartNen() {
     HTNen: "KH",
     TrangThaiDongSon: "Đang SC",
   };
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function StartSon() {
   if (document.getElementById("KTVDS1").value == "") {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Chưa Có Tên KTV</div>'
     );
     return false;
@@ -851,13 +851,13 @@ function StartSon() {
   var timehientai = new Date().valueOf();
   var timeKT = new Date(document.getElementById("NgayKTSC").value).valueOf();
   if (timehientai > timeKT) {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Sai Gio Ket Thuc</div>'
     );
     return false;
   }
   if (document.getElementById("PhongSon").value == "") {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Chưa Có Phòng Sơn</div>'
     );
     return false;
@@ -873,12 +873,12 @@ function StartSon() {
     TrangThaiDongSon: "Đang SC",
   };
 
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function StartLap() {
   if (document.getElementById("KTVDS1").value == "") {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Chưa Có Tên KTV</div>'
     );
     return false;
@@ -886,7 +886,7 @@ function StartLap() {
   var timehientai = new Date().valueOf();
   var timeKT = new Date(document.getElementById("NgayKTSC").value).valueOf();
   if (timehientai > timeKT) {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Sai Gio Ket Thuc</div>'
     );
     return false;
@@ -902,12 +902,12 @@ function StartLap() {
     TrangThaiDongSon: "Đang SC",
   };
 
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function StartPass() {
   if (document.getElementById("KTVDS1").value == "") {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Chưa Có Tên KTV</div>'
     );
     return false;
@@ -915,7 +915,7 @@ function StartPass() {
   var timehientai = new Date().valueOf();
   var timeKT = new Date(document.getElementById("NgayKTSC").value).valueOf();
   if (timehientai > timeKT) {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-warning" role="alert" >Sai Gio Ket Thuc</div>'
     );
     return false;
@@ -931,7 +931,7 @@ function StartPass() {
     TrangThaiDongSon: "Đang SC",
   };
 
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function StartQC() {
@@ -943,7 +943,7 @@ function StartQC() {
     TrangThaiDongSon: "Đang SC",
   };
 
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function WaitNen() {
@@ -956,7 +956,7 @@ function WaitNen() {
     TrangThaiDongSon: "Chờ SC",
   };
 
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function WaitSon() {
@@ -969,11 +969,11 @@ function WaitSon() {
     TrangThaiDongSon: "Chờ SC",
   };
 
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function WaitPass() {
-  $("#alert").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
+  $("#alert2").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
   if (document.getElementById("CongDoanDongSon").value == "Sơn") {
     var json2 = {
       KyThuatVienSon: $("#KTVDS1").val(),
@@ -994,7 +994,7 @@ function WaitPass() {
       TrangThaiDongSon: "Chờ SC",
     };
   }
-  $("#alert").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
+  $("#alert2").html("<div class='alert alert-warning'>Đang Cập Nhật 2</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function WaitLap() {
@@ -1019,7 +1019,7 @@ function WaitLap() {
       TrangThaiDongSon: "Chờ SC",
     };
   }
-  $("#alert").html(
+  $("#alert2").html(
     "<div class='alert alert-warning ger'>Đang Cập Nhật 2</div>"
   );
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
@@ -1057,11 +1057,11 @@ function WaitQC() {
     };
   }
 
-  $("#alert").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
+  $("#alert2").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function ChoGiaoXeBP() {
-  $("#alert").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
+  $("#alert2").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
   var json2 = {
     TrangThaiXuong: "08 Chờ Giao Xe",
     TimeEndPaint: TimesClick(),
@@ -1101,7 +1101,7 @@ function ChoGiaoXeBP() {
       TrangThaiDongSon: "Chờ Giao",
     };
   }
-  $("#alert").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
+  $("#alert2").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 
@@ -1114,7 +1114,7 @@ function KetThucQC() {
     TrangThaiDongSon: "Chờ Giao",
   };
 
-  $("#alert").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
+  $("#alert2").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
   postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
 function DungCongviecBP() {
@@ -1128,7 +1128,7 @@ function DungCongviecBP() {
       TrangThaiDongSon: "Dừng SC",
     };
 
-    $("#alert").html("<div class='alert alert-warning '>Đang Dừng CV</div>");
+    $("#alert2").html("<div class='alert alert-warning '>Đang Dừng CV</div>");
     postData(json2, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
   }
 }
@@ -1383,9 +1383,9 @@ function getNexttimePass(MaSoxe) {
 }
 
 function CapNhatGioSC() {
-  $("#alert").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
+  $("#alert2").html("<div class='alert alert-warning '>Đang Cập Nhật</div>");
   if ($("#NgayKTSC").val() == "") {
-    $("#alert").html(
+    $("#alert2").html(
       '<div class="alert alert-danger" role="alert">Chưa Có Thời Gian Sữa Chữa!</div>'
     );
     return false;

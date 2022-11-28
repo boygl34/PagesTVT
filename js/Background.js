@@ -10,11 +10,8 @@ $.ajax({
 })
 
 var ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
-
 var NhomTN = ["Có Hẹn", "Tiếp Nhận"];
 //var NhomCV = ["Toàn", "Tài", "Rôn", "Mẫn", "Sang", "Vinh", "Triêng", "Lộc", "Hiệp", "None"];
-
-
 //var NhomDH = ["EM", "SCC", "Đồng Sơn", "Báo Giá BH"];
 var NhomCV = Object.values(ThongSo.filter(function (r) { return r.id == "NhomCV" })[0].value)
 var NhomDH = Object.values(ThongSo.filter(function (r) { return r.id == "GruopTDDatHen" })[0].value)
@@ -40,7 +37,7 @@ var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";
 var urlThongSo = "https://deciduous-pentagonal-powder.glitch.me/ThongSo/";
 var urlSetting = "https://deciduous-pentagonal-powder.glitch.me/Setting/";
 var KhuVucVT = ["Bà Rịa", "Vũng Tàu", "Long Điền", "Phú Mỹ", "Đất Đỏ", "Châu Đức", "Xuyên Mộc", "Côn Đảo", "KV Khác"];
-var useCaher;
+var useCaher, useCaher2
 var MasterData
 var TenCoVan = localStorage.getItem("Ten");
 var PhanQuyen = localStorage.getItem("PhanQuyen");

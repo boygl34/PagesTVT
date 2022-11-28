@@ -155,8 +155,9 @@ function LoadTimeLine() {
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
   setgiaoxe()
-  var dataArray0 = useCaher;
 
+  if (document.getElementById("checkbox-3").checked) { useCaher = useCaher.concat(useCaher2) }
+  var dataArray0 = useCaher;
   var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
 
@@ -243,7 +244,7 @@ function LoadTimeLine() {
           classname2 += " RuaXe"
           if (endwwash.valueOf() < new Date().valueOf()) { endwwash = new Date() }
         }
-        items.add({
+        items.update({
           className: classname2,
           id: r.MaSo + "_RuaXe",
           group: "Rửa Xe",
@@ -550,3 +551,18 @@ function DangKyRuaXeTL(item) {
   postData(json2, urlTX + "/" + checkID(MaSoChip), "PATCH");
 }
 
+
+getDagiao()
+function getDagiao() {
+  var max = new Date().valueOf()
+  var min = max - 2 * 24 * 60 * 60 * 1000
+
+  $.ajax({
+    url: `${urlDG}?createdAt_gte=${min}&createdAt_lte=${max}`,
+    type: 'GET',
+    success: function (data) {
+      useCaher2 = data
+      console.log(data)
+    }
+  })
+}

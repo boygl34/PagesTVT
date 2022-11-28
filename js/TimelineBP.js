@@ -810,21 +810,21 @@ timeline.on("mouseMove", function (properties) {
 });
 
 timeline.on("click", function (props) {
-  document.getElementById("contextMenu").style.display = "none";
+  document.getElementById("contextMenuDS").style.display = "none";
 });
 
 
 
 timeline.on("contextmenu", function (props) {
-  $("#biensomenu").html("");
+  $("#biensomenuDS").html("");
   document.getElementById("FormDS").reset();
   if (props.item) {
     var BienSo = props.item.slice(0, props.item.indexOf("_"))
     console.log(props);
-    if (document.getElementById("contextMenu").style.display == "block") {
-      document.getElementById("contextMenu").style.display = "none";
+    if (document.getElementById("contextMenuDS").style.display == "block") {
+      document.getElementById("contextMenuDS").style.display = "none";
     } else {
-      var menu = document.getElementById("contextMenu");
+      var menu = document.getElementById("contextMenuDS");
       menu.style.display = "block";
       menu.style.left = props.pageX + "px";
       menu.style.top = props.pageY + "px";
@@ -839,7 +839,7 @@ timeline.on("contextmenu", function (props) {
         var chiudaichip = end - start;
 
         $("#ChieuDaiChip").val(chiudaichip);
-        $("#biensomenu").html(ojb[a].BienSoXe);
+        $("#biensomenuDS").html(ojb[a].BienSoXe);
         changvalue();
         timeSuaChua();
       }
