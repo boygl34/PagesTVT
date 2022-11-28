@@ -231,7 +231,7 @@ select:invalid {
 }
 
 .DangTiepNhan {
-  color: #00ff00;
+  color: #ff8800;
 }
 
 .SapTiepNhan {
@@ -242,9 +242,7 @@ select:invalid {
   color: #3deedf;
 }
 
-.DangSuaChua {
-  color: #00ff00;
-}
+
 
 .DaTiepNhan {
   color: #00bfff;
