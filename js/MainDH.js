@@ -387,8 +387,7 @@ function changvalueBS() {
   }
 
   var thongtin = checkMasterData($("#BienSoXe").val())[0]
-  console.log(checkMasterData($("#BienSoXe").val()));
-  if (checkMasterData($("#BienSoXe").val())) {
+  if (checkMasterData($("#BienSoXe").val()) !== false && checkMasterData($("#BienSoXe").val()).length > 0) {
     document.getElementById("KhuVuc").value = thongtin["Quận/Huyện"]
     if (thongtin["Điện thoại người mang xe"]) {
       document.getElementById("SoDT").value = thongtin["Điện thoại người mang xe"]
