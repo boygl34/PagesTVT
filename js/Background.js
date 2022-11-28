@@ -313,6 +313,9 @@ function checkMasterData(myValue) {
   myValue = myValue.replace(" ", "");
   myValue = myValue.replace("-", "");
   myValue = myValue.replace(".", "");
-  return thongtinkhachhang = MasterData.filter(function (r) { return r["Biển số"] == myValue })
+  try {
+    return thongtinkhachhang = MasterData.filter(function (r) { return r["Biển số"] == myValue })
+  } catch { return thongtinkhachhang = false }
+
 
 }
