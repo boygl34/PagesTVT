@@ -497,11 +497,11 @@ function changvalue() {
         data.LoaiHinhDongSon == "Báo Giá BH" &&
         data.TrangThaiXuong == "04 Đã Tiếp Nhận"
       ) {
-        document.getElementById("NutNhan").innerHTML =
+        document.getElementById("NutNhan").innerHTML = '<button type="button" class="btn btn-warning" onclick="DKruaXe()" >Đăng Ký Rửa Xe</button>' +
           '<button type="button" class="btn btn-primary" onclick="GiaoXe()" >Giao Xe</button> <button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>';
       }
       if (data.LoaiHinhSuaChua == "Báo Giá SCC" && data.TrangThaiXuong == "04 Đã Tiếp Nhận") {
-        document.getElementById("NutNhan").innerHTML =
+        document.getElementById("NutNhan").innerHTML = '<button type="button" class="btn btn-warning" onclick="DKruaXe()" >Đăng Ký Rửa Xe</button>' +
           '<button type="button" class="btn btn-primary" onclick="GiaoXe()" >Giao Xe</button> <button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>';
       }
     });
