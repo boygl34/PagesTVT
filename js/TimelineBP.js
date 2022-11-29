@@ -181,8 +181,6 @@ function LoadTimeLine() {
 
   try {
     for (var a = 0; a < dataArray1.length; a++) {
-
-
       r = dataArray1[a];
       if (r.TrangThaiDongSon == "Chờ SC") { additembienso(r.BienSoXe, r.MaSo, "warning", r.CongDoanDongSon, r.TrangThaiDongSon); }
       if (r.TrangThaiDongSon == "Đang SC") { additembienso(r.BienSoXe, r.MaSo, "success", r.CongDoanDongSon, r.TrangThaiDongSon); }
@@ -211,329 +209,331 @@ function LoadTimeLine() {
       if (r.HTSon === "Okie") { mauSon = "orange"; edit3 = false; group = "groupHT"; } else { edit4 = edit0; group = "groupDS"; }
       if (r.HTLap === "Okie") { mauLap = "orange"; edit4 = false; group = "groupHT"; } else { edit2 = edit0; group = "groupDS"; }
       if (r.HTPass === "Okie") { mauPass = "orange"; edit5 = false; group = "groupHT"; } else { edit5 = edit0; group = "groupDS"; }
-      if (r.TimeStartBody && r.TimeEndBody) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartBody))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()>timeNow.valueOf()){mauDong="green"}
-        //if((new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()<timeNow.valueOf()){mauDong="orange"}
-        if (r.CongDoanDongSon == "Đồng") {
-          if (r.TrangThaiDongSon == "Đang SC") { mauDong = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mauDong = "red"; }
-        } else { mauDong = mau; }
-        if (r.CongDoanDongSon == "Nền") {
-          if (r.TrangThaiDongSon == "Đang SC") { mauNen = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mauNen = "red"; }
-        } else { mauNen = mau; }
-        if (r.CongDoanDongSon == "Sơn") {
-          if (r.TrangThaiDongSon == "Đang SC") { mauSon = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mauSon = "red"; }
-        } else { mauSon = mau; }
-        if (r.CongDoanDongSon == "Lắp Ráp") {
-          if (r.TrangThaiDongSon == "Đang SC") { mauLap = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mauLap = "red"; }
-        } else { mauLap = mau; }
-        if (r.CongDoanDongSon == "Pass") {
-          if (r.TrangThaiDongSon == "Đang SC") { mauPass = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mauPass = "red"; }
-        } else { mauPass = mau; }
-        var GiaoTN = "";
-        if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).getDate() == new Date().getDate()) { GiaoTN = kytu1; }
-        if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).valueOf() < new Date().valueOf()) { GiaoTN = kytu2; }
+      if (r.CongDoanDongSon == "Đồng") {
+        if (r.TrangThaiDongSon == "Đang SC") { mauDong = "green"; }
+        if (r.TrangThaiDongSon == "Dừng SC") { mauDong = "red"; }
+      } else { mauDong = mau; }
+      if (r.CongDoanDongSon == "Nền") {
+        if (r.TrangThaiDongSon == "Đang SC") { mauNen = "green"; }
+        if (r.TrangThaiDongSon == "Dừng SC") { mauNen = "red"; }
+      } else { mauNen = mau; }
+      if (r.CongDoanDongSon == "Sơn") {
+        if (r.TrangThaiDongSon == "Đang SC") { mauSon = "green"; }
+        if (r.TrangThaiDongSon == "Dừng SC") { mauSon = "red"; }
+      } else { mauSon = mau; }
+      if (r.CongDoanDongSon == "Lắp Ráp") {
+        if (r.TrangThaiDongSon == "Đang SC") { mauLap = "green"; }
+        if (r.TrangThaiDongSon == "Dừng SC") { mauLap = "red"; }
+      } else { mauLap = mau; }
+      if (r.CongDoanDongSon == "Pass") {
+        if (r.TrangThaiDongSon == "Đang SC") { mauPass = "green"; }
+        if (r.TrangThaiDongSon == "Dừng SC") { mauPass = "red"; }
+      } else { mauPass = mau; }
+      var GiaoTN = "";
+      if (r.TrangThaiDongSon !== "Dừng SC") {
+        if (r.TimeStartBody && r.TimeEndBody) {
+          //if((new Date(DoiNgayDangKy(r.TimeStartBody))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()>timeNow.valueOf()){mauDong="green"}
+          //if((new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()<timeNow.valueOf()){mauDong="orange"}
 
-        if (hoanthanh && r.HTDong == "Okie") {
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
-          if (starttime.getDay() == 0) {
-            starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
-            endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
+          if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).getDate() == new Date().getDate()) { GiaoTN = kytu1; }
+          if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).valueOf() < new Date().valueOf()) { GiaoTN = kytu2; }
+          if (hoanthanh && r.HTDong == "Okie") {
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
+            if (starttime.getDay() == 0) {
+              starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
+              endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
+            }
+            if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
+            items.update({
+              className: "orange",
+              id: r.BienSoXe + "_Dong",
+              group: r.KyThuatVienDong,
+              start: starttime,
+              end: endtime,
+              editable: edit1,
+              value: time,
+              subgroup: group,
+              //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
+              content: r.BienSoXe + "_Đồng " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
-          items.update({
-            className: "orange",
-            id: r.BienSoXe + "_Dong",
-            group: r.KyThuatVienDong,
-            start: starttime,
-            end: endtime,
-            editable: edit1,
-            value: time,
-            subgroup: group,
-            //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
-            content: r.BienSoXe + "_Đồng " + GiaoTN,
-          });
+          if (r.HTDong !== "Okie") {
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
+            if (starttime.getDay() == 0) {
+              starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
+              endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
+            }
+            if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
+            items.update({
+              className: mauDong,
+              id: r.BienSoXe + "_Dong",
+              group: r.KyThuatVienDong,
+              start: starttime,
+              end: endtime,
+              editable: edit1,
+              value: time,
+              subgroup: group,
+              //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
+              content: r.BienSoXe + "_Đồng " + GiaoTN,
+            });
+          }
         }
-        if (r.HTDong !== "Okie") {
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
-          if (starttime.getDay() == 0) {
-            starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
-            endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
+        if (r.TimeStartLap && r.TimeEndLap) {
+          //if((new Date(DoiNgayDangKy(r.TimeStartLap))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndLap))).valueOf()>timeNow.valueOf()){mauLap="green"}
+          //if((new Date(r.TimeEndLap)).valueOf()<timeNow.valueOf()){mauLap="orange"}
+          if (hoanthanh && r.HTLap == "Okie") {
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartLap));
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartLap) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndLap) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndLap) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: "orange",
+              id: r.BienSoXe + "_Lap",
+              group: r.KyThuatVienLap,
+              start: starttime,
+              //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
+              end: endtime,
+              editable: edit2,
+              value: time,
+              subgroup: group,
+              content: r.BienSoXe + "_Lắp Ráp " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
-          items.update({
-            className: mauDong,
-            id: r.BienSoXe + "_Dong",
-            group: r.KyThuatVienDong,
-            start: starttime,
-            end: endtime,
-            editable: edit1,
-            value: time,
-            subgroup: group,
-            //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
-            content: r.BienSoXe + "_Đồng " + GiaoTN,
-          });
-        }
-      }
-      if (r.TimeStartLap && r.TimeEndLap) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartLap))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndLap))).valueOf()>timeNow.valueOf()){mauLap="green"}
-        //if((new Date(r.TimeEndLap)).valueOf()<timeNow.valueOf()){mauLap="orange"}
-        if (hoanthanh && r.HTLap == "Okie") {
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartLap));
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartLap) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndLap) * 1 + 24 * 60 * 60 * 1000
-            );
-          }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndLap) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: "orange",
-            id: r.BienSoXe + "_Lap",
-            group: r.KyThuatVienLap,
-            start: starttime,
-            //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
-            end: endtime,
-            editable: edit2,
-            value: time,
-            subgroup: group,
-            content: r.BienSoXe + "_Lắp Ráp " + GiaoTN,
-          });
-        }
-        if (r.HTLap !== "Okie") {
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartLap));
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
+          if (r.HTLap !== "Okie") {
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartLap));
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
 
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartLap) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndLap) * 1 + 24 * 60 * 60 * 1000
-            );
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartLap) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndLap) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndLap) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: mauLap,
+              id: r.BienSoXe + "_Lap",
+              group: r.KyThuatVienLap,
+              start: starttime,
+              // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
+              end: endtime,
+              editable: edit2,
+              value: time,
+              subgroup: group,
+              content: r.BienSoXe + "_Lắp Ráp " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndLap) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: mauLap,
-            id: r.BienSoXe + "_Lap",
-            group: r.KyThuatVienLap,
-            start: starttime,
-            // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.NhomSon,
-            end: endtime,
-            editable: edit2,
-            value: time,
-            subgroup: group,
-            content: r.BienSoXe + "_Lắp Ráp " + GiaoTN,
-          });
         }
-      }
-      if (r.TimeStartNen && r.TimeEndNen) {
-        // if((new Date(DoiNgayDangKy(r.TimeStartNen))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndNen))).valueOf()>timeNow.valueOf()){mauNen="green"}
-        // if((new Date(r.TimeEndNen)).valueOf()<timeNow.valueOf()){mauNen="orange"}
-        if (hoanthanh && r.HTNen == "Okie") {
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartNen));
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndNen));
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartNen) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndNen) * 1 + 24 * 60 * 60 * 1000
-            );
+        if (r.TimeStartNen && r.TimeEndNen) {
+          // if((new Date(DoiNgayDangKy(r.TimeStartNen))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndNen))).valueOf()>timeNow.valueOf()){mauNen="green"}
+          // if((new Date(r.TimeEndNen)).valueOf()<timeNow.valueOf()){mauNen="orange"}
+          if (hoanthanh && r.HTNen == "Okie") {
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartNen));
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndNen));
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartNen) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndNen) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndNen) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: "orange",
+              id: r.BienSoXe + "_Nen",
+              group: r.NhomSon,
+              start: starttime,
+              end: endtime,
+              editable: edit3,
+              subgroup: group,
+              value: time,
+              //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienNen,
+              content: r.BienSoXe + "_Nền " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndNen) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: "orange",
-            id: r.BienSoXe + "_Nen",
-            group: r.NhomSon,
-            start: starttime,
-            end: endtime,
-            editable: edit3,
-            subgroup: group,
-            value: time,
-            //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienNen,
-            content: r.BienSoXe + "_Nền " + GiaoTN,
-          });
-        }
-        if (r.HTNen !== "Okie") {
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartNen));
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndNen));
+          if (r.HTNen !== "Okie") {
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartNen));
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndNen));
 
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartNen) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndNen) * 1 + 24 * 60 * 60 * 1000
-            );
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartNen) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndNen) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndNen) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: mauNen,
+              id: r.BienSoXe + "_Nen",
+              group: r.NhomSon,
+              start: starttime,
+              end: endtime,
+              editable: edit3,
+              subgroup: group,
+              value: time,
+              // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienNen,
+              content: r.BienSoXe + "_Nền " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndNen) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: mauNen,
-            id: r.BienSoXe + "_Nen",
-            group: r.NhomSon,
-            start: starttime,
-            end: endtime,
-            editable: edit3,
-            subgroup: group,
-            value: time,
-            // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienNen,
-            content: r.BienSoXe + "_Nền " + GiaoTN,
-          });
         }
-      }
-      if (r.TimeStartPaint && r.TimeEndPaint) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartPaint))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPaint))).valueOf()>timeNow.valueOf()){mauSon="green"}
-        //if((new Date(r.TimeEndPaint)).valueOf()<timeNow.valueOf()){mauSon="orange"}
-        if (hoanthanh && r.HTSon == "Okie") {
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndPaint));
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartPaint));
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartPaint) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPaint) * 1 + 24 * 60 * 60 * 1000
-            );
+        if (r.TimeStartPaint && r.TimeEndPaint) {
+          //if((new Date(DoiNgayDangKy(r.TimeStartPaint))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPaint))).valueOf()>timeNow.valueOf()){mauSon="green"}
+          //if((new Date(r.TimeEndPaint)).valueOf()<timeNow.valueOf()){mauSon="orange"}
+          if (hoanthanh && r.HTSon == "Okie") {
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndPaint));
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartPaint));
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartPaint) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPaint) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPaint) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: "orange",
+              id: r.BienSoXe + "_Paint",
+              group: r.PhongSon,
+              start: starttime,
+              end: endtime,
+              editable: edit4,
+              subgroup: group,
+              value: time,
+              //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienSon,
+              content: r.BienSoXe + "_Sơn " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPaint) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: "orange",
-            id: r.BienSoXe + "_Paint",
-            group: r.PhongSon,
-            start: starttime,
-            end: endtime,
-            editable: edit4,
-            subgroup: group,
-            value: time,
-            //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienSon,
-            content: r.BienSoXe + "_Sơn " + GiaoTN,
-          });
-        }
-        if (r.HTSon !== "Okie") {
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndPaint));
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartPaint));
+          if (r.HTSon !== "Okie") {
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndPaint));
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartPaint));
 
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartPaint) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPaint) * 1 + 24 * 60 * 60 * 1000
-            );
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartPaint) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPaint) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPaint) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: mauSon,
+              id: r.BienSoXe + "_Paint",
+              group: r.PhongSon,
+              start: starttime,
+              end: endtime,
+              editable: edit4,
+              subgroup: group,
+              value: time,
+              // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienSon,
+              content: r.BienSoXe + "_Sơn " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPaint) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: mauSon,
-            id: r.BienSoXe + "_Paint",
-            group: r.PhongSon,
-            start: starttime,
-            end: endtime,
-            editable: edit4,
-            subgroup: group,
-            value: time,
-            // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienSon,
-            content: r.BienSoXe + "_Sơn " + GiaoTN,
-          });
         }
-      }
-      if (r.TimeStartPass && r.TimeEndPass) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartPass))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()>timeNow.valueOf()){mauPass="green"}
-        //if((new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()<timeNow.valueOf()){mauPass="orange"}
-        if (hoanthanh && r.HTPass == "Okie") {
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndPass));
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartPass));
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartPass) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPass) * 1 + 24 * 60 * 60 * 1000
-            );
+        if (r.TimeStartPass && r.TimeEndPass) {
+          //if((new Date(DoiNgayDangKy(r.TimeStartPass))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()>timeNow.valueOf()){mauPass="green"}
+          //if((new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()<timeNow.valueOf()){mauPass="orange"}
+          if (hoanthanh && r.HTPass == "Okie") {
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndPass));
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartPass));
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartPass) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPass) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPass) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: "orange",
+              id: r.BienSoXe + "_Pass",
+              group: "Pass",
+              start: starttime,
+              end: endtime,
+              editable: edit5,
+              subgroup: group,
+              value: time,
+              //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienPass,
+              content: r.BienSoXe + "_Pass " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPass) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: "orange",
-            id: r.BienSoXe + "_Pass",
-            group: "Pass",
-            start: starttime,
-            end: endtime,
-            editable: edit5,
-            subgroup: group,
-            value: time,
-            //title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienPass,
-            content: r.BienSoXe + "_Pass " + GiaoTN,
-          });
-        }
-        if (r.HTPass !== "Okie") {
-          var endtime = new Date(DoiNgayDangKy(r.TimeEndPass));
-          var starttime = new Date(DoiNgayDangKy(r.TimeStartPass));
+          if (r.HTPass !== "Okie") {
+            var endtime = new Date(DoiNgayDangKy(r.TimeEndPass));
+            var starttime = new Date(DoiNgayDangKy(r.TimeStartPass));
 
 
-          if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartPass) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPass) * 1 + 24 * 60 * 60 * 1000
-            );
+            if (starttime.getDay() == 0) {
+              starttime = new Date(
+                DoiNgayDangKy(r.TimeStartPass) * 1 + 24 * 60 * 60 * 1000
+              );
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPass) * 1 + 24 * 60 * 60 * 1000
+              );
+            }
+            if (endtime.getHours() >= 17) {
+              endtime = new Date(
+                DoiNgayDangKy(r.TimeEndPass) * 1 + 15 * 60 * 60 * 1000
+              );
+            }
+            items.update({
+              className: mauPass,
+              id: r.BienSoXe + "_Pass",
+              group: "Pass",
+              start: starttime,
+              end: endtime,
+              editable: edit5,
+              subgroup: group,
+              value: time,
+              // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienPass,
+              content: r.BienSoXe + "_Pass " + GiaoTN,
+            });
           }
-          if (endtime.getHours() >= 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndPass) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
-          items.update({
-            className: mauPass,
-            id: r.BienSoXe + "_Pass",
-            group: "Pass",
-            start: starttime,
-            end: endtime,
-            editable: edit5,
-            subgroup: group,
-            value: time,
-            // title:r.BienSoXe+" "+r.CoVanDichVu+" " +r.KyThuatVienPass,
-            content: r.BienSoXe + "_Pass " + GiaoTN,
-          });
         }
       }
     }
@@ -589,6 +589,7 @@ function handleDragStart(event) {
       if (KTVDong.indexOf(group) >= 0) {
         json2["KyThuatVienDong"] = group;
         json2["HTDong"] = "KH";
+        json2["TrangThaiDongSon"] = "Chờ SC";
         json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
         json2["TimeEndBody"] = end;
       } else { alert("Lỗi sai công đoạn chạy chip"); return false }
@@ -597,6 +598,7 @@ function handleDragStart(event) {
       if (NhomSon.indexOf(group) >= 0) {
         json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
         json2["TimeEndNen"] = end;
+        json2["TrangThaiDongSon"] = "Chờ SC";
         json2["NhomSon"] = group;
         json2["HTNen"] = "KH";
       } else {
@@ -607,6 +609,7 @@ function handleDragStart(event) {
       if (PhongSon.indexOf(group) >= 0) {
         json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
         json2["TimeEndPaint"] = end;
+        json2["TrangThaiDongSon"] = "Chờ SC";
         json2["PhongSon"] = group;
         json2["HTSon"] = "KH";
       } else { alert("Lỗi sai công đoạn chạy chip"); return false }
@@ -616,6 +619,7 @@ function handleDragStart(event) {
         json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
         json2["TimeEndLap"] = end;
         json2["KyThuatVienLap"] = group;
+        json2["TrangThaiDongSon"] = "Chờ SC";
         json2["HTLap"] = "KH";
       } else { alert("Lỗi sai công đoạn chạy chip"); return false }
     }
@@ -623,6 +627,7 @@ function handleDragStart(event) {
       if (group == "Pass") {
         json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
         json2["TimeEndPass"] = end;
+        json2["TrangThaiDongSon"] = "Chờ SC";
         json2["HTPass"] = "KH";
       } else { alert("Lỗi sai công đoạn chạy chip"); return false }
     }
