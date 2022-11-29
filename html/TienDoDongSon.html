@@ -218,17 +218,17 @@
             <div class="form-group col-6">
               <label class="control-label" for="NgayKTSC">Ngày Giờ KT</label>
               <input type="datetime-local" required min="2015-02-20 10:00:00" class="form-control" id="NgayKTSC"
-                onchange="timeSuaChua()" required />
+                onchange="CapNhatGioSC()" required />
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row" style="display: none;">
             <div class="col-12">
               <div class="slidecontainer">
                 <label class="control-label" for="NgayKTSC">Thời Gian SCT</label>
                 <input style="width: 100%" type="range" min="1" max="90" class="slider" id="myRangeBP" />
                 <div class="row form-group col-12">
                   <div class="col-6">
-                    <input type="number" id="inputThoiGianBP" class="form-control col-6" onchange="GioKetThucBP()" />
+                    <input type="number" id="inputThoiGianBP" class="form-control col-6" onchange="CapNhatGioSC()" />
                   </div>
                   <div class="col-6">
                     <button type="button" class="btn btn-primary me-2" onclick="CapNhatGioSC()">

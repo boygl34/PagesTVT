@@ -221,22 +221,9 @@ function changvalue() {
   var ojb = useCaher;
   for (var a in ojb) {
     if (ojb[a].BienSoXe == BienSoXe.value) {
-      $("#biensods").html(
-        ojb[a].BienSoXe +
-        " " +
-        ojb[a].CoVanDichVu +
-        " " +
-        ojb[a].CongDoanDongSon +
-        " " +
-        ojb[a].TrangThaiDongSon
-      );
+      $("#biensods").html(ojb[a].BienSoXe + " " + ojb[a].CoVanDichVu + " " + ojb[a].CongDoanDongSon + " " + ojb[a].TrangThaiDongSon);
       if (ojb[a].TDHenGiaoXe) {
-        $("#alert2").html(
-          "<div class='alert alert-success'>Ngày Giao Xe : " +
-          ojb[a].TDHenGiaoXe +
-          "</div>"
-        );
-        console.log(ojb[a].TDHenGiaoXe);
+        $("#alert2").html("<div class='alert alert-success'>Ngày Giao Xe : " + ojb[a].TDHenGiaoXe + "</div>");
       }
       if (ojb[a].MaSo) {
         document.getElementById("MaSo").value = ojb[a].MaSo;
@@ -252,88 +239,33 @@ function changvalue() {
         document.getElementById("CongDoanDongSon").value =
           ojb[a].CongDoanDongSon;
         if (ojb[a].CongDoanDongSon == "Đồng") {
-          if (ojb[a].KyThuatVienDong) {
-            document.getElementById("KTVDS1").value = ojb[a].KyThuatVienDong;
-          }
-          if (ojb[a].TimeStartBody) {
-            document.getElementById("NgayBDSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeStartBody)
-            );
-          }
-          if (ojb[a].TimeEndBody) {
-            document.getElementById("NgayKTSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeEndBody)
-            );
-          }
+          if (ojb[a].KyThuatVienDong) { document.getElementById("KTVDS1").value = ojb[a].KyThuatVienDong; }
+          if (ojb[a].TimeStartBody) { document.getElementById("NgayBDSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeStartBody)); }
+          if (ojb[a].TimeEndBody) { document.getElementById("NgayKTSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeEndBody)); }
         }
         if (ojb[a].CongDoanDongSon == "Nền") {
-          if (ojb[a].KyThuatVienNen) {
-            document.getElementById("KTVDS1").value = ojb[a].KyThuatVienNen;
-          }
-          if (ojb[a].TimeStartNen) {
-            document.getElementById("NgayBDSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeStartNen)
-            );
-          }
-          if (ojb[a].TimeEndNen) {
-            document.getElementById("NgayKTSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeEndNen)
-            );
-          }
+          if (ojb[a].KyThuatVienNen) { document.getElementById("KTVDS1").value = ojb[a].KyThuatVienNen; }
+          if (ojb[a].TimeStartNen) { document.getElementById("NgayBDSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeStartNen)); }
+          if (ojb[a].TimeEndNen) { document.getElementById("NgayKTSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeEndNen)); }
         }
         if (ojb[a].CongDoanDongSon == "Sơn") {
-          if (ojb[a].KyThuatVienSon) {
-            document.getElementById("KTVDS1").value = ojb[a].KyThuatVienSon;
-          }
-          if (ojb[a].TimeStartPaint) {
-            document.getElementById("NgayBDSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeStartPaint)
-            );
-          }
-          if (ojb[a].TimeEndPaint) {
-            document.getElementById("NgayKTSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeEndPaint)
-            );
-          }
+          if (ojb[a].KyThuatVienSon) { document.getElementById("KTVDS1").value = ojb[a].KyThuatVienSon; }
+          if (ojb[a].TimeStartPaint) { document.getElementById("NgayBDSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeStartPaint)); }
+          if (ojb[a].TimeEndPaint) { document.getElementById("NgayKTSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeEndPaint)); }
         }
         if (ojb[a].CongDoanDongSon == "Lắp Ráp") {
-          if (ojb[a].KyThuatVienLap) {
-            document.getElementById("KTVDS1").value = ojb[a].KyThuatVienLap;
-          }
-          if (ojb[a].TimeStartLap) {
-            document.getElementById("NgayBDSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeStartLap)
-            );
-          }
-          if (ojb[a].TimeEndLap) {
-            document.getElementById("NgayKTSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeEndLap)
-            );
-          }
+          if (ojb[a].KyThuatVienLap) { document.getElementById("KTVDS1").value = ojb[a].KyThuatVienLap; }
+          if (ojb[a].TimeStartLap) { document.getElementById("NgayBDSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeStartLap)); }
+          if (ojb[a].TimeEndLap) { document.getElementById("NgayKTSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeEndLap)); }
         }
         if (ojb[a].CongDoanDongSon == "Pass") {
-          if (ojb[a].KyThuatVienPass) {
-            document.getElementById("KTVDS1").value = ojb[a].KyThuatVienPass;
-          }
-          if (ojb[a].TimeStartPass) {
-            document.getElementById("NgayBDSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeStartPass)
-            );
-          }
-          if (ojb[a].TimeEndPass) {
-            document.getElementById("NgayKTSC").value = datevalue(
-              DoiNgayDangKy(ojb[a].TimeEndPass)
-            );
-          }
+          if (ojb[a].KyThuatVienPass) { document.getElementById("KTVDS1").value = ojb[a].KyThuatVienPass; }
+          if (ojb[a].TimeStartPass) { document.getElementById("NgayBDSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeStartPass)); }
+          if (ojb[a].TimeEndPass) { document.getElementById("NgayKTSC").value = datevalue(DoiNgayDangKy(ojb[a].TimeEndPass)); }
         }
       }
-      if (ojb[a].PhongSon) {
-        document.getElementById("PhongSon").value = ojb[a].PhongSon;
-      }
-      if (ojb[a].TrangThaiDongSon) {
-        document.getElementById("TrangThaiDongSon").value =
-          ojb[a].TrangThaiDongSon;
-      }
+      if (ojb[a].PhongSon) { document.getElementById("PhongSon").value = ojb[a].PhongSon; }
+      if (ojb[a].TrangThaiDongSon) { document.getElementById("TrangThaiDongSon").value = ojb[a].TrangThaiDongSon; }
       CongDoanDongSon(ojb[a].CongDoanDongSon, ojb[a].TrangThaiDongSon);
 
       return;
@@ -573,51 +505,16 @@ function addtimeline(value, CongDoan, TrangThai) {
 }
 
 function CongDoanDongSon(congdoan, trangthai) {
-  $("#ButEnd").html(
-    '<button  type="button" class="btn btn-primary me-2" onclick="StartDong()">Bắt Đầu Đồng!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="StartNen()">Bắt Đầu Nền!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="StartPass()">Bắt Đầu Pass!</button>'
-  );
+  $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartDong()">Bắt Đầu Đồng!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="StartNen()">Bắt Đầu Nền!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="StartPass()">Bắt Đầu Pass!</button>');
 
-  if (trangthai == "Chờ Pass") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartPass()">Bắt Đầu Pass!</button>'
-    );
-  }
-  if (trangthai == "Chờ Lắp") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartLap()">Bắt Đầu Lắp!</button>'
-    );
-  }
-  if (trangthai == "Chờ Sơn") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartSon()">Bắt Đầu Sơn!</button>'
-    );
-  }
-  if (trangthai == "Chờ Nền") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartNen()">Bắt Đầu Nền!</button>'
-    );
-  }
-  if (trangthai == "Chờ QC") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartQC()">Bắt Đầu QC!</button>'
-    );
-  }
-
-  if (trangthai == "Đang SC" && congdoan == "Đồng") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="WaitNen()">Chờ Nền!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="WaitQC()">Chờ QC!</button>'
-    );
-  }
-  if (trangthai == "Đang SC" && congdoan == "Nền") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="WaitSon()">Chờ Sơn!</button>'
-    );
-  }
-  if (trangthai == "Đang SC" && congdoan == "Sơn") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="WaitLap()">Chờ Lắp!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="WaitPass()">Chờ Pass!</button>'
-    );
-  }
+  if (trangthai == "Chờ Pass") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartPass()">Bắt Đầu Pass!</button>'); }
+  if (trangthai == "Chờ Lắp") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartLap()">Bắt Đầu Lắp!</button>'); }
+  if (trangthai == "Chờ Sơn") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartSon()">Bắt Đầu Sơn!</button>'); }
+  if (trangthai == "Chờ Nền") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartNen()">Bắt Đầu Nền!</button>'); }
+  if (trangthai == "Chờ QC") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartQC()">Bắt Đầu QC!</button>'); }
+  if (trangthai == "Đang SC" && congdoan == "Đồng") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="WaitNen()">Chờ Nền!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="WaitQC()">Chờ QC!</button>'); }
+  if (trangthai == "Đang SC" && congdoan == "Nền") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="WaitSon()">Chờ Sơn!</button>'); }
+  if (trangthai == "Đang SC" && congdoan == "Sơn") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="WaitLap()">Chờ Lắp!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="WaitPass()">Chờ Pass!</button>'); }
   if (trangthai == "Đang SC" && congdoan == "Pass") {
     $("#ButEnd").html(
       '<button  type="button" class="btn btn-primary me-2" onclick="WaitLap()">Chờ Lắp!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="WaitQC()">Chờ QC!</button>'
@@ -660,36 +557,12 @@ function CongDoanDongSon(congdoan, trangthai) {
     );
   }
 
-  if (trangthai == "Chờ SC" && congdoan == "Đồng") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartDong()">Bắt Đầu Đồng!</button>'
-    );
-  }
-  if (trangthai == "Chờ SC" && congdoan == "Nền") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartNen()">Bắt Đầu Nền!</button>'
-    );
-  }
-  if (trangthai == "Chờ SC" && congdoan == "Sơn") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartSon()">Bắt Đầu Sơn!</button>'
-    );
-  }
-  if (trangthai == "Chờ SC" && congdoan == "Pass") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartPass()">Bắt Đầu Pass!</button>'
-    );
-  }
-  if (trangthai == "Chờ SC" && congdoan == "Lắp Ráp") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartLap()">Bắt Đầu Lắp!</button>'
-    );
-  }
-  if (trangthai == "Chờ SC" && congdoan == "QC") {
-    $("#ButEnd").html(
-      '<button  type="button" class="btn btn-primary me-2" onclick="StartQC()">Bắt Đầu QC!</button>'
-    );
-  }
+  if (trangthai == "Chờ SC" && congdoan == "Đồng") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartDong()">Bắt Đầu Đồng!</button>'); }
+  if (trangthai == "Chờ SC" && congdoan == "Nền") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartNen()">Bắt Đầu Nền!</button>'); }
+  if (trangthai == "Chờ SC" && congdoan == "Sơn") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartSon()">Bắt Đầu Sơn!</button>'); }
+  if (trangthai == "Chờ SC" && congdoan == "Pass") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartPass()">Bắt Đầu Pass!</button>'); }
+  if (trangthai == "Chờ SC" && congdoan == "Lắp Ráp") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartLap()">Bắt Đầu Lắp!</button>'); }
+  if (trangthai == "Chờ SC" && congdoan == "QC") { $("#ButEnd").html('<button  type="button" class="btn btn-primary me-2" onclick="StartQC()">Bắt Đầu QC!</button>'); }
 }
 
 function ChangCongDoan(CongDoan) {
