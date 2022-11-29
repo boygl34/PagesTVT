@@ -155,8 +155,12 @@ function LoadTimeLine() {
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
   setgiaoxe()
-
-  if (document.getElementById("checkbox-3").checked) { useCaher = useCaher.concat(useCaher2) }
+  var tongThoiGian = 0
+  if (document.getElementById("checkbox-3").checked) {
+    useCaher = useCaher.concat(useCaher2)
+    getDagiao()
+    console.log(timeline.getVisibleItems())
+  }
   var dataArray0 = useCaher;
   var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
@@ -202,8 +206,13 @@ function LoadTimeLine() {
     if (r.TrangThaiXuong == "05 Dừng Công Việc") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua); }
     if (r.TimeEndGJ) { var endRX = new Date(DoiNgayDangKy(r.TimeEndGJ).valueOf() + 15 * 60 * 1000); }
     if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() < timeNow.valueOf()) { mau = "magenta"; }
+    if ((start.getDate() == new Date().getDate()) && (end.getDate() == new Date().getDate())) {
+      tongThoiGian = tongThoiGian + end.valueOf() - start.valueOf()
+
+    }
     if (r.TrangThaiSCC !== "Dừng CV") {
       if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
+
         items.update({
           className: mau,
           id: r.MaSo,
@@ -216,6 +225,7 @@ function LoadTimeLine() {
         });
       }
       if (r.TrangThaiSCC != "Đã SC" && r.TimeStartGJ) {
+
         items.update({
           className: mau,
           id: r.MaSo,
@@ -293,8 +303,13 @@ function LoadTimeLine() {
 
     }
   }
+  var phantram = Math.trunc((tongThoiGian / (60 * 1000 * 60)) / (11 * 8) * 100)
   timeline.redraw();
-
+  $("#progress").html(`
+  <div class="progress-bar bg-primary" role="progressbar" style="width: ${phantram}%" aria-valuenow="${phantram}"
+                            aria-valuemin="0" aria-valuemax="100">${phantram}%</div>
+  `)
+  console.log(Math.trunc((tongThoiGian / (60 * 1000 * 60)) / (11 * 8) * 100))
   document.getElementById("loading").style.display = "none"
 }
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh, covan) {
@@ -562,7 +577,7 @@ function getDagiao() {
     type: 'GET',
     success: function (data) {
       useCaher2 = data
-      console.log(data)
+
     }
   })
 }

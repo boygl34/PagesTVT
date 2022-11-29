@@ -107,12 +107,11 @@
                             <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
                         </div>
                     </div>
+
                     <div class="btn-group col-xl-3" role="group" id="ThuTuGiaoXeEM">
 
                     </div>
-                    <div class="btn-group col-xl-3" role="group" id="ThuTuGiaoXeSCC" style="display: none;">
-                        <p class="btn btn-success panel cho">Bạo</p>
-                        <p class="btn btn-primary panel dang">Hoan</p>
+                    <div class=" col-1 progress" role="group" id="progress">
 
                     </div>
 
@@ -420,7 +419,6 @@
     function loadbaocao() {
         $.get(url + `${new Date().getMonth() + 1}-${new Date().getFullYear()}`, function (ketqua) {
             var databc = ketqua.data
-            console.log(databc);
             myLineChart.data.labels = ketqua.data.BaoCaoTiep[0].map(function (r) { return r })
             myLineChart.data.datasets[0].data = ketqua.data.BaoCaoTiep[2].map(function (r) { return r })
             myLineChart.data.datasets[1].data = ketqua.data.BaoCaoHen[1].map(function (r) { return r })

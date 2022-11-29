@@ -29,6 +29,7 @@
   color: black;
   border-color: rgb(157, 155, 149);
   z-index: 2;
+  border-radius: 10px;
 }
 
 
@@ -44,6 +45,7 @@
 }
 
 .vis-item.vis-selected {
+  border-radius: 10px;
   padding-left: 15px;
   background-color: darkgreen;
   color: rgb(0, 255, 0);
@@ -132,6 +134,7 @@
   background-color: magenta;
   border-color: purple;
   color: white;
+  border-radius: 10px;
 }
 
 .vis-time-axis .vis-grid.vis-minor {
