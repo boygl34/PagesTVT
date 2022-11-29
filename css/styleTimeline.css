@@ -1,4 +1,4 @@
-.vis-item {
+/* .vis-item {
 
   border-radius: 10px;
   border-color: black;
@@ -7,7 +7,7 @@
   font-size: 10pt;
   font-weight: bolder;
   box-shadow: rgba(128, 128, 128, 0.5) 5px 5px 20px;
-}
+} */
 
 .vis-item.orange {
   border-radius: 10px;
@@ -43,15 +43,7 @@
 
 
 
-.vis-item.vis-selected {
-  border-radius: 10px;
-  padding-left: 15px;
-  background-color: darkgreen;
-  color: rgb(0, 255, 0);
-  border-color: rgb(157, 155, 149);
-  z-index: 2;
-  overflow: hidden;
-}
+
 
 .vis-item.green {
   border-radius: 10px;
