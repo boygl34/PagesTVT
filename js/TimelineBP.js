@@ -78,7 +78,6 @@ var options = {
     document.getElementById("BienSoXe").value = BienSo;
     changvalue();
     chieudaichip = item.end - item.start;
-
     document.getElementById("CongDoanDongSon").value = CongDoan;
     ChangCongDoan(CongDoan);
     var ojb = useCaher;
