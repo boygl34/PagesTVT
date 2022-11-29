@@ -236,7 +236,7 @@ function LoadTimeLine() {
             }
             if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
             items.update({
-              className: "orange",
+              className: "magenta",
               id: r.BienSoXe + "_Dong",
               group: r.KyThuatVienDong,
               start: starttime,
@@ -291,7 +291,7 @@ function LoadTimeLine() {
               );
             }
             items.update({
-              className: "orange",
+              className: "magenta",
               id: r.BienSoXe + "_Lap",
               group: r.KyThuatVienLap,
               start: starttime,
@@ -355,7 +355,7 @@ function LoadTimeLine() {
               );
             }
             items.update({
-              className: "orange",
+              className: "magenta",
               id: r.BienSoXe + "_Nen",
               group: r.NhomSon,
               start: starttime,
@@ -418,7 +418,7 @@ function LoadTimeLine() {
               );
             }
             items.update({
-              className: "orange",
+              className: "magenta",
               id: r.BienSoXe + "_Paint",
               group: r.PhongSon,
               start: starttime,
@@ -481,7 +481,7 @@ function LoadTimeLine() {
               );
             }
             items.update({
-              className: "orange",
+              className: "magenta",
               id: r.BienSoXe + "_Pass",
               group: "Pass",
               start: starttime,
@@ -543,7 +543,7 @@ function additembienso(value, MaSo, chip, CongDoan, trangthai, NhomSon, KTVDong)
     chip + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '" trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '") nhomson="' + NhomSon + '" ktvdong="' + KTVDong + '">' + value + "</button >"
   );
 }
-function additembiensodung(value, MaSo, chip, CongDoan, trangthai) {
+function additembiensodung(value, MaSo, chip, CongDoan, trangthai, NhomSon, KTVDong) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
     '<button data-toggle="tooltip" data-placement="top" title="' + KTVDong + "_" + NhomSon + '"draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + chip
