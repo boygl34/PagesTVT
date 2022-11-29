@@ -124,12 +124,16 @@
     });
     var optionsCV = {
         hiddenDates: [
-            //{start: '2017-03-05 00:00:00',end: '2017-03-06 00:00:00',repeat: 'weekly'},
-            // {
-            //     start: "2017-03-04 17:30:00",
-            //     end: "2017-03-05 07:30:00",
-            //     repeat: "daily",
-            // },
+            {
+                start: "2017-03-05 00:00:00",
+                end: "2017-03-06 00:00:00",
+                repeat: "weekly",
+            },
+            {
+                start: "2017-03-04 17:30:00",
+                end: "2017-03-05 07:45:00",
+                repeat: "daily",
+            },
         ],
         stack: true,
 
@@ -164,18 +168,19 @@
         document.getElementById("loading").style.display = "none"
         itemsCV.clear()
         var dataArray = useCaher2
-        dataArray.filter(function (r) { return r.LoaiHinhSuaChua })
+        dataArray = dataArray.filter(function (r) { return r.LoaiHinhSuaChua })
+        console.log(dataArray)
         dataArray.forEach(function (r) {
             groupsCV.update({
                 id: r.BienSoXe,
                 content: r.BienSoXe,
             });
-            if (r.TDGapLeTan && r.TDBDTiepKhach) {
+            if (r.TDGapLeTan) {
                 itemsCV.update({
                     group: r.BienSoXe,
                     //type: "point",
                     start: new Date(DoiNgayDangKy(r.TDGapLeTan)),
-                    end: new Date(DoiNgayDangKy(r.TDBDTiepKhach)),
+                    end: new Date(DoiNgayDangKy(r.TDGapLeTan).valueOf() + 15 * 60 * 1000),
                     content: "Lễ Tân",
                     title: "Lễ Tân",
                 });
@@ -185,7 +190,7 @@
                     group: r.BienSoXe,
                     //type: "point",
                     start: new Date(DoiNgayDangKy(r.TDBDTiepKhach)),
-                    end: new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)),
+                    end: new Date(DoiNgayDangKy(r.TDBDTiepKhach).valueOf() + 20 * 60 * 1000),
                     content: "Tiếp Nhận",
                     title: "Tiếp Nhận",
                 });
@@ -215,7 +220,7 @@
                     group: r.BienSoXe,
                     //type: "point",
                     start: new Date(DoiNgayDangKy(r.TDRaKhoicong)),
-                    end: new Date(DoiNgayDangKy(r.TDRaKhoicong).valueOf() + 15 * 60 * 100),
+                    end: new Date(DoiNgayDangKy(r.TDRaKhoicong).valueOf() + 15 * 60 * 1000),
                     content: "Giao Xe",
                     title: "Giao Xe",
                 });
