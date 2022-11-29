@@ -1,8 +1,7 @@
 .vis-item {
 
-
+  border-radius: 10px;
   border-color: black;
-  border-radius: 40px;
   font-family: Arial, sans-serif;
   background-color: orange;
   font-size: 10pt;
@@ -11,12 +10,14 @@
 }
 
 .vis-item.orange {
+  border-radius: 10px;
   background-color: gold;
   border-color: orange;
   border-radius: 10px;
 }
 
 .vis-item.green.vis-selected {
+
   background-color: chocolate;
   color: rgb(3, 3, 3);
   border-color: rgb(157, 155, 149);
@@ -40,9 +41,7 @@
   position: relative;
 }
 
-.vis-item .vis-item-overflow {
-  overflow: hidden;
-}
+
 
 .vis-item.vis-selected {
   border-radius: 10px;
@@ -237,12 +236,7 @@
     position: relative;
   }
 
-  .vis-item {
-    border-color: rgb(249, 145, 163);
-    font-family: Arial, sans-serif;
-    background-color: pink;
-    font-size: 7pt;
-  }
+
 }
 
 @media only screen and (min-width: 2600px) {
