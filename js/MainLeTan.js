@@ -267,7 +267,7 @@ function changvalue() {
       }
       if (ojb[a].MaSo !== TaoMaSo() + ojb[a].BienSoXe) {
         $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>')
-        document.getElementById("SoThe").value = ""; f
+        document.getElementById("SoThe").value = "";
       }
       return;
     }

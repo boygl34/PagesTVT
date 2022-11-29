@@ -303,13 +303,13 @@ function LoadTimeLine() {
 
     }
   }
-  var phantram = Math.trunc((tongThoiGian / (60 * 1000 * 60)) / (11 * 8) * 100)
+  var phantram = Math.trunc((tongThoiGian / (60 * 1000 * 60)) / (11 * 8) * 10 / 10)
+  tongThoiGian = Math.trunc((tongThoiGian / (60 * 1000 * 60))).toFixed(2)
   timeline.redraw();
   $("#progress").html(`
-  <div class="progress-bar bg-primary" role="progressbar" style="width: ${phantram}%" aria-valuenow="${phantram}"
-                            aria-valuemin="0" aria-valuemax="100">${phantram}%</div>
+  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: %" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
   `)
-  console.log(Math.trunc((tongThoiGian / (60 * 1000 * 60)) / (11 * 8) * 100))
+  console.log(tongThoiGian)
   document.getElementById("loading").style.display = "none"
 }
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh, covan) {
