@@ -155,10 +155,10 @@ function LoadTimeLine() {
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
   setgiaoxe()
+  getDagiao()
   var tongThoiGian = 0
-  useCaher = useCaher.concat(useCaher2)
-  console.log(useCaher)
-  var dataArray0 = useCaher;
+
+  var dataArray0 = useCaher.concat(useCaher2);
   var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
   var option1 = {
@@ -304,7 +304,7 @@ function LoadTimeLine() {
   var phantram = Math.trunc(tongThoiGian * 100 / (11 * 8))
   timeline.redraw();
   $("#progress").html(`
-  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${phantram}%" aria-valuenow="${phantram}" aria-valuemin="0" aria-valuemax="100">${phantram}%</div>
+  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${phantram}%;font-size: 19px;" aria-valuenow="${phantram}" aria-valuemin="0" aria-valuemax="100">${phantram}%</div>
   `)
   console.log(tongThoiGian, phantram)
   document.getElementById("loading").style.display = "none"
@@ -574,8 +574,6 @@ function getDagiao() {
     type: 'GET',
     success: function (data) {
       useCaher2 = data
-      useCaher = useCaher.concat(useCaher2)
-      LoadTimeLine()
     }
   })
 }
