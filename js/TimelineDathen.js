@@ -115,9 +115,9 @@ var options = {
     DanhSachCoVan();
     changvalue();
     if (
-      localStorage.getItem("userName") === $("#NguoiDatHen").val() ||
-      localStorage.getItem("PhanQuyen") == "AdminHen" ||
-      localStorage.getItem("PhanQuyen") == "admin"
+      (localStorage.getItem("userName") === $("#NguoiDatHen").val() ||
+        localStorage.getItem("PhanQuyen") == "AdminHen" ||
+        localStorage.getItem("PhanQuyen") == "admin") && localStorage.getItem("BoPhan") !== "Kinh Doanh"
     ) {
       if ($("#TrangThaiXuong").val() == "00 Có Hẹn") {
         $("#buttonSCC").html(
