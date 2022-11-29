@@ -202,13 +202,12 @@ function LoadTimeLine() {
     if (r.TrangThaiXuong == "05 Dừng Công Việc") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua); }
     if (r.TimeEndGJ) { var endRX = new Date(DoiNgayDangKy(r.TimeEndGJ).valueOf() + 15 * 60 * 1000); }
     if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() < timeNow.valueOf()) { mau = "magenta"; }
-    if ((start.getDate() == new Date().getDate()) && (end.getDate() == new Date().getDate())) {
-      tongThoiGian = tongThoiGian + end.valueOf() - start.valueOf()
 
+    if ((start.getDate() == new Date($("#datefield").val()).getDate()) && (end.getDate() == new Date($("#datefield").val()).getDate())) {
+      tongThoiGian = tongThoiGian + end.valueOf() - start.valueOf()
     }
     if (r.TrangThaiSCC !== "Dừng CV") {
       if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
-
         items.update({
           className: mau,
           id: r.MaSo,
@@ -234,35 +233,6 @@ function LoadTimeLine() {
           content: r.BienSoXe + " " + r.KyThuatVien1,
         });
       }
-
-
-      if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
-        var startwash = new Date(DoiNgayDangKy(r.TimeEndGJ))
-        var classname2 = "orange";
-        if (r.TimeStartWash) {
-          startwash = new Date(DoiNgayDangKy(r.TimeStartWash))
-          classname2 += " RuaXe"
-        }
-        var endwwash = new Date(1000 * 60 * 14 + startwash.valueOf())
-
-        if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
-          classname2 = "green";
-          classname2 += " RuaXe"
-          if (endwwash.valueOf() < new Date().valueOf()) { endwwash = new Date() }
-        }
-        items.update({
-          className: classname2,
-          id: r.MaSo + "_RuaXe",
-          group: "Rửa Xe",
-          //type: "point",
-          start: startwash,
-          end: endwwash,
-          content: r.BienSoXe + " " + r.CoVanDichVu,
-        });
-      }
-
-
-
       if (r.ThoiGianHen && document.getElementById("checkbox-hen").checked) {
         if (r.TimeStartGJ) {
         } else {
@@ -299,6 +269,31 @@ function LoadTimeLine() {
 
     }
   }
+  for (b in useCaher) {
+    var r = useCaher[b]
+    if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
+      var startwash = new Date(DoiNgayDangKy(r.TimeEndGJ))
+      if (r.TimeStartWash) { startwash = new Date(DoiNgayDangKy(r.TimeStartWash)) }
+      var endwwash = new Date(1000 * 60 * 14 + startwash.valueOf())
+      var classname2 = "orange";
+      if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
+        classname2 = "green";
+        if (endwwash.valueOf() < new Date().valueOf()) { endwwash = new Date() }
+      }
+      items.update({
+        className: classname2,
+        id: r.BienSoXe + "_RuaXe",
+        group: "Rửa Xe",
+        //type: "point",
+        start: startwash,
+        end: endwwash,
+        content: r.BienSoXe + " " + r.CoVanDichVu,
+      });
+    }
+  }
+
+
+
 
   tongThoiGian = Math.trunc((tongThoiGian / (60 * 1000 * 60))).toFixed(2)
   var phantram = Math.trunc(tongThoiGian * 100 / (11 * 8))
@@ -530,6 +525,7 @@ function backwardtime() {
   };
   timeline.setOptions(option1);
   document.getElementById("datefield").value = today;
+  LoadTimeLine()
 }
 function forwardtime() {
   Ngay = document.getElementById("datefield").value;
@@ -551,6 +547,7 @@ function forwardtime() {
   };
   timeline.setOptions(option1);
   document.getElementById("datefield").value = today;
+  LoadTimeLine()
 }
 function DangKyRuaXeTL(item) {
   var MaSoChip = item.id.slice(0, item.id.lastIndexOf("_"));
