@@ -172,7 +172,7 @@ function LoadTimeLine() {
   dataArray1.sort(function (a, b) { return a.CongDoanDongSon < b.CongDoanDongSon ? 1 : -1; });
   dataArray1.sort(function (a, b) { return a.TrangThaiDongSon > b.TrangThaiDongSon ? 1 : -1; });
   var hoanthanh = document.getElementById("checkbox-3").checked;
-
+  var now = new Date().valueOf()
   try {
     for (var a = 0; a < dataArray1.length; a++) {
       r = dataArray1[a];
@@ -256,6 +256,7 @@ function LoadTimeLine() {
               endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
             }
             if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
+            if (endtime.valueOf() < now) { mauDong = "magenta" }
             items.update({
               className: mauDong,
               id: r.BienSoXe + "_Dong",
@@ -321,6 +322,7 @@ function LoadTimeLine() {
                 DoiNgayDangKy(r.TimeEndLap) * 1 + 15 * 60 * 60 * 1000
               );
             }
+            if (endtime.valueOf() < now) { mauLap = "magenta" }
             items.update({
               className: mauLap,
               id: r.BienSoXe + "_Lap",
@@ -384,7 +386,9 @@ function LoadTimeLine() {
                 DoiNgayDangKy(r.TimeEndNen) * 1 + 15 * 60 * 60 * 1000
               );
             }
+            if (endtime.valueOf() < now) { mauNen = "magenta" }
             items.update({
+
               className: mauNen,
               id: r.BienSoXe + "_Nen",
               group: r.NhomSon,
@@ -447,6 +451,7 @@ function LoadTimeLine() {
                 DoiNgayDangKy(r.TimeEndPaint) * 1 + 15 * 60 * 60 * 1000
               );
             }
+            if (endtime.valueOf() < now) { mauSon = "magenta" }
             items.update({
               className: mauSon,
               id: r.BienSoXe + "_Paint",
@@ -511,6 +516,7 @@ function LoadTimeLine() {
                 DoiNgayDangKy(r.TimeEndPass) * 1 + 15 * 60 * 60 * 1000
               );
             }
+            if (endtime.valueOf() < now) { mauPass = "magenta" }
             items.update({
               className: mauPass,
               id: r.BienSoXe + "_Pass",
