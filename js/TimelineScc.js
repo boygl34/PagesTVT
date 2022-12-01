@@ -205,7 +205,13 @@ function LoadTimeLine() {
 
     if ((start.getDate() == new Date($("#datefield").val()).getDate()) && (end.getDate() == new Date($("#datefield").val()).getDate())) {
       tongThoiGian = tongThoiGian + end.valueOf() - start.valueOf()
+    } else if ((start.getDate() <= new Date($("#datefield").val()).getDate()) && (end.getDate() == new Date($("#datefield").val()).getDate())) {
+      tongThoiGian = tongThoiGian + (end.getHours() - 8) * 60 * 60 * 1000
+    } else if ((start.getDate() == new Date($("#datefield").val()).getDate()) && (end.getDate() >= new Date($("#datefield").val()).getDate())) {
+      tongThoiGian = tongThoiGian + (17 - end.getHours()) * 60 * 60 * 1000
     }
+
+
     if (r.TrangThaiSCC !== "Dừng CV") {
       if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
         items.update({
