@@ -587,9 +587,8 @@ function DKruaXe() {
       KhachHangDoi: $("#KhachDoi").val(),
       KhachRuaXe: $("#KhachRX").val(),
       TDHenGiaoXe: $("#NgayGiaoXe").val(),
-      TimeEndGJ: $("#NgayRuaXe").val(),
+      TimeEndGJ: TimesClick(),
     };
-    console.log(json2);
     postData(json2, urlTX, "POST");
   } else {
     alert("Xe Trong Xưởng");
