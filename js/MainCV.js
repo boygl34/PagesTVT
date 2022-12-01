@@ -572,10 +572,7 @@ function DKruaXe() {
     alert("chưa Có Ngày Giao Xe");
     return false;
   }
-  if ($("#NgayRuaXe").val() == "") {
-    alert("chưa Có Ngày Giò Rửa xe");
-    return false;
-  }
+
 
   var MaSoNew = TaoMaSo() + $("#BienSoXe").val();
   if (checkBienSo($("#BienSoXe").val())) {
