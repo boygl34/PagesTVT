@@ -371,18 +371,18 @@ function handleDragStart(event) {
 
   if (timelineProperties.group == "EM 02") {
     NhomSC = "EM";
-    KTV1 = "Đ Anh";
-    KTV2 = "Khoa";
+    KTV1 = "Khoa";
+    KTV2 = "Cường";
   }
   if (timelineProperties.group == "EM 03") {
     NhomSC = "EM";
-    KTV1 = "Hiển";
-    KTV2 = "Cường";
+    KTV1 = "Đ Anh";
+    KTV2 = "Sáng 2";
   }
   if (timelineProperties.group == "EM 04") {
     NhomSC = "EM";
     KTV1 = "Trí";
-    KTV2 = "";
+    KTV2 = "Huy";
   }
   if (timelineProperties.group == "SCC 05") {
     NhomSC = "Bạo";
