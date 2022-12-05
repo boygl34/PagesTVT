@@ -139,7 +139,7 @@ function checkPhanQuyen() {
     $("#PQCoVan").show()
 
   }
-  if (BoPhan == "Dịch Vụ") {
+  if (BoPhan == "Dịch Vụ" || BoPhan == "CS") {
     $("#PQDichVu2").show()
 
     if (PhanQuyen == "CoVandichvu" || PhanQuyen == "admin") {

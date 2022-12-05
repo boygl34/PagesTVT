@@ -194,11 +194,11 @@ function LoadTimeLine() {
 
       timeNow = new Date();
       var time = ((timeNow - new Date(DoiNgayDangKy(r.TDKetThucTiepKhach))) / (new Date(DoiNgayDangKy(r.TDHenGiaoXe)) - new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)))) * 100;
-      if (r.HTDong === "Okie") { mauDong = "orange"; edit1 = false; group = "groupHT"; } else { edit1 = edit0; group = "groupDS"; }
-      if (r.HTNen === "Okie") { mauNen = "orange"; edit2 = false; group = "groupHT"; } else { edit3 = edit0; group = "groupDS"; }
-      if (r.HTSon === "Okie") { mauSon = "orange"; edit3 = false; group = "groupHT"; } else { edit4 = edit0; group = "groupDS"; }
-      if (r.HTLap === "Okie") { mauLap = "orange"; edit4 = false; group = "groupHT"; } else { edit2 = edit0; group = "groupDS"; }
-      if (r.HTPass === "Okie") { mauPass = "orange"; edit5 = false; group = "groupHT"; } else { edit5 = edit0; group = "groupDS"; }
+      if (r.HTDong === "Okie") { mauDong = "orange"; group = "groupHT"; } else { edit1 = edit0; group = "groupDS"; }
+      if (r.HTNen === "Okie") { mauNen = "orange"; group = "groupHT"; } else { edit3 = edit0; group = "groupDS"; }
+      if (r.HTSon === "Okie") { mauSon = "orange"; group = "groupHT"; } else { edit4 = edit0; group = "groupDS"; }
+      if (r.HTLap === "Okie") { mauLap = "orange"; group = "groupHT"; } else { edit2 = edit0; group = "groupDS"; }
+      if (r.HTPass === "Okie") { mauPass = "orange"; group = "groupHT"; } else { edit5 = edit0; group = "groupDS"; }
       if (r.CongDoanDongSon == "Đồng") {
         if (r.TrangThaiDongSon == "Đang SC") { mauDong = "green"; }
         if (r.TrangThaiDongSon == "Dừng SC") { mauDong = "red"; }
@@ -542,18 +542,18 @@ function LoadTimeLine() {
   }
 }
 
-function additembienso(value, MaSo, chip, CongDoan, trangthai, NhomSon, KTVDong) {
+function additembienso(value, MaSo, chip, CongDoan, trangthai, NhomSon, KTVDongcd) {
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
-    '<button data-toggle="tooltip" data-placement="top" title="' + KTVDong + "_" + NhomSon + '" draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
-    chip + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '" trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '") nhomson="' + NhomSon + '" ktvdong="' + KTVDong + '">' + value + "</button >"
+    '<button data-toggle="tooltip" data-placement="top" title="' + KTVDongcd + "_" + NhomSon + '" draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
+    chip + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '" trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '") nhomson="' + NhomSon + '" ktvdong="' + KTVDongcd + '">' + value + "</button >"
   );
 }
-function additembiensodung(value, MaSo, chip, CongDoan, trangthai, NhomSon, KTVDong) {
+function additembiensodung(value, MaSo, chip, CongDoan, trangthai, NhomSon, KTVDongcd) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
-    '<button data-toggle="tooltip" data-placement="top" title="' + KTVDong + "_" + NhomSon + '"draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + chip
-    + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '"trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '") nhomson="' + NhomSon + '" ktvdong="' + KTVDong + '">' + value + "</button>"
+    '<button data-toggle="tooltip" data-placement="top" title="' + KTVDongcd + "_" + NhomSon + '"draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + chip
+    + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '"trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '") nhomson="' + NhomSon + '" ktvdong="' + KTVDongcd + '">' + value + "</button>"
   );
 }
 
@@ -584,7 +584,7 @@ function handleDragStart(event) {
   if (trangthai == "Dừng SC") {
     if (congdoan == "Đồng") {
       if (KTVDong.indexOf(group) >= 0) {
-        if (KTVCDDong !== "undefined") { group = KTVDong }
+        if (KTVCDDong !== "undefined") { group = KTVCDDong }
         json2["KyThuatVienDong"] = group;
         json2["HTDong"] = "KH";
         json2["TrangThaiDongSon"] = "Chờ SC";
@@ -651,7 +651,7 @@ function handleDragStart(event) {
         json2["PhongSon"] = group;
         json2["HTSon"] = "KH";
       } else if (KTVDong.indexOf(group) >= 0) {
-        if (KTVCDDong !== "undefined") { group = KTVDong }
+        if (KTVCDDong !== "undefined") { group = KTVCDDong }
         json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
         json2["TimeEndLap"] = end;
         json2["KyThuatVienLap"] = group;
@@ -669,7 +669,7 @@ function handleDragStart(event) {
         json2["PhongSon"] = group;
         json2["HTSon"] = "KH";
       } else if (KTVDong.indexOf(group) >= 0) {
-        if (KTVCDDong !== "undefined") { group = KTVDong }
+        if (KTVCDDong !== "undefined") { group = KTVCDDong }
         json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
         json2["TimeEndLap"] = end;
         json2["KyThuatVienLap"] = group;
