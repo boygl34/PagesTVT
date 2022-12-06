@@ -100,7 +100,7 @@ function loadDataCV() {
   }
   if (xechorua > 5) {
     $("#XeChoRua").modal("show");
-  } else { $("#XeChoRua").modal("hide");; console.log(xechorua) }
+  } else { $("#XeChoRua").modal("hide") }
 
   document.getElementById("loading").style.display = "none"
 }

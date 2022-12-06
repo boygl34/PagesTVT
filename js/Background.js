@@ -266,6 +266,18 @@ $(".Ngay2").datetimepicker({
     },
   },
 });
+$(".NgayDK").datetimepicker({
+  format: "dd/mm/yyyy HH:MM:00 ",
+  uiLibrary: "bootstrap4",
+  modal: true,
+  footer: true,
+  datepicker: {
+    disableDates: function (date) {
+      const currentDate = new Date().setHours(0, 0, 0, 0);
+      return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
+    },
+  },
+});
 
 function datevalue(value) {
   try {
@@ -315,4 +327,49 @@ function checkMasterData(myValue) {
   } catch { return thongtinkhachhang = false }
 
 
+}
+
+function checkBienSo(MaSo) {
+  var ojb = useCaher;
+  var Chechresule = true;
+  for (var a in ojb) {
+    if (ojb[a].BienSoXe == MaSo) {
+      Chechresule = false;
+    }
+  }
+  return Chechresule;
+}
+CoVanlistDK(NhomCV);
+function CoVanlistDK(values) {
+  var list = document.getElementById("CoVanDichVuDK");
+  for (var i = 0; i < values.length; i++) {
+    var option = document.createElement("option");
+    option.value = values[i];
+    option.text = values[i];
+    list.appendChild(option);
+  }
+}
+function TaoMaSoDK() {
+  var use = new Date();
+  var useinfo = {};
+  var Thang = use.getMonth() + 1;
+  var Ngay = use.getDate();
+  var Nam = use.getFullYear();
+  var Gio = use.getHours();
+  var Phut = use.getMinutes();
+  if (Thang < 10) {
+    Thang = "0" + Thang;
+  }
+  if (Ngay < 10) {
+    Ngay = "0" + Ngay;
+  }
+  if (Gio < 10) {
+    Gio = "0" + Gio;
+  }
+  if (Phut < 10) {
+    Phut = "0" + Phut;
+  }
+  useinfo.ThoiGian = Ngay + "/" + Thang + " " + Gio + ":" + Phut;
+  var MaSo = "TVT" + Nam + Thang + Ngay + "_";
+  return MaSo;
 }

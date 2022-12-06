@@ -233,6 +233,75 @@
         </div>
     </div>
     <!--Modal SCCC-->
+
+    <div class="modal fade" id="DangKyXuong" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="DKRUAXetitle">Đăng Ký Dịch Vụ</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formdkxuong">
+                        <div class="form-row">
+                            <div class="form-group col-6" style="display: none">
+                                <label for="MaSo">Mã Số</label>
+                                <input required class="form-control" id="MaSoDK" name="MaSo" disabled />
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="KhoangSuaChua">Biển Số Xe</label>
+                                <input required class="form-control" id="BienSoXeDK" name="BienSoXe"
+                                    onchange="changvaluedk()" onkeyup="this.value = suabienso(this.value)" />
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="CoVanDichVu">Cố Vấn</label>
+                                <select required class="form-control" id="CoVanDichVuDK" name="CoVanDichVuDK"
+                                    onchange="CoVanChange()">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlSelect1">Loại Hình GJ </label>
+                                <select class="form-control" id="LoaiHinhDK" required name="LoaiHinh">
+                                    <option value=""></option>
+                                    <option value="EM">EM</option>
+                                    <option value="EM60">EM60</option>
+                                    <option value="SCC">SCC</option>
+                                    <option value="Báo Giá SCC">Báo Giá SCC</option>
+                                    <option value="FIR">FIR</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlSelect1">Loại Hình BP </label>
+                                <select class="form-control" id="LoaiHinhBPDK" required name="LoaiHinhBP">
+                                    <option value=""></option>
+                                    <option value="Đồng Sơn">Đồng Sơn</option>
+                                    <option value="Báo Giá BH">Báo Giá BH</option>
+                                    <option value="FIR">FIR</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group ">
+                                <label for="NgayGiaoXeDK">Ngày Giao Xe</label>
+                                <input type="text" required type="text" class="form-control NgayDK" id="NgayGiaoXeDK"
+                                    name="NgayGiaoXeDK" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="btnDK">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         checkdangnhap();
 
@@ -271,40 +340,78 @@
     <script src="js/Onload.js"></script>
     <script src="ScriptJS/popper.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        function DangKyXuong() {
+            $("#MaSoDK").val(TaoMaSoDK() + $("#BienSoXeDK").val());
+            var json2 = {
+                MaSo: $("#MaSoDK").val(),
+                BienSoXe: $("#BienSoXeDK").val(),
+                LoaiHinhSuaChua: $("#LoaiHinhDK").val(),
+                LoaiHinhDongSon: $("#LoaiHinhBPDK").val(),
+                TDKetThucTiepKhach: TimesClick(),
+                TrangThaiXuong: "04 Đã Tiếp Nhận",
+                CoVanDichVu: $("#CoVanDichVuDK").val(),
+                TDHenGiaoXe: $("#NgayGiaoXe").val()
+            };
+            if ($("#LoaiHinhDK").val() !== "") {
+                json2["TrangThaiSCC"] = "Chờ SC";
+            } else {
+                json2["TrangThaiSCC"] = "";
+            }
+            if ($("#LoaiHinhBPDK").val() !== "") {
+                json2["CongDoanDongSon"] = "Chờ SC";
+                json2["TrangThaiDongSon"] = "Chờ SC";
+            } else {
+                json2["CongDoanDongSon"] = "";
+                json2["TrangThaiDongSon"] = "";
+            }
+            postData(json2, urlTX, "POST");
 
-
-
-    <!-- <script>
-        /* set up XMLHttpRequest */
-        var url = "worker/master.xlsx";
-        var oReq = new XMLHttpRequest();
-        oReq.open("GET", url, true);
-        oReq.responseType = "arraybuffer";
-
-        oReq.onload = function (e) {
-            var arraybuffer = oReq.response;
-
-            /* convert data to binary string */
-            var data = new Uint8Array(arraybuffer);
-            var arr = new Array();
-            for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-            var bstr = arr.join("");
-
-            /* Call XLSX */
-            var workbook = XLSX.read(bstr, {
-                type: "binary"
-            });
-
-            /* DO SOMETHING WITH workbook HERE */
-            var first_sheet_name = workbook.SheetNames[0];
-            /* Get worksheet */
-            var worksheet = workbook.Sheets[first_sheet_name];
-            console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
-            postMessage(XLSX.utils.sheet_to_json(worksheet, { raw: true }))
         }
+        function CapNhatXuong() {
 
-        oReq.send();
-    </script> -->
+            var json2 = {
+                LoaiHinhSuaChua: $("#LoaiHinhDK").val(),
+                LoaiHinhDongSon: $("#LoaiHinhBPDK").val(),
+                CoVanDichVu: $("#CoVanDichVuDK").val(),
+            };
+            if ($("#LoaiHinhDK").val() !== "") {
+                json2["TrangThaiSCC"] = "Chờ SC";
+            } else {
+                json2["TrangThaiSCC"] = "";
+            }
+            if ($("#LoaiHinhBPDK").val() !== "") {
+                json2["CongDoanDongSon"] = "Chờ SC";
+                json2["TrangThaiDongSon"] = "Chờ SC";
+            } else {
+                json2["CongDoanDongSon"] = "";
+                json2["TrangThaiDongSon"] = "";
+            }
+            postData(json2, urlTX + "/" + checkID($("#MaSoDK").val()), "PATCH");
+
+        }
+        function changvaluedk() {
+
+            $("#btnDK").html(`<button class="btn btn-primary" onclick="DangKyXuong()">Đăng Ký</button>`)
+            $("#CoVanDichVuDK").val("")
+            $("#MaSoDK").val("")
+            $("#LoaiHinhDK").val("")
+            $("#LoaiHinhBPDK").val("")
+            $("#NgayGiaoXeDK").val("")
+            fetch(urlTX + "?BienSoXe=" + $("#BienSoXeDK").val())
+                .then((response) => response.json())
+                .then((data) => {
+                    data = data[0];
+                    if (data.BienSoXe == $("#BienSoXeDK").val()) { $("#btnDK").html(`<button class="btn btn-primary" onclick="CapNhatXuong()">Cập Nhật</button>`) }
+                    $("#CoVanDichVuDK").val(data.CoVanDichVu)
+                    $("#MaSoDK").val(data.MaSo)
+                    $("#LoaiHinhDK").val(data.LoaiHinhSuaChua)
+                    $("#LoaiHinhBPDK").val(data.LoaiHinhDongSon)
+                    $("#NgayGiaoXeDK").val(data.TDHenGiaoXe)
+                    $("#BienSoXeDK").val(data.BienSoXe)
+                })
+        }
+    </script>
 </body>
 
 </html>
