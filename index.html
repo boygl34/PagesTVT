@@ -375,12 +375,12 @@
                 LoaiHinhDongSon: $("#LoaiHinhBPDK").val(),
                 CoVanDichVu: $("#CoVanDichVuDK").val(),
             };
-            if ($("#LoaiHinhDK").val() !== "") {
+            if ($("#LoaiHinhDK").val() != "") {
                 json2["TrangThaiSCC"] = "Chờ SC";
             } else {
                 json2["TrangThaiSCC"] = "";
             }
-            if ($("#LoaiHinhBPDK").val() !== "") {
+            if ($("#LoaiHinhBPDK").val() != "") {
                 json2["CongDoanDongSon"] = "Chờ SC";
                 json2["TrangThaiDongSon"] = "Chờ SC";
             } else {
