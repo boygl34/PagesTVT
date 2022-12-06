@@ -619,16 +619,7 @@ function TaoMaSo() {
   var MaSo = "TVT" + Nam + Thang + Ngay + "_";
   return MaSo;
 }
-function checkBienSo(MaSo) {
-  var ojb = useCaher;
-  var Chechresule = true;
-  for (var a in ojb) {
-    if (ojb[a].BienSoXe == MaSo) {
-      Chechresule = false;
-    }
-  }
-  return Chechresule;
-}
+
 
 function DKrualai() {
   var ojb = useCaher;
