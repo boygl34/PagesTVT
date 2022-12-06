@@ -38,6 +38,7 @@ var optionsCV = {
 var timelineCV = new vis.Timeline(containerCV, itemsCV, groupsCV, optionsCV);
 loadDataCV();
 function loadDataCV() {
+  var xechorua = 0
   itemsCV.clear();
   var option1 = {
     start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
@@ -78,8 +79,13 @@ function loadDataCV() {
       var endwwash = new Date(1000 * 60 * 14 + startwash.valueOf())
       var classname2 = "orange";
       if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
+        xechorua++
         classname2 = "green";
         if (endwwash.valueOf() < new Date().valueOf()) { endwwash = new Date() }
+      }
+      if (r.TrangThaiXuong == "06 Chờ Rửa Xe") {
+        xechorua++
+
       }
       itemsCV.add({
         className: classname2,
@@ -92,5 +98,9 @@ function loadDataCV() {
       });
     }
   }
+  if (xechorua > 5) {
+    $("#XeChoRua").modal("show");
+  } else { $("#XeChoRua").modal("hide");; console.log(xechorua) }
+
   document.getElementById("loading").style.display = "none"
 }
