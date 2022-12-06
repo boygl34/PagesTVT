@@ -366,6 +366,7 @@
                 json2["TrangThaiDongSon"] = "";
             }
             postData(json2, urlTX, "POST");
+            $('#formdkxuong').trigger("reset");
 
         }
         function CapNhatXuong() {
@@ -388,7 +389,7 @@
                 json2["TrangThaiDongSon"] = "";
             }
             postData(json2, urlTX + "/" + checkID($("#MaSoDK").val()), "PATCH");
-
+            $('#formdkxuong').trigger("reset");
         }
         function changvaluedk() {
 
