@@ -168,36 +168,42 @@
             <div class="btn-group col-4" role="group" aria-label="Third group" id="buttonSCC"></div>
           </div>
         </form>
-      </div>
-      <div class="row modal-footer">
-        <div id="email"></div>
-        <div id="CuocGoi">
-          <a href="tel:0973502207" class="col-sm-7">Click để Gọi</a>
-        </div>
-        <div id="NhanTin">
-          <a href="sms:0973502207?&amp;body=Nội dung cong viev" class="col-sm-7">Click để Nhắn Tin</a>
+
+
+
+
+
+        <div class="modal-footer">
+          <div class="row">
+            <!-- <div id="email"></div> -->
+            <div class="col-6" id="CuocGoi">
+              <a href="tel:0973502207" class="col-sm-7">Call</a>
+            </div>
+            <div class="col-6" id="NhanTin">
+              <a href="sms:0973502207?&amp;body=Nội dung cong viev" class="col-sm-7">SMS</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = "0" + dd;
-    }
-    if (mm < 10) {
-      mm = "0" + mm;
-    }
-    today = yyyy + "-" + mm + "-" + dd;
-    document.getElementById("datefield").setAttribute("min", today);
-    document.getElementById("datefield").value = today;
-  </script>
-  <script src="js/Background.js"></script>
-  <script src="js/Onload.js"></script>
-  <script src="js/TimelineDathen.js"></script>
-  <script src="js/MainDH.js"></script>
-</div>
+    <script>
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = "0" + dd;
+      }
+      if (mm < 10) {
+        mm = "0" + mm;
+      }
+      today = yyyy + "-" + mm + "-" + dd;
+      document.getElementById("datefield").setAttribute("min", today);
+      document.getElementById("datefield").value = today;
+    </script>
+    <script src="js/Background.js"></script>
+    <script src="js/Onload.js"></script>
+    <script src="js/TimelineDathen.js"></script>
+    <script src="js/MainDH.js"></script>
+  </div>
