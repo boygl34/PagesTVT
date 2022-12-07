@@ -10,7 +10,7 @@ function postData(data, url, methor) {
     .then(response => response.json())
     .then(data => {
       getData(urlTX)
-      setTimeout(function () { $('#ModalSCC').modal('hide') }, 1000)
+
 
     })
     .catch((error) => {
@@ -254,6 +254,7 @@ function CapNhatHen() {
     GioHen: ngayGiohen($('#ThoiGianHen').val()).giophut,
     KhachHangHen: "Khách Hẹn",
     TrangThaiXuong: "00 Có Hẹn",
+    KhuVuc: $('#KhuVuc').val(),
     NguoiDatHen: $('#NguoiDatHen').val(),
     TDXacNhanHen: TimesClick()
   }
