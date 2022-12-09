@@ -10,7 +10,7 @@ function postData(data, url, methor) {
     .then(response => response.json())
     .then(data => {
       getData(urlTX)
-
+      setTimeout(function () { $("#ModalSCC").modal("hide") }, 2000)
 
     })
     .catch((error) => {
