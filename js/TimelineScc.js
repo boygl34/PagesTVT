@@ -196,6 +196,9 @@ function LoadTimeLine() {
     if (r.TrangThaiXuong == "03 Đang Tiếp Nhận" && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.MaSo, "success", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
+    if (r.TrangThaiXuong == "05 Đang Sửa Chữa" && r.TrangThaiSCC == "Chờ SC" && r.TimeStartGJ == null) {
+      additembienso(r.BienSoXe, r.MaSo, "success Datiepnhan", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
+    }
     if ((r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.MaSo, "outline-secondary btn-sm", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
