@@ -1,0 +1,93 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include the JS for AG Grid -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <!-- Include the core CSS, this is needed by the grid -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css" />
+    <!-- Include the theme CSS, only need to import the theme you are going to use -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css" />
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@28.2.1/dist/ag-grid-enterprise.min.js"></script>
+</head>
+
+<body>
+    <!-- Button to demonstrate calling the grid's API. -->
+    <button onclick="deselect()">Deselect Rows</button>
+    <!-- The div that will host the grid. ag-theme-alpine is the theme. -->
+    <!-- The gid will be the size that this element is given. -->
+    <div id="myGrid" class="ag-theme-alpine-dark" style="height: 1000px"></div>
+    <script type="text/javascript">
+        // Function to demonstrate calling grid's API
+        function deselect() {
+            gridOptions.api.deselectAll()
+        }
+        // Grid Options are properties passed to the grid
+        const gridOptions = {
+
+            // each entry here represents one column
+            columnDefs: [
+                { field: "id" },
+                { field: "BienSoXe" },
+                { field: "CoVanDichVu" },
+                { field: "LoaiHinhSuaChua" },
+                { field: "LoaiHinhDongSon" },
+                {
+                    field: "TrangThaiXuong", cellEditor: 'agRichSelectCellEditor',
+                    cellEditorPopup: true,
+                    cellEditorParams: {
+                        values: ['00 Có Hẹn', '02 Chờ Tiếp Nhận'],
+                        cellEditorPopup: true,
+                    }
+                },
+                { field: "NguoiDatHen" },
+                { field: "TrangThaiHen" },
+            ],
+            suppressDragLeaveHidesColumns: true,
+            // default col def properties get applied to all columns
+            defaultColDef: {
+                sortable: true, filter: true, editable: true,
+
+            },
+            rowSelection: 'multiple', // allow rows to be selected
+            animateRows: true, // have rows animate to new positions when sorted
+            // example event handler
+            onCellClicked: params => {
+                // console.log('cell was clicked', params)
+            }
+        };
+
+        // get div to host the grid
+        const eGridDiv = document.getElementById("myGrid");
+        // new grid instance, passing in the hosting DIV and Grid Options
+        new agGrid.Grid(eGridDiv, gridOptions);
+        function cellEditorSelector(params) {
+            console.log(params.colDef.field)
+            if (params.colDef.field === "TrangThaiXuong") {
+
+                return {
+                    component: 'agRichSelectCellEditor',
+                    params: {
+                        values: ['00 Co Hen', '01 Da Vao Xuong'],
+                    },
+                    popup: true,
+                };
+            }
+
+
+            return undefined;
+        }
+        // Fetch data from server
+        fetch("https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong")
+            .then(response => response.json())
+            .then(data => {
+                // load fetched data into grid
+                gridOptions.api.setRowData(data);
+            });
+    </script>
+</body>
+
+</html>
