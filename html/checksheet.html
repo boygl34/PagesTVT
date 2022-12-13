@@ -32,6 +32,7 @@
         scanner.stop()
         document.getElementById("Loading").style.display = "block"
         $.get(url + content, function (ketqua) {
+            $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
             document.getElementById("preview").style.display = "none"
             if (ketqua.PhanLoai == "Thiết Bị Dùng Chung") { setthietbidungchung(ketqua) }
             if (ketqua.PhanLoai == "Khu Vực Dùng Chung") { setkhuvucdungchung(ketqua) }
