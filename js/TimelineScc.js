@@ -278,6 +278,7 @@ function LoadTimeLine() {
 
     }
   }
+
   for (b in useCaher) {
     var r = useCaher[b]
     if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
