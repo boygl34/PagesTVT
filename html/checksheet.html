@@ -27,7 +27,7 @@
     function LoadTimeLine() {
         document.getElementById("loading").style.display = "none"
     }
-    var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false, continuous: false, })
+    var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false })
     scanner.addListener('scan', function (content) {
         scanner.stop()
         document.getElementById("Loading").style.display = "block"
