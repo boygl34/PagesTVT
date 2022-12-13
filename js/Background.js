@@ -4,6 +4,7 @@ $.ajax({
   url: "https://deciduous-pentagonal-powder.glitch.me/ThongSo/",
   type: 'GET',
   success: function (data) {
+    deciduous - pentagonal - powder.glitch.me
     localStorage.setItem("ThongSo", JSON.stringify(data))
 
   }
