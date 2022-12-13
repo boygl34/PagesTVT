@@ -6,7 +6,8 @@
                 <div class="spinner-border" role="status" style="display: none;" id="Loading">
                     <span class="sr-only">Loading...</span>
                 </div>
-                <button class="btn btn-primary" onclick="test()">Scan</button>
+                <div id="btnScan"><button class="btn btn-primary" onclick="showScan()">Scan</button></div>
+
                 <video id="preview" playsinline="true" class="center"></video>
                 <div class="row" id="Checkshet" style="display: none;">
                 </div>
@@ -22,19 +23,16 @@
     crossorigin="anonymous"></script>
 <script>
 
-    var url = "https://big-road-newsstand.glitch.me/CheckSheet/"
-
+    var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
     function LoadTimeLine() {
         document.getElementById("loading").style.display = "none"
     }
-
     var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false })
     scanner.addListener('scan', function (content) {
         scanner.stop()
         document.getElementById("Loading").style.display = "block"
         $.get(url + content, function (ketqua) {
             document.getElementById("preview").style.display = "none"
-
             if (ketqua.PhanLoai == "Thiết Bị Dùng Chung") { setthietbidungchung(ketqua) }
             if (ketqua.PhanLoai == "Khu Vực Dùng Chung") { setkhuvucdungchung(ketqua) }
             document.getElementById("Loading").style.display = "none"
@@ -47,7 +45,6 @@
         document.getElementById("Loading").style.display = "block"
         $.get(url + "KhoangBeMat01", function (ketqua) {
             document.getElementById("preview").style.display = "none"
-
             if (ketqua.PhanLoai == "Thiết Bị Dùng Chung") { setthietbidungchung(ketqua) }
             if (ketqua.PhanLoai == "Khu Vực Dùng Chung") { setkhuvucdungchung(ketqua) }
             document.getElementById("Loading").style.display = "none"
@@ -56,14 +53,18 @@
 
     }
 
-
+    function stopScan() {
+        scanner.stop()
+        $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
+        document.getElementById("preview").style.display = "none"
+    }
     function showScan() {
+        $("#btnScan").html(`<button class="btn btn-primary" onclick="stopScan()">Stop</button>`)
         document.getElementById("preview").style.display = "block"
         document.getElementById("Checkshet").style.display = "none";
         Instascan.Camera.getCameras().then(function (cameras) {
             if (cameras.length > 0) {
                 scanner.start(cameras[0]);
-                //load2.hidden =true
             }
             else {
                 alert('No Back camera found!');
@@ -105,8 +106,6 @@
                     '<input type="checkbox" class="form-check-input">' +
                     '<label class=" title form-check-label-lg" >' + value2[b].TenThietBi + '</label>' +
                     '</div>'
-
-
                 for (c in value2[b].tieuchuan5s) {
                     cac5s += '<p>&nbsp;&nbsp;&nbsp;-' + value2[b].tieuchuan5s[c] + '</p>'
                 }
