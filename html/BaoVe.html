@@ -1,0 +1,260 @@
+<style>
+    .DangRuaXe {
+        color: #00ff00;
+    }
+
+    .ChoRuaXe {
+        color: #ff6d01;
+    }
+
+    #tablehen td {
+        font-size: 30px;
+        vertical-align: middle;
+        text-align: left;
+        border: 1px solid black;
+        border-bottom: 1px solid blue;
+        margin: auto;
+    }
+
+    #tablehen td:nth-child(8) {
+        width: 1%;
+        font-size: 1px;
+    }
+
+    #tablehen td:nth-child(5) {
+        width: 7%;
+        font-size: 14px;
+    }
+
+    #tablehen td:nth-child(4) {
+        width: 7%;
+        font-size: 14px;
+    }
+
+    #tablehen td:nth-child(3) {
+        width: 4%;
+        font-size: 14px;
+    }
+
+    #tablehen td:nth-child(2) {
+
+        font-size: 50px;
+    }
+
+    table.dataTable thead {
+        background-color: #1155cc;
+        font-size: 18px;
+    }
+</style>
+
+
+<main id="tablehen">
+    <div class="container-fluid px-4 " style="background-color:#212529 ;">
+        <h1 style="font-weight:bold;text-align:center;color:white;" id="tieude">THÔNG TIN GIAO XE </h1>
+
+        <table id="data-table" class=" table table-dark  table-sm table-hover  row-border"
+            style="text-align:left;vertical-align: middle;font-weight:bold;width:98%;background-color:#212529">
+            <thead>
+                <tr>
+                    <th style=" width: 7%;">But</th>
+                    <th style=" width:15%;">Biển Số</th>
+                    <th style=" width: 4%;">Cố Vấn</th>
+                    <th style=" width: 4%;">Khách Đợi</th>
+                    <th style=" width: 7%;">T Thái</th>
+                    <th style=" width: 5%;">Giờ KT</th>
+                    <th style=" width: 5%;">Giờ Giao</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody id="table-body-RuaXe">
+            </tbody>
+
+        </table>
+    </div>
+</main>
+
+<script>
+
+
+    function postData(data, url, methor) {
+        fetch(url, {
+            method: methor, // or 'PUT'
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                getData(urlTX)
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+
+    function deleteData(url) {
+        fetch(url, {
+            method: "DELETE", // or 'PUT'
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(response => response.json())
+            .then(data => {
+                getData(urlTX)
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+
+
+    function checkID(MaSo) {
+        var ojb = useCaher
+        for (var a in ojb) {
+            if (ojb[a].MaSo == MaSo) { return ojb[a].id }
+        }
+    }
+
+    LoadTimeLine()
+    function LoadTimeLine(use) {
+        document.getElementById("loading").style.display = "none"
+
+        var dataArray = useCaher
+        var dataArray0 = dataArray.filter(function (r) { return r.TrangThaiXuong !== "00 Có Hẹn" })
+        var ngaygiaoxebc = new Date()
+        dataArray0.sort(function (a, b) { return (a.TrangThaiXuong.toLowerCase() < b.TrangThaiXuong.toLowerCase() ? 1 : -1); })
+        var tbodyTim = document.getElementById('table-body-RuaXe')
+        tbodyTim.innerHTML = ""
+        dataArray0.forEach(function (r) {
+
+            var row = document.createElement("tr");
+            var tbodyTim = document.getElementById('table-body-RuaXe')
+            var ColNutNhan = document.createElement("td");
+            ColNutNhan.innerHTML = ""
+            if (r.TrangThaiXuong == "08 Chờ Giao Xe") {
+                ColNutNhan.innerHTML = "<button type='button' class='btn btn-danger' onclick='GiaoXe(this);'>Giao Xe!</button>";
+                row.setAttribute('class', 'DangRuaXe')
+            }
+            if (r.TrangThaiXuong == "07 Đang Rửa Xe" || r.TrangThaiXuong == "06 Chờ Rửa Xe") {
+                //ColNutNhan.innerHTML = "<button type='button' class='btn btn-danger ' onclick='HuyRuaXe(this);'>Delete!</button>&ensp;<button type='button' class='btn btn-warning ' onclick='KetThucRuaXe(this);'>End!</button>";
+                row.setAttribute('class', 'ChoRuaXe')
+            }
+            row.appendChild(ColNutNhan);
+            var ColBienSo = document.createElement("td");
+            ColBienSo.innerHTML = r.BienSoXe
+            row.appendChild(ColBienSo);
+            var ColCoVan = document.createElement("td");
+            ColCoVan.innerHTML = r.CoVanDichVu
+            row.appendChild(ColCoVan);
+            var ColKhachDoi = document.createElement("td");
+            if (r.KhachHangDoi == "Khách Đợi") {
+                ColKhachDoi.innerHTML = r.KhachHangDoi
+            } else { ColKhachDoi.innerHTML = "" }
+            row.appendChild(ColKhachDoi);
+            var ColTrangThai = document.createElement("td");
+            ColTrangThai.innerHTML = r.LoaiHinhSuaChua + " " + r.TrangThaiXuong
+
+            row.appendChild(ColTrangThai);
+            var ColKTSC = document.createElement("td");
+            if (r.TimeEndGJ) {
+                ColKTSC.innerHTML = Doingay(DoiNgayDangKy(r.TimeEndGJ))
+            }
+            row.appendChild(ColKTSC);
+            var ColGiaoXe = document.createElement("td");
+            ColGiaoXe.innerHTML = Doingay(DoiNgayDangKy(r.TDHenGiaoXe))
+            row.appendChild(ColGiaoXe);
+            var ColMS = document.createElement("td");
+            ColMS.innerHTML = r.MaSo
+            row.appendChild(ColMS);
+            tbodyTim.appendChild(row)
+            $("#tieude").html("THÔNG TIN GIAO XE " + new Date().toLocaleTimeString().slice(0, 5))
+        })
+            ;
+    }
+
+
+    function DoiNgayDangKy(ngayhen) {
+        var aa
+        if (ngayhen) {
+            var Thang = ngayhen.slice(3, 5)
+            var Ngay = ngayhen.slice(0, 2)
+            var Nam = ngayhen.slice(6, 10)
+            var Gio = ngayhen.slice(11, 13)
+            var Phut = ngayhen.slice(14, 16)
+            var ThoiGianMoi = Nam + "-" + Thang + "-" + Ngay + "T" + Gio + ":" + Phut + ":00Z"
+            var aa = new Date(ThoiGianMoi)
+            aa = new Date(aa - 7 * 60 * 60 * 1000)
+        }
+        return aa;
+    }
+
+    function GiaoXe(el) {
+        try {
+            var recordId = el.parentNode.parentNode.cells[7].innerHTML;
+            el.parentNode.parentNode.cells[0].innerHTML = "<div class='alert alert-warning'>Đang Giao!!</div>"
+            var json3 = {
+                TDRaKhoicong: TimesClick(),
+                TrangThaiXuong: "09 Đã Giao Xe",
+            };
+            fetch(urlTX + "/" + checkID(recordId), {
+                method: "PATCH", // or 'PUT'
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(json3),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    getData(urlTX);
+                    $.ajax({
+                        url: "https://script.google.com/macros/s/AKfycbxIfaWmzDpVW3erjRGP6y-da5aEOKaG5tKrQYz-wrqSpHKqPU0zNqsc_BUxZ-bhEnKL/exec",
+                        method: "GET",
+                        mode: "no-cors",
+                        credentials: "omit",
+                        referrerPolicy: "no-referrer",
+                        dataType: "json",
+                        data: data,
+                    });
+                    var data2 = data;
+                    delete data2.id;
+                    postData(data2, urlDG, "POST");
+                    deleteData(urlTX + "/" + checkID(recordId));
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        } catch (error) {
+            console.log("Lỗi : " + error);
+        }
+    }
+
+
+    function Doingay(use) {
+        use = new Date(use)
+        var Thang = use.getMonth() + 1
+        var Ngay = use.getDate()
+        var Nam = use.getFullYear()
+        var Gio = use.getHours()
+        var Phut = use.getMinutes()
+        if (Thang < 10) { Thang = "0" + Thang }
+        if (Ngay < 10) { Ngay = "0" + Ngay }
+        if (Gio < 10) { Gio = "0" + Gio }
+        if (Phut < 10) { Phut = "0" + Phut }
+        var ThoiGian = Ngay + "/" + Thang + " " + Gio + ":" + Phut
+
+        return ThoiGian
+    }
+    function TimesClick(data) {
+        if (data) { var use = new Date(data); } else { var use = new Date() }
+        var useinfo = {}
+        var Thang = use.getMonth() + 1;
+        var Ngay = use.getDate();
+        var Nam = use.getFullYear(); var Gio = use.getHours();
+        var Phut = use.getMinutes();
+        if (Thang < 10) { Thang = "0" + Thang };
+        if (Ngay < 10) { Ngay = "0" + Ngay };
+        if (Gio < 10) { Gio = "0" + Gio };
+        if (Phut < 10) { Phut = "0" + Phut }
+        return Ngay + "/" + Thang + "/" + Nam + " " + Gio + ":" + Phut + ":00"
+    }
+
+</script>
