@@ -16,30 +16,12 @@
         margin: auto;
     }
 
-    #tablehen td:nth-child(8) {
+    #tablehen td:nth-child(7) {
         width: 1%;
         font-size: 1px;
     }
 
-    #tablehen td:nth-child(5) {
-        width: 7%;
-        font-size: 14px;
-    }
 
-    #tablehen td:nth-child(4) {
-        width: 7%;
-        font-size: 14px;
-    }
-
-    #tablehen td:nth-child(3) {
-        width: 4%;
-        font-size: 14px;
-    }
-
-    #tablehen td:nth-child(2) {
-
-        font-size: 50px;
-    }
 
     table.dataTable thead {
         background-color: #1155cc;
@@ -57,12 +39,12 @@
             <thead>
                 <tr>
                     <th style=" width: 7%;">But</th>
-                    <th style=" width:15%;">Biển Số</th>
-                    <th style=" width: 4%;">Cố Vấn</th>
-                    <th style=" width: 4%;">Khách Đợi</th>
-                    <th style=" width: 7%;">T Thái</th>
-                    <th style=" width: 5%;">Giờ KT</th>
-                    <th style=" width: 5%;">Giờ Giao</th>
+                    <th>Biển Số</th>
+                    <th>Cố Vấn</th>
+                    <th>Khách Đợi</th>
+                    <th>T Thái</th>
+
+                    <th>Giờ Giao</th>
                     <th></th>
 
                 </tr>
@@ -153,14 +135,10 @@
             } else { ColKhachDoi.innerHTML = "" }
             row.appendChild(ColKhachDoi);
             var ColTrangThai = document.createElement("td");
-            ColTrangThai.innerHTML = r.LoaiHinhSuaChua + " " + r.TrangThaiXuong
+            ColTrangThai.innerHTML = r.TrangThaiXuong
 
             row.appendChild(ColTrangThai);
-            var ColKTSC = document.createElement("td");
-            if (r.TimeEndGJ) {
-                ColKTSC.innerHTML = Doingay(DoiNgayDangKy(r.TimeEndGJ))
-            }
-            row.appendChild(ColKTSC);
+
             var ColGiaoXe = document.createElement("td");
             ColGiaoXe.innerHTML = Doingay(DoiNgayDangKy(r.TDHenGiaoXe))
             row.appendChild(ColGiaoXe);
