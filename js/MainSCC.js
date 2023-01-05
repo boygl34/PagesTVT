@@ -530,11 +530,13 @@ $("#GioBatDauSCC").datetimepicker({
   },
 });
 
-CheckBO(BS)
+CheckBO()
 function CheckBO(BS) {
-  BS = BS.replaceAll(" ", "")
-  BS = BS.replaceAll("-", "")
-  BS = BS.replaceAll(".", "")
+  if (BS) {
+    BS = BS.replaceAll(" ", "")
+    BS = BS.replaceAll("-", "")
+    BS = BS.replaceAll(".", "")
+  }
   fetch(urlBO + "/BODaiLy", {
     method: "GET", // or 'PUT'
     headers: { "Content-Type": "application/json" }
@@ -545,8 +547,8 @@ function CheckBO(BS) {
       var r = data.ThongTin
       console.log(r);
       for (a in r) {
-        if (r[a]["Biển số"] == BS) {
-          alert("Thiếu BO")
+        if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] != "") {
+          alert(`Xe "${r[a]["Biển số"]} Thiếu Hàng Kiểm tra lại`)
           console.log(r[a]["Biển số"]);
         }
 
