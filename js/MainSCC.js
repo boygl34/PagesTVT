@@ -543,13 +543,12 @@ function CheckBO(BS) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       var r = data.ThongTin
-      console.log(r);
+
       for (a in r) {
-        if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] != "") {
-          alert(`Xe "${r[a]["Biển số"]} Thiếu Hàng Kiểm tra lại`)
-          console.log(r[a]["Biển số"]);
+        if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] == "") {
+          alert(`Xe ${r[a]["Biển số"]} Thiếu Hàng Kiểm tra lại`)
+          console.log("thieu hàng", r[a]["Biển số"]);
         }
 
       }
