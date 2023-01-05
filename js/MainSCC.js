@@ -530,3 +530,26 @@ $("#GioBatDauSCC").datetimepicker({
   },
 });
 
+CheckBO(BS)
+function CheckBO(BS) {
+  BS = BS.replaceAll(" ", "")
+  BS = BS.replaceAll("-", "")
+  BS = BS.replaceAll(".", "")
+  fetch(urlBO + "/BODaiLy", {
+    method: "GET", // or 'PUT'
+    headers: { "Content-Type": "application/json" }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      var r = data.ThongTin
+      console.log(r);
+      for (a in r) {
+        if (r[a]["Biển số"] == BS) {
+          alert("Thiếu BO")
+          console.log(r[a]["Biển số"]);
+        }
+
+      }
+    })
+}

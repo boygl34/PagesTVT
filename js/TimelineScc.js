@@ -363,6 +363,8 @@ function handleDragStart(event) {
   var timelineProperties = timeline.getEventProperties(event);
   var maso = event.target.attributes.value.textContent;
   let text = "Chạy Chip Tiến Độ Xe " + dragSrcEl.innerHTML;
+  console.log(dragSrcEl.innerHTML)
+  CheckBO(dragSrcEl.innerHTML)
   var KTV1 = "None",
     KTV2 = "None",
     NhomSC = "None";

@@ -34,6 +34,7 @@ var ThuTuEM = Object.values(ThongSo.filter(function (r) { return r.id == "ThuTuE
 var ListXe = ["Camry", "Inova", "Fortuner", "Altis", "Altis Cross", "Veloz", "Wigo", "Land Cruiser", "Land Prado", "Hilander", "Rav4", "Vios", "Rush", "Avanza", "Raize", "Lexus"];
 var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
 var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";
+var urlBO = "https://deciduous-pentagonal-powder.glitch.me/BO";
 var urlThongSo = "https://deciduous-pentagonal-powder.glitch.me/ThongSo/";
 var urlSetting = "https://deciduous-pentagonal-powder.glitch.me/Setting/";
 var KhuVucVT = ["Bà Rịa", "Vũng Tàu", "Long Điền", "Phú Mỹ", "Đất Đỏ", "Châu Đức", "Xuyên Mộc", "Côn Đảo", "KV Khác"];
