@@ -256,6 +256,7 @@ function KetThucTiepNhan() {
     json2["CongDoanDongSon"] = "";
     json2["TrangThaiDongSon"] = "";
   }
+  CheckBO($("#BienSoXe").val())
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 

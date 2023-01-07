@@ -530,27 +530,5 @@ $("#GioBatDauSCC").datetimepicker({
   },
 });
 
-CheckBO()
-function CheckBO(BS) {
-  if (BS) {
-    BS = BS.replaceAll(" ", "")
-    BS = BS.replaceAll("-", "")
-    BS = BS.replaceAll(".", "")
-  }
-  fetch(urlBO + "/BODaiLy", {
-    method: "GET", // or 'PUT'
-    headers: { "Content-Type": "application/json" }
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      var r = data.ThongTin
 
-      for (a in r) {
-        if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] == "") {
-          alert(`Xe ${r[a]["Biển số"]} Thiếu Hàng Kiểm tra lại`)
-          console.log("thieu hàng", r[a]["Biển số"]);
-        }
 
-      }
-    })
-}

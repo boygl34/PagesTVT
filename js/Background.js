@@ -374,3 +374,73 @@ function TaoMaSoDK() {
   var MaSo = "TVT" + Nam + Thang + Ngay + "_";
   return MaSo;
 }
+
+function CheckBO(BS) {
+  if (BS) {
+    BS = BS.replaceAll(" ", "")
+    BS = BS.replaceAll("-", "")
+    BS = BS.replaceAll(".", "")
+  }
+  fetch(urlBO + "/BODaiLy", {
+    method: "GET", // or 'PUT'
+    headers: { "Content-Type": "application/json" }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      var r = data.ThongTin
+      var time = new Date(data.createdAt)
+      time = time.toDateString() + " " + time.toLocaleTimeString()
+      for (a in r) {
+        if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] == "") {
+          alert(`Xe ${r[a]["Biển số"]} Thiếu Hàng Kiểm tra lại <br> Cập nhật ${time}`)
+
+          console.log("thieu hàng", r[a]["Biển số"]);
+        }
+
+      }
+    })
+}
+document.getElementById("input_dom_element").addEventListener("change", handleFileTMSS, false);
+function handleFileTMSS(e) {
+  var file = e.target.files[0];
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    var data = new Uint8Array(e.target.result);
+    var arr = new Array();
+    for (var i = 0; i != data.length; ++i) { arr[i] = String.fromCharCode(data[i]); }
+    var bstr = arr.join("");
+    var workbook = XLSX.read(bstr, { type: "binary", });
+    var first_sheet_name = workbook.SheetNames[0];
+    var worksheet = workbook.Sheets[first_sheet_name];
+    var ojb = XLSX.utils.sheet_to_json(worksheet, { raw: true, range: 1 })//range: 7
+    var data
+    console.log(ojb);
+    // gridOptions.api.setRowData(ojb)
+    var jsonData = {
+      "id": "BODaiLy",
+      "ThongTin": ojb
+    }
+
+    try {
+      fetch("https://deciduous-pentagonal-powder.glitch.me/BO", {
+        method: 'PATCH',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(jsonData),
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status == "500") {
+            response500(jsonData)
+          }
+          response.json()
+        })
+        .then((result) => {
+          alert("Upload Thành Công")
+          console.log('Success:', result);
+
+        })
+    } catch { alert("Lỗi") }
+  };
+  reader.readAsArrayBuffer(file);
+
+}
