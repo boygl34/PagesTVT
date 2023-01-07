@@ -375,6 +375,7 @@ function TaoMaSoDK() {
   return MaSo;
 }
 
+CheckBO("72A62771")
 function CheckBO(BS) {
   if (BS) {
     BS = BS.replaceAll(" ", "")
@@ -388,12 +389,14 @@ function CheckBO(BS) {
     .then((response) => response.json())
     .then((data) => {
       var r = data.ThongTin
-      var time = new Date(data.createdAt)
-      time = time.toDateString() + " " + time.toLocaleTimeString()
-      for (a in r) {
-        if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] == "") {
-          alert(`Xe ${r[a]["Biển số"]} Thiếu Phụ Tùng Kiểm tra lại <br> Cập nhật BO lúc : ${time}`)
+      var time = data.upDateTime
 
+      console.log(BS, time);
+      console.log(r)
+      for (a in r) {
+        if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] == "") {//
+          alert(`Xe ${r[a]["Biển số"]} Thiếu Phụ Tùng Kiểm tra lại \n Cập nhật BO lúc : ${time}`)
+          console.log(r[a]["ATA đại lý"])
           console.log("thieu hàng", r[a]["Biển số"]);
         }
 
@@ -417,29 +420,25 @@ function handleFileTMSS(e) {
     console.log(ojb);
     // gridOptions.api.setRowData(ojb)
     var jsonData = {
-      "id": "BODaiLy",
-      "ThongTin": ojb
+      "ThongTin": ojb,
+      "upDateTime": TimesClick()
     }
 
-    try {
-      fetch("https://deciduous-pentagonal-powder.glitch.me/BO", {
-        method: 'PATCH',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(jsonData),
-      })
-        .then((response) => {
-          console.log(response.status);
-          if (response.status == "500") {
-            response500(jsonData)
-          }
-          response.json()
-        })
-        .then((result) => {
-          alert("Upload Thành Công")
-          console.log('Success:', result);
 
-        })
-    } catch { alert("Lỗi") }
+    fetch("https://deciduous-pentagonal-powder.glitch.me/BO/BODaiLy", {
+      method: 'PUT',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(jsonData),
+    })
+      .then((response) => {
+        response.json()
+      })
+      .then((result) => {
+        alert("Upload Thành Công")
+        console.log('Success:', result);
+
+      })
+
   };
   reader.readAsArrayBuffer(file);
 
