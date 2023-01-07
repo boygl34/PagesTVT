@@ -392,7 +392,7 @@ function CheckBO(BS) {
       time = time.toDateString() + " " + time.toLocaleTimeString()
       for (a in r) {
         if (r[a]["Biển số"] == BS && r[a]["ATA đại lý"] == "") {
-          alert(`Xe ${r[a]["Biển số"]} Thiếu Hàng Kiểm tra lại <br> Cập nhật BO lúc : ${time}`)
+          alert(`Xe ${r[a]["Biển số"]} Thiếu Phụ Tùng Kiểm tra lại <br> Cập nhật BO lúc : ${time}`)
 
           console.log("thieu hàng", r[a]["Biển số"]);
         }
