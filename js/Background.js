@@ -375,7 +375,7 @@ function TaoMaSoDK() {
   return MaSo;
 }
 
-CheckBO("72A62771")
+//CheckBO("72A62771")
 function CheckBO(BS) {
   if (BS) {
     BS = BS.replaceAll(" ", "")
