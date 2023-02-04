@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Toyota TVT</title>
+
+    <link rel="icon" href="assets/img/TVT.jpg" type="image/x-icon">
+    <!-- <link rel="stylesheet" type="text/css" href="ScriptJS/all.css" /> -->
+    <script src="ScriptJS/all.js" crossorigin="anonymous"></script>
+    <script src="ScriptJS/vis-timeline-graph2d.min.js" type="text/javascript"></script>
+    <link href="ScriptJS/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <!-- Include the core CSS, this is needed by the grid -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css" />
+    <!-- Include the theme CSS, only need to import the theme you are going to use -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css" />
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@28.2.1/dist/ag-grid-enterprise.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <!-- <link href="ScriptJS/gijgo.min.css" rel="stylesheet" type="text/css" /> -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/styleItem.css" rel="stylesheet" />
+    <link href="css/styleTimeline.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="ChieuDaiChip" style="display: none"></div>
+    <div id="contextMenu" class="context-menu" style="display: none">
+        <ul>
+            <a id="biensomenu"></a>
+            <li><button type="button" class="btn btn-success" onclick="BatDauSC2()">Bắt Đầu</button></li>
+            <li><button type="button" class="btn btn-primary" onclick="KetThuc()">Kết Thúc</button></li>
+            <li><button type="button" class="btn btn-warning" onclick="DungCongViecGJ()">Dừng CV</button></li>
+            <li><button type="button" class="btn btn-danger" id="TTHuyChip" onclick="huyChip()">Xoá Chíp</button></li>
+        </ul>
+    </div>
+    <div id="contextMenu2" class="timeshow" style="display: none">
+        <a id="ThoiGian" style="font-size: 8px"></a>
+    </div>
+    <div id="contextMenuDS" class="context-menu" style="display: none">
+        <ul>
+            <a id="biensomenuDS"></a>
+            <!-- <li><button type="button" class="btn btn-success" onclick="BatDauSC2()">Bắt Đầu CD</button></li>
+            <li><button type="button" class="btn btn-primary" onclick="KetThuc()">Kết Thúc CD</button></li>
+            <li><button type="button" class="btn btn-warning" onclick="DungCongViecGJ()">Dừng CV</button></li> -->
+            <li><button type="button" class="btn btn-danger" id="TTHuyChip" onclick="huyChip()">Xoá Chíp CD</button>
+            </li>
+        </ul>
+    </div>
+    <div id="alert" style="position: absolute; top: 100px; right: 10px; z-index:300;">
+    </div>
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark ">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">
+            Toyota Vũng Tàu
+        </a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <!--div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div-->
+        </form>
+        <!-- Navbar Thanh Login-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <div class="spinner-border text-primary" role="status" id="loading">
+                <span class="sr-only">Loading...</span>
+            </div>
+
+            <li class="nav-item dropdown">
+                <a id="name"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" id="Setting" onclick="gethtml('html/setting.html')">Settings</a></li>
+                    <li>
+                        <div class="input-group ">
+                            <label class="input-group-text" for="inputGroupFile01">BO</label>
+                            <input class="form-control" type="file" id="input_dom_element">
+                        </div>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" onclick="Logout()">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Trang Chính</div>
+                        <a class="nav-link" onclick="gethtml('html/Home.html')">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            Home!!
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading"></div>
+                        <div id="PQDichVu2" style="display:none;">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+                                aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Dịch Vụ
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a style="display: block;" class="nav-link" onclick="gethtml('html/DatHen.html')">Đặt
+                                    Hẹn</a>
+                                <a style="display: block;" class="nav-link" onclick="gethtml('html/BaoVe.html')">Bảo
+                                    Vệ</a>
+                                <a style="display: block;" class="nav-link" onclick="gethtml('html/LeTan.html')">Lễ
+                                    Tân</a>
+                                <a class="nav-link" id="PQCoVan" style="display: none;"
+                                    onclick="gethtml('html/CoVan.html')">Cố Vấn</a>
+                                <a class="nav-link" onclick="gethtml('html/TienDoScc.html')">Tiến Độ SCC</a>
+                                <a class="nav-link" onclick="gethtml('html/TienDoDongSon.html')">Tiến Độ ĐS</a>
+                                <a class="nav-link" onclick="gethtml('html/KTVSCC.html')">KTVSCC</a>
+                            </nav>
+                        </div>
+                        <div style="display:none ;" id="PQKinhDoanh">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-kd"
+                                aria-expanded="false" aria-controls="collapseLayouts-kd" s>
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Kinh Doanh
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="collapse" id="collapseLayouts-kd" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" onclick="gethtml('html/DatHen.html')">Đặt Hẹn</a>
+                                <a style="display: none" class="nav-link" onclick="gethtml('html/PDS.html')">PDS</a>
+                            </nav>
+                        </div>
+                        <div id="PQPhuKien" style="display:none ;">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-pk"
+                                aria-expanded="false" aria-controls="collapseLayouts-pk">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Phụ Kiện
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="collapse" id="collapseLayouts-pk" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" onclick="gethtml('html/DatHen.html')">Đặt Hẹn</a>
+                                <a style="display: none" class="nav-link" onclick="gethtml('html/TienDoScc.html')">Tiến
+                                    Độ PK</a>
+                            </nav>
+                        </div>
+                        <div id="PQManHinh">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-mh"
+                                aria-expanded="false" aria-controls="collapseLayouts-mh">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Màn Hình
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="collapse" id="collapseLayouts-mh" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" onclick="gethtml('html/MHDatHen.html')">Đặt Hẹn</a>
+                                <a class="nav-link" onclick="gethtml('html/MHLeTan.html')">Lễ Tân</a>
+                                <a class="nav-link" onclick="gethtml('html/RuaXe.html')">Rửa Xe</a>
+
+                                <a class="nav-link" onclick="gethtml('html/KhachDoi.html')">Khách Đợi</a>
+                                <a class="nav-link" onclick="gethtml('html/MHKhachHen.html')">Khách Hẹn</a>
+                            </nav>
+                        </div>
+
+
+                        <div class="sb-sidenav-menu-heading">Addons</div>
+                        <a class="nav-link" onclick="gethtml('html/checksheet.html')">
+                            <div class="sb-nav-link-icon"> <i class="fas fa-chart-area"></i>
+                            </div>
+                            CheckSheet 5S
+                        </a>
+                        <a class="nav-link" onclick="gethtml('html/BaoCaoHen.html')">
+                            <div class="sb-nav-link-icon"> <i class="fas fa-chart-area"></i>
+                            </div>
+                            Báo Cáo Hẹn
+                        </a>
+                        <a class="nav-link" onclick="gethtml('html/charts.html')">
+                            <div class="sb-nav-link-icon"> <i class="fas fa-chart-area"></i>
+                            </div>
+                            Báo Cáo
+                        </a>
+                        <a class="nav-link" onclick="gethtml('html/TienDoXe.html')">
+                            <div class="sb-nav-link-icon"> <i class="fas fa-chart-area"></i>
+                            </div>
+                            Tiến Độ Theo Xe
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sb-sidenav-footer"></div>
+            </nav>
+        </div>
+
+        <div id="layoutSidenav_content" style="background-color: #4d4e50;">
+            <main>
+                <main>
+                    <!-- <div class="container-fluid px-4"> -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div id="Scanvideo">
+                                <div class="spinner-border" role="status" style="display: none;" id="Loading">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <div id="btnScan"><button class="btn btn-primary" onclick="showScan()">Scan</button>
+                                </div>
+
+                                <video id="preview" playsinline="true" class="center"></video>
+                                <div class="row" id="Checkshet" style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <script src="ScriptJS/intascan.js"></script>
+                <script src="ScriptJS/intascan.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+                    crossorigin="anonymous"></script>
+                <script>
+                    let params = new URLSearchParams(document.location.search);
+                    let name = params.get("name"); // is the string "Jonathan"
+                    alert(name)
+                    var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
+
+                    $.get(url + name, function (ketqua) {
+                        $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
+                        document.getElementById("preview").style.display = "none"
+                        if (ketqua.PhanLoai == "Thiết Bị Dùng Chung") { setthietbidungchung(ketqua) }
+                        if (ketqua.PhanLoai == "Khu Vực Dùng Chung") { setkhuvucdungchung(ketqua) }
+                        document.getElementById("Loading").style.display = "none"
+                    });
+
+
+
+                    function setkhuvucdungchung(ketqua) {
+                        $("#Checkshet").html(
+                            //'<div class="column">'+
+                            '<div class="card">' +
+                            '<img src="img5s/' + ketqua.id + '.jpg" alt="' + ketqua.id + '" style="width:100%">' +
+                            '<div class="container">' +
+                            '<h2 id="TenThietBi">' + ketqua.TenKhuVuc + '</h2>' +
+                            '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
+                            set5sKhuVuc(ketqua.TrangThietBi) +
+                            '<div class="form-group">' +
+                            '<label for="exampleInputEmail1">Ghi Chú</label>' +
+                            '<small id="emailHelp" class="form-text text-muted">Ghi Chú các bất thường trong Khu vực</small>' +
+                            '<input type="text" class="form-control" id="GhiChu" aria-describedby="emailHelp">' +
+                            '</div>' +
+                            '<p><button class="btn" id="bnt" onclick="writeData()">Check Sheet!!</button></p>' +
+                            '</div>' +
+                            //'</div>'+
+                            '</div>')
+                        document.getElementById("Checkshet").style.display = "block";
+                    }
+
+                    function set5sKhuVuc(value) {
+                        var cac5s = '<p class="title"></p>'
+                        for (a in value) {
+                            var value2 = value[a]
+                            for (b in value2) {
+                                //cac5s +='<p class="title">'+"+ "+value2[b].TenThietBi+'</p>'
+                                cac5s += '<div class="form-group form-check">' +
+                                    '<input type="checkbox" class="form-check-input">' +
+                                    '<label class=" title form-check-label-lg" >' + value2[b].TenThietBi + '</label>' +
+                                    '</div>'
+                                for (c in value2[b].tieuchuan5s) {
+                                    cac5s += '<p>&nbsp;&nbsp;&nbsp;-' + value2[b].tieuchuan5s[c] + '</p>'
+                                }
+                            }
+                        }
+                        return cac5s
+                    }
+
+
+
+
+
+
+
+                    function setthietbidungchung(ketqua) {
+                        $("#Checkshet").html(
+                            //'<div class="column">'+
+                            '<div class="card">' +
+                            '<img src="img5s/' + ketqua.id + '.jpg" alt="' + ketqua.id + '" style="width:100%">' +
+                            '<div class="container">' +
+                            '<h2 id="TenThietBi">' + ketqua.TenThietBi + '</h2>' +
+                            '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
+                            set5s(ketqua.tieuchuan5s) +
+                            setBasic(ketqua.Basic) +
+                            '<div class="form-group">' +
+                            '<label for="exampleInputEmail1">Ghi Chú</label>' +
+                            '<small id="emailHelp" class="form-text text-muted">Ghi Chú các bất thường của máy</small>' +
+                            '<input type="text" class="form-control" id="GhiChu" aria-describedby="emailHelp">' +
+                            '</div>' +
+                            '<p><button class="btn" id="bnt" onclick="writeData()">Check Sheet!!</button></p>' +
+                            '</div>' +
+                            //'</div>'+
+                            '</div>')
+                        document.getElementById("Checkshet").style.display = "block";
+                    }
+
+                    function set5s(value) {
+                        var cac5s = '<p class="title">5S</p>'
+                        for (a in value) {
+                            cac5s += '<p>' + value[a] + '</p>'
+                        }
+                        return cac5s
+                    }
+
+                    function setBasic(value) {
+                        var Basic = '<p class="title">Basic</p>'
+                        for (a in value) {
+                            Basic += '<div class="form-group form-check">' +
+                                '<input type="checkbox" class="form-check-input">' +
+                                '<label class=" form-check-label-lg" >' + value[a] + '</label>' +
+                                '</div>'
+                        }
+                        return Basic
+                    }
+
+                    function writeData() {
+                        if (checklist()) {
+                            document.getElementById("bnt").style.display = "none";
+                            var data = {
+                                GhiChu: $('#GhiChu').val(),
+                                PhanLoai: $('#PhanLoai').html(),
+                                KTVCheck: localStorage.getItem("userName"),
+                                NgayCheckSheet: TimesClick(),
+                                TenThietBi: $('#TenThietBi').html()
+                            }
+
+                            $.ajax({
+                                url: "https://script.google.com/macros/s/AKfycbxUuJW8nbiKkrZwtM30l6PE-T-gU4QzbgnmdDgp-hbX6-fEnANwZjU4Z_Ae9ZkURCK1/exec",
+                                method: "GET",
+                                mode: 'no-cors',
+                                credentials: 'omit',
+                                referrerPolicy: 'no-referrer',
+                                dataType: "json",
+                                data: data
+                            }).done(function () {
+                                $("#Checkshet").html("")
+                                alert("Thanks!!");
+                                $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
+                            })
+
+                        } else { alert("Check đầy đủ các hạng mục") }
+                    }
+
+                    function checklist() {
+                        var a
+                        $(':checkbox').each(function () {
+                            if (this.checked) { a = true } else { a = false; return a }
+                        });
+                        return a
+                    }
+
+                    function TimesClick(data) {
+                        if (data) { var use = new Date(data); } else { var use = new Date() }
+                        var useinfo = {}
+                        var Thang = use.getMonth() + 1;
+                        var Ngay = use.getDate();
+                        var Nam = use.getFullYear(); var Gio = use.getHours();
+                        var Phut = use.getMinutes();
+                        if (Thang < 10) { Thang = "0" + Thang };
+                        if (Ngay < 10) { Ngay = "0" + Ngay };
+                        if (Gio < 10) { Gio = "0" + Gio };
+                        if (Phut < 10) { Phut = "0" + Phut }
+                        return Ngay + "/" + Thang + "/" + Nam + " " + Gio + ":" + Phut + ":00"
+                    }
+
+                </script>
+            </main>
+        </div>
+    </div>
+    <!--Modal SCCC-->
+
+    <div class="modal fade" id="DangKyXuong" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="DKRUAXetitle">Đăng Ký Dịch Vụ</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formdkxuong">
+                        <div class="form-row">
+                            <div class="form-group col-6" style="display: none">
+                                <label for="MaSo">Mã Số</label>
+                                <input required class="form-control" id="MaSoDK" name="MaSo" disabled />
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="KhoangSuaChua">Biển Số Xe</label>
+                                <input required class="form-control" id="BienSoXeDK" name="BienSoXe"
+                                    onchange="changvaluedk()" onkeyup="this.value = suabienso(this.value)" />
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="CoVanDichVu">Cố Vấn</label>
+                                <select required class="form-control" id="CoVanDichVuDK" name="CoVanDichVuDK"
+                                    onchange="CoVanChange()">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlSelect1">Loại Hình GJ </label>
+                                <select class="form-control" id="LoaiHinhDK" required name="LoaiHinh">
+                                    <option value=""></option>
+                                    <option value="EM">EM</option>
+                                    <option value="EM60">EM60</option>
+                                    <option value="SCC">SCC</option>
+                                    <option value="Báo Giá SCC">Báo Giá SCC</option>
+                                    <option value="FIR">FIR</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlSelect1">Loại Hình BP </label>
+                                <select class="form-control" id="LoaiHinhBPDK" required name="LoaiHinhBP">
+                                    <option value=""></option>
+                                    <option value="Đồng Sơn">Đồng Sơn</option>
+                                    <option value="Báo Giá BH">Báo Giá BH</option>
+                                    <option value="FIR">FIR</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group ">
+                                <label for="NgayGiaoXeDK">Ngày Giao Xe</label>
+                                <input type="text" required type="text" class="form-control NgayDK" id="NgayGiaoXeDK"
+                                    name="NgayGiaoXeDK" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="btnDK">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        checkdangnhap();
+
+        function checkdangnhap() {
+            var urluser = "https://deciduous-pentagonal-powder.glitch.me/User/";
+            //var urluser = "login.json"
+            var password = localStorage.getItem("Password");
+            var use = localStorage.getItem("id");
+            if (use == null) {
+                window.location = "login.html";
+            }
+            if (password !== "" && use !== "") {
+                fetch(urluser + use)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (password == data.Password) {
+                            //document.getElementById("TrangDangNhap").hidden=true
+                            // document.getElementById("BaoCao").hidden=false
+                            document.getElementById("navbarDropdown").innerHTML =
+                                localStorage.getItem("userName");
+                            //  checkPhanQuyen()
+                            console.log("login");
+                        }
+                    });
+            } else {
+                window.location = "login.html";
+                $("#layoutSidenav").html(
+                    '<a class="btn btn-primary" href="login.html">Login</a>'
+                );
+                console.log("out");
+            }
+        }
+    </script>
+    <!-- <script src="/ScriptJS/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/Background.js"></script>
+    <script src="js/Onload.js"></script>
+    <script src="ScriptJS/popper.js"></script>
+    <script src="js/scripts.js"></script> -->
+    <script>
+        function DangKyXuong() {
+            $("#MaSoDK").val(TaoMaSoDK() + $("#BienSoXeDK").val());
+            var json2 = {
+                MaSo: $("#MaSoDK").val(),
+                BienSoXe: $("#BienSoXeDK").val(),
+                LoaiHinhSuaChua: $("#LoaiHinhDK").val(),
+                LoaiHinhDongSon: $("#LoaiHinhBPDK").val(),
+                TDKetThucTiepKhach: TimesClick(),
+                TrangThaiXuong: "04 Đã Tiếp Nhận",
+                CoVanDichVu: $("#CoVanDichVuDK").val(),
+                TDHenGiaoXe: $("#NgayGiaoXe").val()
+            };
+            if ($("#LoaiHinhDK").val() !== "") {
+                json2["TrangThaiSCC"] = "Chờ SC";
+            } else {
+                json2["TrangThaiSCC"] = "";
+            }
+            if ($("#LoaiHinhBPDK").val() !== "") {
+                json2["CongDoanDongSon"] = "Chờ SC";
+                json2["TrangThaiDongSon"] = "Chờ SC";
+            } else {
+                json2["CongDoanDongSon"] = "";
+                json2["TrangThaiDongSon"] = "";
+            }
+            postData(json2, urlTX, "POST");
+            $('#formdkxuong').trigger("reset");
+
+        }
+
+
+    </script>
+</body>
+
+</html>
