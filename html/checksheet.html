@@ -22,7 +22,10 @@
     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
     crossorigin="anonymous"></script>
 <script>
-
+    let params = new URLSearchParams(document.location.search);
+    let name = params.get("name"); // is the string "Jonathan"
+    alert(name)
+    setthietbidungchung(name)
     var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
     function LoadTimeLine() {
         document.getElementById("loading").style.display = "none"
