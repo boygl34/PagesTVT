@@ -270,9 +270,17 @@
                     let name = params.get("name"); // is the string "Jonathan"
                     var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
                     if (localStorage.getItem("userName") == null) {
-                        var use = confirm("Tên KTV")
-                        localStorage.setItem("userName", use);
+                        var result = prompt("Họ Tên KTV", "");
+                        if (result != null) {
+                            localStorage.setItem("userName", result)
+                        }
                     }
+
+
+
+
+
+
 
                     $.get(url + name, function (ketqua) {
                         $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
