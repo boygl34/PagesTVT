@@ -79,9 +79,9 @@
         </form>
         <!-- Navbar Thanh Login-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <div class="spinner-border text-primary" role="status" id="loading">
+            <!-- <div class="spinner-border text-primary" role="status" id="loading">
                 <span class="sr-only">Loading...</span>
-            </div>
+            </div> -->
 
             <li class="nav-item dropdown">
                 <a id="name"></a>
@@ -249,8 +249,8 @@
                                 <div class="spinner-border" role="status" style="display: none;" id="Loading">
                                     <span class="sr-only">Loading...</span>
                                 </div>
-                                <div id="btnScan"><button class="btn btn-primary" onclick="showScan()">Scan</button>
-                                </div>
+                                <!-- <div id="btnScan"><button class="btn btn-primary" onclick="showScan()">Scan</button>
+                                </div> -->
 
                                 <video id="preview" playsinline="true" class="center"></video>
                                 <div class="row" id="Checkshet" style="display: none;">
@@ -260,15 +260,14 @@
                     </div>
                 </main>
 
-                <script src="ScriptJS/intascan.js"></script>
-                <script src="ScriptJS/intascan.min.js"></script>
+                <!-- <script src="ScriptJS/intascan.js"></script>
+                <script src="ScriptJS/intascan.min.js"></script> -->
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
                     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
                     crossorigin="anonymous"></script>
                 <script>
                     let params = new URLSearchParams(document.location.search);
                     let name = params.get("name"); // is the string "Jonathan"
-                    alert(name)
                     var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
 
                     $.get(url + name, function (ketqua) {
@@ -492,7 +491,7 @@
         </div>
     </div>
     <script>
-        checkdangnhap();
+        // checkdangnhap();
 
         function checkdangnhap() {
             var urluser = "https://deciduous-pentagonal-powder.glitch.me/User/";
@@ -529,38 +528,7 @@
     <script src="js/Onload.js"></script>
     <script src="ScriptJS/popper.js"></script>
     <script src="js/scripts.js"></script> -->
-    <script>
-        function DangKyXuong() {
-            $("#MaSoDK").val(TaoMaSoDK() + $("#BienSoXeDK").val());
-            var json2 = {
-                MaSo: $("#MaSoDK").val(),
-                BienSoXe: $("#BienSoXeDK").val(),
-                LoaiHinhSuaChua: $("#LoaiHinhDK").val(),
-                LoaiHinhDongSon: $("#LoaiHinhBPDK").val(),
-                TDKetThucTiepKhach: TimesClick(),
-                TrangThaiXuong: "04 Đã Tiếp Nhận",
-                CoVanDichVu: $("#CoVanDichVuDK").val(),
-                TDHenGiaoXe: $("#NgayGiaoXe").val()
-            };
-            if ($("#LoaiHinhDK").val() !== "") {
-                json2["TrangThaiSCC"] = "Chờ SC";
-            } else {
-                json2["TrangThaiSCC"] = "";
-            }
-            if ($("#LoaiHinhBPDK").val() !== "") {
-                json2["CongDoanDongSon"] = "Chờ SC";
-                json2["TrangThaiDongSon"] = "Chờ SC";
-            } else {
-                json2["CongDoanDongSon"] = "";
-                json2["TrangThaiDongSon"] = "";
-            }
-            postData(json2, urlTX, "POST");
-            $('#formdkxuong').trigger("reset");
 
-        }
-
-
-    </script>
 </body>
 
 </html>
