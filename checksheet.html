@@ -269,6 +269,10 @@
                     let params = new URLSearchParams(document.location.search);
                     let name = params.get("name"); // is the string "Jonathan"
                     var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
+                    if (localStorage.getItem("userName") == null) {
+                        var use = confirm("Tên KTV")
+                        localStorage.setItem("userName", use);
+                    }
 
                     $.get(url + name, function (ketqua) {
                         $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
@@ -318,12 +322,6 @@
                         }
                         return cac5s
                     }
-
-
-
-
-
-
 
                     function setthietbidungchung(ketqua) {
                         $("#Checkshet").html(
@@ -422,74 +420,7 @@
     </div>
     <!--Modal SCCC-->
 
-    <div class="modal fade" id="DangKyXuong" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="DKRUAXetitle">Đăng Ký Dịch Vụ</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="formdkxuong">
-                        <div class="form-row">
-                            <div class="form-group col-6" style="display: none">
-                                <label for="MaSo">Mã Số</label>
-                                <input required class="form-control" id="MaSoDK" name="MaSo" disabled />
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="KhoangSuaChua">Biển Số Xe</label>
-                                <input required class="form-control" id="BienSoXeDK" name="BienSoXe"
-                                    onchange="changvaluedk()" onkeyup="this.value = suabienso(this.value)" />
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="CoVanDichVu">Cố Vấn</label>
-                                <select required class="form-control" id="CoVanDichVuDK" name="CoVanDichVuDK"
-                                    onchange="CoVanChange()">
-                                    <option></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="exampleFormControlSelect1">Loại Hình GJ </label>
-                                <select class="form-control" id="LoaiHinhDK" required name="LoaiHinh">
-                                    <option value=""></option>
-                                    <option value="EM">EM</option>
-                                    <option value="EM60">EM60</option>
-                                    <option value="SCC">SCC</option>
-                                    <option value="Báo Giá SCC">Báo Giá SCC</option>
-                                    <option value="FIR">FIR</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleFormControlSelect1">Loại Hình BP </label>
-                                <select class="form-control" id="LoaiHinhBPDK" required name="LoaiHinhBP">
-                                    <option value=""></option>
-                                    <option value="Đồng Sơn">Đồng Sơn</option>
-                                    <option value="Báo Giá BH">Báo Giá BH</option>
-                                    <option value="FIR">FIR</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group ">
-                                <label for="NgayGiaoXeDK">Ngày Giao Xe</label>
-                                <input type="text" required type="text" class="form-control NgayDK" id="NgayGiaoXeDK"
-                                    name="NgayGiaoXeDK" />
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer" id="btnDK">
 
-
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         // checkdangnhap();
 
