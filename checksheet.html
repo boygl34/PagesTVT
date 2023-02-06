@@ -300,6 +300,7 @@
                             '<div class="container">' +
                             '<h2 id="TenThietBi">' + ketqua.TenKhuVuc + '</h2>' +
                             '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
+                            set5s(ketqua.Basic) +
                             set5sKhuVuc(ketqua.TrangThietBi) +
                             '<div class="form-group">' +
                             '<label for="exampleInputEmail1">Ghi Chú</label>' +
@@ -314,7 +315,7 @@
                     }
 
                     function set5sKhuVuc(value) {
-                        var cac5s = '<p class="title"></p>'
+                        var cac5s = '<p class="title">CheckSheet</p>'
                         for (a in value) {
                             var value2 = value[a]
                             for (b in value2) {
@@ -339,8 +340,9 @@
                             '<div class="container">' +
                             '<h2 id="TenThietBi">' + ketqua.TenThietBi + '</h2>' +
                             '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
-                            set5s(ketqua.tieuchuan5s) +
-                            setBasic(ketqua.Basic) +
+
+                            set5s(ketqua.Basic) +
+                            setBasic(ketqua.tieuchuan5s) +
                             '<div class="form-group">' +
                             '<label for="exampleInputEmail1">Ghi Chú</label>' +
                             '<small id="emailHelp" class="form-text text-muted">Ghi Chú các bất thường của máy</small>' +
@@ -354,7 +356,7 @@
                     }
 
                     function set5s(value) {
-                        var cac5s = '<p class="title">5S</p>'
+                        var cac5s = '<p class="title">Basic</p>'
                         for (a in value) {
                             cac5s += '<p>' + value[a] + '</p>'
                         }
@@ -362,7 +364,7 @@
                     }
 
                     function setBasic(value) {
-                        var Basic = '<p class="title">Basic</p>'
+                        var Basic = '<p class="title">5s</p>'
                         for (a in value) {
                             Basic += '<div class="form-group form-check">' +
                                 '<input type="checkbox" class="form-check-input">' +
