@@ -269,10 +269,12 @@
                     let params = new URLSearchParams(document.location.search);
                     let name = params.get("name"); // is the string "Jonathan"
                     var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
-                    if (localStorage.getItem("userName") == null) {
+                    if (localStorage.getItem("TenCheckSheet") == null) {
                         var result = prompt("Họ Tên KTV", "");
                         if (result != null) {
-                            localStorage.setItem("userName", result)
+                            localStorage.setItem("TenCheckSheet", result)
+                            document.getElementById("navbarDropdown").innerHTML =
+                                localStorage.getItem("TenCheckSheet");
                         }
                     }
 
@@ -375,12 +377,22 @@
                     }
 
                     function writeData() {
+                        if (localStorage.getItem("TenCheckSheet") == "") {
+                            var result = prompt("Họ Tên KTV", "");
+                            if (result != null) {
+                                localStorage.setItem("TenCheckSheet", result)
+                                document.getElementById("navbarDropdown").innerHTML =
+                                    localStorage.getItem("TenCheckSheet");
+                            } else { return false }
+
+
+                        }
                         if (checklist()) {
                             document.getElementById("bnt").style.display = "none";
                             var data = {
                                 GhiChu: $('#GhiChu').val(),
                                 PhanLoai: $('#PhanLoai').html(),
-                                KTVCheck: localStorage.getItem("userName"),
+                                KTVCheck: localStorage.getItem("TenCheckSheet"),
                                 NgayCheckSheet: TimesClick(),
                                 TenThietBi: $('#TenThietBi').html()
                             }
