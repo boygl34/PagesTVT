@@ -36,40 +36,15 @@
 </head>
 
 <body>
-    <div id="ChieuDaiChip" style="display: none"></div>
-    <div id="contextMenu" class="context-menu" style="display: none">
-        <ul>
-            <a id="biensomenu"></a>
-            <li><button type="button" class="btn btn-success" onclick="BatDauSC2()">Bắt Đầu</button></li>
-            <li><button type="button" class="btn btn-primary" onclick="KetThuc()">Kết Thúc</button></li>
-            <li><button type="button" class="btn btn-warning" onclick="DungCongViecGJ()">Dừng CV</button></li>
-            <li><button type="button" class="btn btn-danger" id="TTHuyChip" onclick="huyChip()">Xoá Chíp</button></li>
-        </ul>
-    </div>
-    <div id="contextMenu2" class="timeshow" style="display: none">
-        <a id="ThoiGian" style="font-size: 8px"></a>
-    </div>
-    <div id="contextMenuDS" class="context-menu" style="display: none">
-        <ul>
-            <a id="biensomenuDS"></a>
-            <!-- <li><button type="button" class="btn btn-success" onclick="BatDauSC2()">Bắt Đầu CD</button></li>
-            <li><button type="button" class="btn btn-primary" onclick="KetThuc()">Kết Thúc CD</button></li>
-            <li><button type="button" class="btn btn-warning" onclick="DungCongViecGJ()">Dừng CV</button></li> -->
-            <li><button type="button" class="btn btn-danger" id="TTHuyChip" onclick="huyChip()">Xoá Chíp CD</button>
-            </li>
-        </ul>
-    </div>
-    <div id="alert" style="position: absolute; top: 100px; right: 10px; z-index:300;">
-    </div>
+
+
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark ">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="index.html">
             Toyota Vũng Tàu
         </a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
-            <i class="fas fa-bars"></i>
-        </button>
+
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--div class="input-group">
@@ -86,7 +61,7 @@
             <li class="nav-item dropdown">
                 <a id="name"></a>
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    aria-expanded="false" onclick="xoaTen()"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" id="Setting" onclick="gethtml('html/setting.html')">Settings</a></li>
                     <li>
@@ -104,7 +79,7 @@
         </ul>
     </nav>
 
-    <div id="layoutSidenav">
+    <!-- <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
@@ -243,203 +218,229 @@
             <main>
                 <main>
                     <!-- <div class="container-fluid px-4"> -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <div id="Scanvideo">
-                                <div class="spinner-border" role="status" style="display: none;" id="Loading">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <!-- <div id="btnScan"><button class="btn btn-primary" onclick="showScan()">Scan</button>
+    <div class="card mb-4">
+        <div class="card-header">
+            <div id="Scanvideo">
+                <div class="spinner-border" role="status" style="display: none;" id="Loading">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <!-- <div id="btnScan"><button class="btn btn-primary" onclick="showScan()">Scan</button>
                                 </div> -->
 
-                                <video id="preview" playsinline="true" class="center"></video>
-                                <div class="row" id="Checkshet" style="display: none;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-
-                <!-- <script src="ScriptJS/intascan.js"></script>
-                <script src="ScriptJS/intascan.min.js"></script> -->
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-                    crossorigin="anonymous"></script>
-                <script>
-                    let params = new URLSearchParams(document.location.search);
-                    let name = params.get("name"); // is the string "Jonathan"
-                    var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
-                    if (localStorage.getItem("TenCheckSheet") == null) {
-                        var result = prompt("Họ Tên KTV", "");
-                        if (result != null) {
-                            localStorage.setItem("TenCheckSheet", result)
-                            document.getElementById("navbarDropdown").innerHTML =
-                                localStorage.getItem("TenCheckSheet");
-                        }
-                    }
-
-
-
-
-
-
-
-                    $.get(url + name, function (ketqua) {
-                        $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
-                        document.getElementById("preview").style.display = "none"
-                        if (ketqua.PhanLoai == "Thiết Bị Dùng Chung") { setthietbidungchung(ketqua) }
-                        if (ketqua.PhanLoai == "Khu Vực Dùng Chung") { setkhuvucdungchung(ketqua) }
-                        document.getElementById("Loading").style.display = "none"
-                    });
-
-
-
-                    function setkhuvucdungchung(ketqua) {
-                        $("#Checkshet").html(
-                            //'<div class="column">'+
-                            '<div class="card">' +
-                            '<img src="img5s/' + ketqua.id + '.jpg" alt="' + ketqua.id + '" style="width:100%">' +
-                            '<div class="container">' +
-                            '<h2 id="TenThietBi">' + ketqua.TenKhuVuc + '</h2>' +
-                            '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
-                            set5s(ketqua.Basic) +
-                            set5sKhuVuc(ketqua.TrangThietBi) +
-                            '<div class="form-group">' +
-                            '<label for="exampleInputEmail1">Ghi Chú</label>' +
-                            '<small id="emailHelp" class="form-text text-muted">Ghi Chú các bất thường trong Khu vực</small>' +
-                            '<input type="text" class="form-control" id="GhiChu" aria-describedby="emailHelp">' +
-                            '</div>' +
-                            '<p><button class="btn" id="bnt" onclick="writeData()">Check Sheet!!</button></p>' +
-                            '</div>' +
-                            //'</div>'+
-                            '</div>')
-                        document.getElementById("Checkshet").style.display = "block";
-                    }
-
-                    function set5sKhuVuc(value) {
-                        var cac5s = '<p class="title">CheckSheet</p>'
-                        for (a in value) {
-                            var value2 = value[a]
-                            for (b in value2) {
-                                //cac5s +='<p class="title">'+"+ "+value2[b].TenThietBi+'</p>'
-                                cac5s += '<div class="form-group form-check">' +
-                                    '<input type="checkbox" class="form-check-input">' +
-                                    '<label class=" title form-check-label-lg" >' + value2[b].TenThietBi + '</label>' +
-                                    '</div>'
-                                for (c in value2[b].tieuchuan5s) {
-                                    cac5s += '<p>&nbsp;&nbsp;&nbsp;-' + value2[b].tieuchuan5s[c] + '</p>'
-                                }
-                            }
-                        }
-                        return cac5s
-                    }
-
-                    function setthietbidungchung(ketqua) {
-                        $("#Checkshet").html(
-                            //'<div class="column">'+
-                            '<div class="card">' +
-                            '<img src="img5s/' + ketqua.id + '.jpg" alt="' + ketqua.id + '" style="width:100%">' +
-                            '<div class="container">' +
-                            '<h2 id="TenThietBi">' + ketqua.TenThietBi + '</h2>' +
-                            '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
-
-                            set5s(ketqua.tieuchuan5s) +
-                            setBasic(ketqua.Basic) +
-                            '<div class="form-group">' +
-                            '<label for="exampleInputEmail1">Ghi Chú</label>' +
-                            '<small id="emailHelp" class="form-text text-muted">Ghi Chú các bất thường của máy</small>' +
-                            '<input type="text" class="form-control" id="GhiChu" aria-describedby="emailHelp">' +
-                            '</div>' +
-                            '<p><button class="btn" id="bnt" onclick="writeData()">Check Sheet!!</button></p>' +
-                            '</div>' +
-                            //'</div>'+
-                            '</div>')
-                        document.getElementById("Checkshet").style.display = "block";
-                    }
-
-                    function set5s(value) {
-                        var cac5s = '<p class="title">Basic</p>'
-                        for (a in value) {
-                            cac5s += '<p>' + value[a] + '</p>'
-                        }
-                        return cac5s
-                    }
-
-                    function setBasic(value) {
-                        var Basic = '<p class="title">5s</p>'
-                        for (a in value) {
-                            Basic += '<div class="form-group form-check">' +
-                                '<input type="checkbox" class="form-check-input">' +
-                                '<label class=" form-check-label-lg" >' + value[a] + '</label>' +
-                                '</div>'
-                        }
-                        return Basic
-                    }
-
-                    function writeData() {
-                        if (localStorage.getItem("TenCheckSheet") == "") {
-                            var result = prompt("Họ Tên KTV", "");
-                            if (result != null) {
-                                localStorage.setItem("TenCheckSheet", result)
-                                document.getElementById("navbarDropdown").innerHTML =
-                                    localStorage.getItem("TenCheckSheet");
-                            } else { return false }
-
-
-                        }
-                        if (checklist()) {
-                            document.getElementById("bnt").style.display = "none";
-                            var data = {
-                                GhiChu: $('#GhiChu').val(),
-                                PhanLoai: $('#PhanLoai').html(),
-                                KTVCheck: localStorage.getItem("TenCheckSheet"),
-                                NgayCheckSheet: TimesClick(),
-                                TenThietBi: $('#TenThietBi').html()
-                            }
-
-                            $.ajax({
-                                url: "https://script.google.com/macros/s/AKfycbxUuJW8nbiKkrZwtM30l6PE-T-gU4QzbgnmdDgp-hbX6-fEnANwZjU4Z_Ae9ZkURCK1/exec",
-                                method: "GET",
-                                mode: 'no-cors',
-                                credentials: 'omit',
-                                referrerPolicy: 'no-referrer',
-                                dataType: "json",
-                                data: data
-                            }).done(function () {
-                                $("#Checkshet").html("")
-                                alert("Thanks!!");
-                                $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
-                            })
-
-                        } else { alert("Check đầy đủ các hạng mục") }
-                    }
-
-                    function checklist() {
-                        var a
-                        $(':checkbox').each(function () {
-                            if (this.checked) { a = true } else { a = false; return a }
-                        });
-                        return a
-                    }
-
-                    function TimesClick(data) {
-                        if (data) { var use = new Date(data); } else { var use = new Date() }
-                        var useinfo = {}
-                        var Thang = use.getMonth() + 1;
-                        var Ngay = use.getDate();
-                        var Nam = use.getFullYear(); var Gio = use.getHours();
-                        var Phut = use.getMinutes();
-                        if (Thang < 10) { Thang = "0" + Thang };
-                        if (Ngay < 10) { Ngay = "0" + Ngay };
-                        if (Gio < 10) { Gio = "0" + Gio };
-                        if (Phut < 10) { Phut = "0" + Phut }
-                        return Ngay + "/" + Thang + "/" + Nam + " " + Gio + ":" + Phut + ":00"
-                    }
-
-                </script>
-            </main>
+                <video id="preview" playsinline="true" class="center"></video>
+                <div class="row" id="Checkshet" style="display: none;">
+                </div>
+            </div>
         </div>
     </div>
+    </main>
+
+    <!-- <script src="ScriptJS/intascan.js"></script>
+                <script src="ScriptJS/intascan.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script>
+
+        let params = new URLSearchParams(document.location.search);
+        let name = params.get("name"); // is the string "Jonathan"
+        var url = "https://deciduous-pentagonal-powder.glitch.me/CheckSheet/"
+        if (localStorage.getItem("TenCheckSheet") == null || localStorage.getItem("TenCheckSheet") == "") {
+            var result = prompt("Họ Tên KTV", "");
+            if (result != null) {
+                localStorage.setItem("TenCheckSheet", result)
+                document.getElementById("navbarDropdown").innerHTML =
+                    localStorage.getItem("TenCheckSheet");
+            }
+        } else {
+            document.getElementById("navbarDropdown").innerHTML =
+                localStorage.getItem("TenCheckSheet");
+        }
+
+
+        if (localStorage.getItem("TenCheckSheet") == null || localStorage.getItem("TenCheckSheet") == "") {
+            var result = prompt("Họ Tên KTV", "");
+            if (result != null) {
+                localStorage.setItem("TenCheckSheet", result)
+                document.getElementById("navbarDropdown").innerHTML =
+                    localStorage.getItem("TenCheckSheet");
+            }
+        } else {
+            document.getElementById("navbarDropdown").innerHTML =
+                localStorage.getItem("TenCheckSheet");
+        }
+
+        function xoaTen() {
+            localStorage.setItem("TenCheckSheet", "")
+            var result = prompt("Họ Tên KTV", "");
+            if (result != null) {
+                localStorage.setItem("TenCheckSheet", result)
+                document.getElementById("navbarDropdown").innerHTML =
+                    localStorage.getItem("TenCheckSheet");
+            }
+        }
+
+
+
+
+
+
+        $.get(url + name, function (ketqua) {
+            $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
+            document.getElementById("preview").style.display = "none"
+            if (ketqua.PhanLoai == "Thiết Bị Dùng Chung") { setthietbidungchung(ketqua) }
+            if (ketqua.PhanLoai == "Khu Vực Dùng Chung") { setkhuvucdungchung(ketqua) }
+            document.getElementById("Loading").style.display = "none"
+        });
+
+
+
+        function setkhuvucdungchung(ketqua) {
+            $("#Checkshet").html(
+                //'<div class="column">'+
+                '<div class="card">' +
+                '<img src="img5s/' + ketqua.id + '.jpg" alt="' + ketqua.id + '" style="width:100%">' +
+                '<div class="container">' +
+                '<h2 id="TenThietBi">' + ketqua.TenKhuVuc + '</h2>' +
+                '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
+                set5s(ketqua.Basic) +
+                set5sKhuVuc(ketqua.TrangThietBi) +
+                '<div class="form-group">' +
+                '<label for="exampleInputEmail1">Ghi Chú</label>' +
+                '<small id="emailHelp" class="form-text text-muted">Ghi Chú các bất thường trong Khu vực</small>' +
+                '<input type="text" class="form-control" id="GhiChu" aria-describedby="emailHelp">' +
+                '</div>' +
+                '<p><button class="btn" id="bnt" onclick="writeData()">Check Sheet!!</button></p>' +
+                '</div>' +
+                //'</div>'+
+                '</div>')
+            document.getElementById("Checkshet").style.display = "block";
+        }
+
+        function set5sKhuVuc(value) {
+            var cac5s = '<p class="title">CheckSheet</p>'
+            for (a in value) {
+                var value2 = value[a]
+                for (b in value2) {
+                    //cac5s +='<p class="title">'+"+ "+value2[b].TenThietBi+'</p>'
+                    cac5s += '<div class="form-group form-check">' +
+                        '<input type="checkbox" class="form-check-input">' +
+                        '<label class=" title form-check-label-lg" >' + value2[b].TenThietBi + '</label>' +
+                        '</div>'
+                    for (c in value2[b].tieuchuan5s) {
+                        cac5s += '<p>&nbsp;&nbsp;&nbsp;-' + value2[b].tieuchuan5s[c] + '</p>'
+                    }
+                }
+            }
+            return cac5s
+        }
+
+        function setthietbidungchung(ketqua) {
+            $("#Checkshet").html(
+                //'<div class="column">'+
+                '<div class="card">' +
+                '<img src="img5s/' + ketqua.id + '.jpg" alt="' + ketqua.id + '" style="width:100%">' +
+                '<div class="container">' +
+                '<h2 id="TenThietBi">' + ketqua.TenThietBi + '</h2>' +
+                '<h3 id="PhanLoai">' + ketqua.PhanLoai + '</h3>' +
+
+                set5s(ketqua.tieuchuan5s) +
+                setBasic(ketqua.Basic) +
+                '<div class="form-group">' +
+                '<label for="exampleInputEmail1">Ghi Chú</label>' +
+                '<small id="emailHelp" class="form-text text-muted">Ghi Chú các bất thường của máy</small>' +
+                '<input type="text" class="form-control" id="GhiChu" aria-describedby="emailHelp">' +
+                '</div>' +
+                '<p><button class="btn" id="bnt" onclick="writeData()">Check Sheet!!</button></p>' +
+                '</div>' +
+                //'</div>'+
+                '</div>')
+            document.getElementById("Checkshet").style.display = "block";
+        }
+
+        function set5s(value) {
+            var cac5s = '<p class="title">Basic</p>'
+            for (a in value) {
+                cac5s += '<p>' + value[a] + '</p>'
+            }
+            return cac5s
+        }
+
+        function setBasic(value) {
+            var Basic = '<p class="title">5s</p>'
+            for (a in value) {
+                Basic += '<div class="form-group form-check">' +
+                    '<input type="checkbox" class="form-check-input">' +
+                    '<label class=" form-check-label-lg" >' + value[a] + '</label>' +
+                    '</div>'
+            }
+            return Basic
+        }
+
+        function writeData() {
+            if (localStorage.getItem("TenCheckSheet") == "") {
+                var result = prompt("Họ Tên KTV", "");
+                if (result != null) {
+                    localStorage.setItem("TenCheckSheet", result)
+                    document.getElementById("navbarDropdown").innerHTML =
+                        localStorage.getItem("TenCheckSheet");
+                } else { return false }
+
+
+            }
+            if (checklist()) {
+                document.getElementById("bnt").style.display = "none";
+                var data = {
+                    GhiChu: $('#GhiChu').val(),
+                    PhanLoai: $('#PhanLoai').html(),
+                    KTVCheck: localStorage.getItem("TenCheckSheet"),
+                    NgayCheckSheet: TimesClick(),
+                    TenThietBi: $('#TenThietBi').html()
+                }
+
+                $.ajax({
+                    url: "https://script.google.com/macros/s/AKfycbxUuJW8nbiKkrZwtM30l6PE-T-gU4QzbgnmdDgp-hbX6-fEnANwZjU4Z_Ae9ZkURCK1/exec",
+                    method: "GET",
+                    mode: 'no-cors',
+                    credentials: 'omit',
+                    referrerPolicy: 'no-referrer',
+                    dataType: "json",
+                    data: data
+                }).done(function () {
+                    $("#Checkshet").html("")
+                    alert("Thanks!!");
+                    $("#btnScan").html(` <button class="btn btn-primary" onclick="showScan()">Scan</button>`)
+                })
+
+            } else { alert("Check đầy đủ các hạng mục") }
+        }
+
+        function checklist() {
+            var a
+            $(':checkbox').each(function () {
+                if (this.checked) { a = true } else { a = false; return a }
+            });
+            return a
+        }
+
+        function TimesClick(data) {
+            if (data) { var use = new Date(data); } else { var use = new Date() }
+            var useinfo = {}
+            var Thang = use.getMonth() + 1;
+            var Ngay = use.getDate();
+            var Nam = use.getFullYear(); var Gio = use.getHours();
+            var Phut = use.getMinutes();
+            if (Thang < 10) { Thang = "0" + Thang };
+            if (Ngay < 10) { Ngay = "0" + Ngay };
+            if (Gio < 10) { Gio = "0" + Gio };
+            if (Phut < 10) { Phut = "0" + Phut }
+            return Ngay + "/" + Thang + "/" + Nam + " " + Gio + ":" + Phut + ":00"
+        }
+
+    </script>
+    </main>
+    </div>
+    </div> -->
     <!--Modal SCCC-->
 
 
