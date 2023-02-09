@@ -405,10 +405,10 @@ function changvalueBS() {
 function goithongtin() {
   var SDT = $("#SoDT").val()
   if (SDT.slice(0, 1) == "0") { SDT = SDT.slice(1) }
-  var dienthoai = "<a href='tel:+84" + SDT + "' class='col-sm-7'>Call</a>"
+  var dienthoai = "<a href='tel:+84" + SDT + "' '>Call</a>"
   var ThoiGianDen = DoiNgayDangKy($("#ThoiGianHen").val())
   ThoiGianDen = new Date(ThoiGianDen - 15 * 60 * 1000)
-  var sms = "<a href='sms:+84" + SDT + "?body=Toyota Vũng Tàu xác nhận cuộc hẹn \n" + $("#BienSoXe").val() + " .Nội Dung: " + $("#NoiDungHen").val() + ". Vào Lúc : " + Doingay2(ThoiGianDen) + ".Quý Khách vui lòng đến ĐÚNG GIỜ TẠI QUẦY ĐĂNG KÝ DỊCH VỤ.Xin cảm ơn!!' class='col-sm-7'>SMS</a>"
+  var sms = "<a href='sms:+84" + SDT + "?body=Toyota Vũng Tàu xác nhận cuộc hẹn \n" + $("#BienSoXe").val() + " .Nội Dung: " + $("#NoiDungHen").val() + ". Vào Lúc : " + Doingay2(ThoiGianDen) + ".Quý Khách vui lòng đến ĐÚNG GIỜ TẠI QUẦY ĐĂNG KÝ DỊCH VỤ.Xin cảm ơn!!' '>SMS</a>"
 
   var EMail = '<a href="mailto:' + $("#NguoiDatHen").val() + '?&subject=Thông báo xác nhận hẹn ' + $("#BienSoXe").val() + ' &body=Xác Nhận hẹn xe ' + $("#BienSoXe").val() + ' .Nội Dung :' + $("#NoiDungHen").val() + '  .Vào Lúc:' + Doingay2(ThoiGianDen) + '.Thanks!!"> Emailr</a>'
   // <a href=”sms://+15552345678, +15552345679;?&amp;body=Hello%20World”>Gửi SMS</a>
