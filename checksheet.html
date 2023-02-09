@@ -384,8 +384,8 @@
                     localStorage.setItem("TenCheckSheet", result)
                     document.getElementById("navbarDropdown").innerHTML =
                         localStorage.getItem("TenCheckSheet");
-                    return false
-                }
+
+                } else { alert("Chưa có tên KTV"); return false }
 
 
             }
