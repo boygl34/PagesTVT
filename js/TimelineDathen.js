@@ -133,7 +133,7 @@ var options = {
       $("#CuocGoi").html(
         "<a href='tel:+84" +
         $("#SoDT").val() +
-        "' class='col-sm-7'>Click để Gọi</a>"
+        "' '>Call</a>"
       );
     } else {
       $("#buttonDK").html("");
