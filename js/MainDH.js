@@ -165,7 +165,7 @@ function checkloaihinhGJ() {
     return r.TrangThaiXuong == "00 Có Hẹn" && r.LoaiHinhSuaChua == LoaiHinhSCC && (new Date(DoiNgayDangKy(r.ThoiGianHen)).valueOf() == giodathen.valueOf())
   })
   var soluong = dataArrayhen.length
-  if (LoaiHinhSCC == "EM" && soluong >= 3) { $('#LoaiHinhSuaChua').val(""); alert("Quá Số lượng đặt hẹn cho xe EM. Tối đa 3 xe") }
+  if (LoaiHinhSCC == "EM" && soluong >= 4) { $('#LoaiHinhSuaChua').val(""); alert("Quá Số lượng đặt hẹn cho xe EM. Tối đa 4 xe") }
   if (LoaiHinhSCC == "SCC" && soluong >= 2) { $('#LoaiHinhSuaChua').val(""); alert("Quá Số lượng đặt hẹn cho xe SCC. Tối đa 2 xe") }
   return soluong
 }

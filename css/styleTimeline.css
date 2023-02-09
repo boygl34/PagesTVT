@@ -159,7 +159,7 @@
 }
 
 .vis-foreground .vis-group.EM {
-  min-height: 218px;
+  min-height: 290px;
 }
 
 .vis-foreground .vis-group.SCC {
@@ -175,7 +175,7 @@
 }
 
 .vis-labelset .vis-label.EM {
-  min-height: 218px;
+  min-height: 290px;
 }
 
 .vis-labelset .vis-label.SCC {
@@ -192,7 +192,7 @@
 
 @media only screen and (max-width: 600px) {
   .vis-foreground .vis-group.EM {
-    max-height: 161.85px;
+    max-height: 180.85px;
   }
 
   .vis-foreground .vis-group.SCC {
@@ -208,7 +208,7 @@
   }
 
   .vis-labelset .vis-label.EM {
-    max-height: 161.85px;
+    max-height: 180.85px;
   }
 
   .vis-labelset .vis-label.SCC {
