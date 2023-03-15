@@ -73,6 +73,10 @@ function LoadTimeLine() {
     var ColGH = document.createElement("td");
     var ColTime = document.createElement("td");
     ColBS.textContent = r.BienSoXe;
+    if (r.GhiChuCV) {
+      ColBS.setAttribute("data-toggle", "tooltip")
+      ColBS.setAttribute("title", r.GhiChuCV)
+    }
     ColTKH.textContent = r.TenKH;
     ColCV.textContent = r.CoVanDichVu;
     ColLHSCC.textContent = r.LoaiHinhSuaChua;
@@ -552,6 +556,19 @@ function clickTableTiepNhan() {
       return false;
     };
   }
+}
+function addcontext() {
+  var result = prompt("Ghi Chú:", "");
+
+  if (result != null) {
+    var json2 = {
+      GhiChuCV: result
+    };
+
+    postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+  }
+
+
 }
 
 function canhBao(tieude, noidung, canhbao) {
