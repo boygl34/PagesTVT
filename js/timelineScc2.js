@@ -8,11 +8,12 @@ let dependencies = []
 for (i in KhoangSC) {
     rows.push({
         id: KhoangSC[i],
-        label: KhoangSC[i],
+        label: KhoangSC[i]
     })
 }
 async function LoadTimeLine() {
-    let XeChoSua = useCaher.filter((r) => { return (r.TimeStartGJ == null); });
+    console.log("update");
+    let XeChoSua = useCaher.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
     $("#XeChoSuaChua").html("")
     $("#XeDungCV").html("")
     await XeChoSua.forEach(async (r) => {
@@ -26,8 +27,19 @@ async function LoadTimeLine() {
                 $("#XeDungCV").html() + ` <button style="width: 100%" id= ${r.BienSoXe} > ${r.BienSoXe}</button>`);
             addExternal(r.BienSoXe)
         }
+        if (r.TrangThaiSCC == "Đang SC") {
+            gantt.updateTask({
+                id: r.BienSoXe,
+                label: r.BienSoXe,
+                from: new Date(DoiNgayDangKy(r.TimeStartGJ)).valueOf(),
+                to: new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf(),
+                classes: "red",
+                resourceId: r.KhoangSuaChua,
+            });
+        }
     })
 
+    document.getElementById("loading").style.display = "none"
 }
 function addExternal(ChipXe) {
     const external = new SvelteGanttExternal(document.getElementById(ChipXe), {
@@ -74,7 +86,7 @@ let options = {
     rowHeight: 52,
     rowPadding: 6,
     headers: [
-        { unit: "day", format: "MMMM Do" },
+        { unit: "day", format: "DD/MM/YYYY" },
         { unit: "hour", format: "H:mm" },
     ],
     fitWidth: true,
@@ -82,7 +94,7 @@ let options = {
     from: currentStart,
     to: currentEnd,
     tableHeaders: [
-        { title: "Label", property: "label", width: "140px", type: "tree" },
+        { title: "Khoang", property: "label", width: "140px", type: "tree" }
     ],
     tableWidth: 140,
     ganttTableModules: [SvelteGanttTable],
@@ -100,18 +112,24 @@ let options = {
                 popup.remove();
             }
         }
+        function conTestmenu() {
+            // console.log("[task] hover", task);
+           alert("contes")
+        }
         function onDouble() {
-            console.log("[double] hover", task);
+            alert("[double] hover");
         }
         node.addEventListener("doubleclick", onDouble);
         node.addEventListener("mouseenter", onHover);
         node.addEventListener("mouseleave", onLeave);
-
+        node.addEventListener("contextmenu", conTestmenu);
         return {
             destroy() {
                 console.log("[task] destroy");
                 node.removeEventListener("mouseenter", onHover);
                 node.removeEventListener("mouseleave", onLeave);
+                node.removeEventListener("contextmenu", conTestmenu);
+                node.removeEventListener("doubleclick", onDouble);
             },
         };
     },
@@ -121,6 +139,15 @@ var gantt = new SvelteGantt({
     target: document.getElementById("example-gantt-events"),
     props: options,
 });
+
+gantt.api.tasks.on.move((task) => alert("move"));
+gantt.api.tasks.on.switchRow((task, row, previousRow) => alert("switchRow"));
+///gantt.api.tasks.on.select((task) => alert("select"));
+gantt.api.tasks.on.moveEnd((task) => alert("moveend"));
+gantt.api.tasks.on.change(([data]) => alert("change"));
+gantt.api.tasks.on.changed((task) => alert("changed"));
+//gantt.api.tasks.on.dblclicked((task) => alert("double"));
+
 function createPopup(task, node) {
     const rect = node.getBoundingClientRect();
     const div = document.createElement("div");
