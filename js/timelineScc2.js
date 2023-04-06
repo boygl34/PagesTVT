@@ -12,7 +12,7 @@ for (var i; i < KhoangSC.length; i++) {
         DangSC: ""
     })
 }
-console.log(rows);
+
 async function LoadTimeLine() {
     console.log("update");
     for (var a = 0; a < rows.length; a++) {
@@ -20,14 +20,7 @@ async function LoadTimeLine() {
         if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe }
 
     }
-
-    console.log(rows);
-
-
-
-
     gantt.updateRow(rows)
-
     let XeChoSua = useCaher.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
     $("#XeChoSuaChua").html("")
     $("#XeDungCV").html("")
@@ -123,14 +116,14 @@ let options = {
             popup = createPopup(task, node, e);
         }
 
-        function onLeave() {
-            // console.log("[task] hover", task);
+        function onLeave(e) {
+            e.preventDefault()
             if (popup) {
                 popup.remove();
             }
         }
         function conTestmenu(e) {
-
+            e.preventDefault()
             // console.log("[task] hover", task);
             alert("contes")
         }
@@ -183,8 +176,8 @@ function createPopup(task, node, event) {
         </div>
     `;
     div.style.position = "absolute";
-    div.style.top = `${event.clientY + rect.height}px`;
-    div.style.left = `${event.clientX}px`;
+    div.style.top = `${event.pageY + rect.height}px`;
+    div.style.left = `${event.pageX}px`;
     document.body.appendChild(div);
     return div;
 }
