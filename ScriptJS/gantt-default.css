@@ -119,3 +119,17 @@
     font-weight: 300;
     flex: 30% 1 1;
 }
+
+.Time-laber {
+    border: #fc0404 1px solid;
+    height: 100%;
+    width: 2px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0) 46%, #e03218 49%, #e03218 51%, rgba(0, 0, 0, 0) 55%);
+    background-size: 6px 6px !important;
+    color: red;
+    font-weight: 400;
+}

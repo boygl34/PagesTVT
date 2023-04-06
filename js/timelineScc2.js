@@ -5,7 +5,7 @@ let rows = []
 let tasks = []
 let dependencies = []
 
-for (var i; i < KhoangSC.length; i++) {
+for (var i = 0; i < KhoangSC.length; i++) {
     rows.push({
         id: KhoangSC[i],
         label: KhoangSC[i],
@@ -20,6 +20,16 @@ async function LoadTimeLine() {
         if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe }
 
     }
+    timeRanges = [
+        {
+            id: "Now",
+            from: new Date(),
+            to: new Date(0, 1),
+            classes: "Time-laber",
+            label: new Date().toLocaleTimeString().slice(0, 5),
+        },
+    ];
+    gantt.$set({ timeRanges: timeRanges })
     gantt.updateRow(rows)
     let XeChoSua = useCaher.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
     $("#XeChoSuaChua").html("")
@@ -74,13 +84,14 @@ function addExternal(ChipXe) {
 
 let currentStart = time("07:00");
 let currentEnd = time("18:00");
-const timeRanges = [
+
+let timeRanges = [
     {
         id: "Now",
         from: new Date(),
         to: new Date(0, 1),
         classes: "Time-laber",
-        label: "now",
+        label: new Date().toLocaleTimeString().slice(0, 5),
     },
 ];
 let options = {
@@ -157,7 +168,7 @@ var gantt = new SvelteGantt({
 ///gantt.api.tasks.on.select((task) => alert("select"));
 //gantt.api.tasks.on.moveEnd((task) => alert("moveend"));
 //gantt.api.tasks.on.change(([data]) => alert("change"));
-gantt.api.tasks.on.changed((task) => alert("changed"));
+gantt.api.tasks.on.changed((task) => { console.log(task); });
 //gantt.api.tasks.on.dblclicked((task) => alert("double"));
 
 function createPopup(task, node, event) {
