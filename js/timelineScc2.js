@@ -5,14 +5,29 @@ let rows = []
 let tasks = []
 let dependencies = []
 
-for (i in KhoangSC) {
+for (var i; i < KhoangSC.length; i++) {
     rows.push({
         id: KhoangSC[i],
-        label: KhoangSC[i]
+        label: KhoangSC[i],
+        DangSC: ""
     })
 }
+console.log(rows);
 async function LoadTimeLine() {
     console.log("update");
+    for (var a = 0; a < rows.length; a++) {
+        var XeDangSC = useCaher.filter(function (r) { return r.TrangThaiSCC === "Đang SC" && r.KhoangSuaChua == rows[a].id })
+        if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe }
+
+    }
+
+    console.log(rows);
+
+
+
+
+    gantt.updateRow(rows)
+
     let XeChoSua = useCaher.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
     $("#XeChoSuaChua").html("")
     $("#XeDungCV").html("")
@@ -64,14 +79,14 @@ function addExternal(ChipXe) {
     });
 }
 
-let currentStart = time("06:00");
+let currentStart = time("07:00");
 let currentEnd = time("18:00");
 const timeRanges = [
     {
-        id: 3,
+        id: "Now",
         from: new Date(),
-        to: new Date(0, 3),
-        classes: "red",
+        to: new Date(0, 1),
+        classes: "Time-laber",
         label: "now",
     },
 ];
@@ -94,16 +109,18 @@ let options = {
     from: currentStart,
     to: currentEnd,
     tableHeaders: [
-        { title: "Khoang", property: "label", width: "140px", type: "tree" }
+        { title: "Khoang", property: "label", width: "120px", type: "tree" },
+        { title: "Dang SC", property: "DangSC", width: "120px", type: "tree" },
     ],
-    tableWidth: 140,
+    tableWidth: 200,
     ganttTableModules: [SvelteGanttTable],
     ganttBodyModules: [SvelteGanttDependencies],
     taskElementHook: (node, task) => {
         let popup;
-        function onHover() {
+        function onHover(e) {
+            e.preventDefault()
             //  console.log("[task] hover", task);
-            popup = createPopup(task, node);
+            popup = createPopup(task, node, e);
         }
 
         function onLeave() {
@@ -112,14 +129,16 @@ let options = {
                 popup.remove();
             }
         }
-        function conTestmenu() {
+        function conTestmenu(e) {
+
             // console.log("[task] hover", task);
-           alert("contes")
+            alert("contes")
         }
-        function onDouble() {
+        function onDouble(e) {
+            e.preventDefault()
             alert("[double] hover");
         }
-        node.addEventListener("doubleclick", onDouble);
+        node.addEventListener("dblclick", onDouble);
         node.addEventListener("mouseenter", onHover);
         node.addEventListener("mouseleave", onLeave);
         node.addEventListener("contextmenu", conTestmenu);
@@ -133,43 +152,39 @@ let options = {
             },
         };
     },
-    // taskContent: (task) => `${task.label} ${task.from.format('HH:mm')}`
+    //taskContent: (task) => `${task.label} ${task.from.format('HH:mm')}`
 };
 var gantt = new SvelteGantt({
     target: document.getElementById("example-gantt-events"),
     props: options,
 });
 
-gantt.api.tasks.on.move((task) => alert("move"));
-gantt.api.tasks.on.switchRow((task, row, previousRow) => alert("switchRow"));
+//gantt.api.tasks.on.move((task) => alert("move"));
+//gantt.api.tasks.on.switchRow((task, row, previousRow) => alert("switchRow"));
 ///gantt.api.tasks.on.select((task) => alert("select"));
-gantt.api.tasks.on.moveEnd((task) => alert("moveend"));
-gantt.api.tasks.on.change(([data]) => alert("change"));
+//gantt.api.tasks.on.moveEnd((task) => alert("moveend"));
+//gantt.api.tasks.on.change(([data]) => alert("change"));
 gantt.api.tasks.on.changed((task) => alert("changed"));
 //gantt.api.tasks.on.dblclicked((task) => alert("double"));
 
-function createPopup(task, node) {
+function createPopup(task, node, event) {
     const rect = node.getBoundingClientRect();
     const div = document.createElement("div");
     div.className = "sg-popup";
     div.innerHTML = `
         <div class="sg-popup-title">${task.label}</div>
         <div class="sg-popup-item">
-            <div class="sg-popup-item-label">From:</div>
-            <div class="sg-popup-item-value">${new Date(
-        task.from
-    ).toLocaleTimeString()}</div>
+            <div class="sg-popup-item-label">Từ :</div>
+            <div class="sg-popup-item-value">${new Date(task.from).toLocaleTimeString()}</div>
         </div>
         <div class="sg-popup-item">
-            <div class="sg-popup-item-label">To:</div>
-            <div class="sg-popup-item-value">${new Date(
-        task.to
-    ).toLocaleTimeString()}</div>
+            <div class="sg-popup-item-label">Đến :</div>
+            <div class="sg-popup-item-value">${new Date(task.to).toLocaleTimeString()}</div>
         </div>
     `;
     div.style.position = "absolute";
-    div.style.top = `${rect.bottom}px`;
-    div.style.left = `${rect.left + rect.width / 2}px`;
+    div.style.top = `${event.clientY + rect.height}px`;
+    div.style.left = `${event.clientX}px`;
     document.body.appendChild(div);
     return div;
 }
