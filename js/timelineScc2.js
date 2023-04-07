@@ -4,7 +4,7 @@
 let rows = []
 let tasks = []
 let dependencies = []
-
+let Data = new vis.DataSet(useCaher)
 for (var i = 0; i < KhoangSC.length; i++) {
     rows.push({
         id: KhoangSC[i],
@@ -14,22 +14,20 @@ for (var i = 0; i < KhoangSC.length; i++) {
 }
 
 async function LoadTimeLine() {
-    console.log("update");
+    Data.update(useCaher)
     tasks = []
     for (var a = 0; a < rows.length; a++) {
         var XeDangSC = useCaher.filter(function (r) { return r.TrangThaiSCC === "Đang SC" && r.KhoangSuaChua == rows[a].id })
         if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe } else { rows[a]["DangSC"] = "" }
 
     }
-    timeRanges = [
-        {
-            id: "Now",
-            from: new Date(),
-            to: new Date(0, 1),
-            classes: "Time-laber",
-            label: new Date().toLocaleTimeString().slice(0, 5),
-        },
-    ];
+    timeRanges = [{
+        id: "Now",
+        from: new Date(),
+        to: new Date(0, 1),
+        classes: "Time-laber",
+        label: new Date().toLocaleTimeString().slice(0, 5)
+    }];
     gantt.$set({ timeRanges: timeRanges })
     gantt.updateTasks(tasks)
     gantt.updateRow(rows)
@@ -39,17 +37,17 @@ async function LoadTimeLine() {
     await XeChoSua.forEach(async (r) => {
         if (r.TrangThaiSCC == "Chờ SC") {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.BienSoXe} > ${r.BienSoXe}</button>`);
-            addExternal(r.BienSoXe)
+                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+            addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiSCC == "Dừng CV") {
             await $("#XeDungCV").html(
-                $("#XeDungCV").html() + ` <button style="width: 100%" id= ${r.BienSoXe} > ${r.BienSoXe}</button>`);
-            addExternal(r.BienSoXe)
+                $("#XeDungCV").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+            addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiSCC == "Đang SC") {
             gantt.updateTask({
-                id: r.BienSoXe,
+                id: r.id,
                 label: r.BienSoXe,
                 from: new Date(DoiNgayDangKy(r.TimeStartGJ)).valueOf(),
                 to: new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf(),
@@ -61,14 +59,14 @@ async function LoadTimeLine() {
 
     document.getElementById("loading").style.display = "none"
 }
-function addExternal(ChipXe) {
-    const external = new SvelteGanttExternal(document.getElementById(ChipXe), {
+function addExternal(ID, BienSo) {
+    const external = new SvelteGanttExternal(document.getElementById(ID), {
         gantt,
         onsuccess: (row, date, gantt) => {
-            const id = ChipXe;
+            const id = ID;
             gantt.updateTask({
                 id,
-                label: ChipXe,
+                label: BienSo,
                 from: date,
                 to: date + 3 * 60 * 60 * 1000,
                 classes: "red",
@@ -77,7 +75,7 @@ function addExternal(ChipXe) {
         },
         elementContent: () => {
             const element = document.createElement("div");
-            element.innerHTML = ChipXe;
+            element.innerHTML = BienSo;
             element.className = "sg-external-indicator";
             return element;
         },
@@ -142,7 +140,7 @@ let options = {
         }
         function onDouble(e) {
             e.preventDefault()
-            alert("[double] hover");
+
         }
         node.addEventListener("dblclick", onDouble);
         node.addEventListener("mouseenter", onHover);
@@ -167,10 +165,23 @@ var gantt = new SvelteGantt({
 
 //gantt.api.tasks.on.move((task) => alert("move"));
 //gantt.api.tasks.on.switchRow((task, row, previousRow) => alert("switchRow"));
-///gantt.api.tasks.on.select((task) => alert("select"));
+gantt.api.tasks.on.select((task) => {
+
+
+});
 //gantt.api.tasks.on.moveEnd((task) => alert("moveend"));
 //gantt.api.tasks.on.change(([data]) => alert("change"));
-gantt.api.tasks.on.changed((task) => { console.log(task); });
+gantt.api.tasks.on.changed((task) => {
+    console.log(task);
+    var TTXe = Data.get(task[0].task.model.id)
+    var json = {
+        TimeStartGJ: TimesClick(task[0].task.model.from),
+        TimeEndGJ: TimesClick(task[0].task.model.to),
+
+    }
+    var res = axios.patch(urlTX + "/" + task[0].task.model.id, json)
+    console.log(res);
+});
 //gantt.api.tasks.on.dblclicked((task) => alert("double"));
 
 function createPopup(task, node, event) {
