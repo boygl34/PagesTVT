@@ -15,9 +15,10 @@ for (var i = 0; i < KhoangSC.length; i++) {
 
 async function LoadTimeLine() {
     console.log("update");
+    tasks = []
     for (var a = 0; a < rows.length; a++) {
         var XeDangSC = useCaher.filter(function (r) { return r.TrangThaiSCC === "Đang SC" && r.KhoangSuaChua == rows[a].id })
-        if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe }
+        if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe } else { rows[a]["DangSC"] = "" }
 
     }
     timeRanges = [
@@ -30,6 +31,7 @@ async function LoadTimeLine() {
         },
     ];
     gantt.$set({ timeRanges: timeRanges })
+    gantt.updateTasks(tasks)
     gantt.updateRow(rows)
     let XeChoSua = useCaher.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
     $("#XeChoSuaChua").html("")
