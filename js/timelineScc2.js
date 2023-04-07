@@ -33,17 +33,34 @@ async function LoadTimeLine() {
     $("#XeChoSuaChua").html("")
     $("#XeDungCV").html("")
     await XeChoSua.forEach(async (r) => {
-        if (r.TrangThaiSCC == "Chờ SC") {
+
+        if (r.TrangThaiXuong == "04 Đã Tiếp Nhận" && r.TimeStartGJ == null) {
             await $("#XeChoSuaChua").html(
                 $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
-        if (r.TrangThaiSCC == "Dừng CV") {
+        if (r.TrangThaiXuong == "03 Đang Tiếp Nhận" && r.TimeStartGJ == null) {
+            await $("#XeChoSuaChua").html(
+                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+            addExternal(r.id, r.BienSoXe)
+        }
+        if (r.TrangThaiXuong == "05 Đang Sửa Chữa" && r.TrangThaiSCC == "Chờ SC") {
+            await $("#XeChoSuaChua").html(
+                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+            addExternal(r.id, r.BienSoXe)
+        }
+        if ((r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null) {
+            await $("#XeChoSuaChua").html(
+                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+            addExternal(r.id, r.BienSoXe)
+        }
+        if (r.TrangThaiXuong == "05 Dừng Công Việc") {
             await $("#XeDungCV").html(
                 $("#XeDungCV").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
-        if (r.TrangThaiSCC == "Đang SC") {
+
+        if (r.TimeStartGJ) {
             tasks.push({
                 id: r.id,
                 label: r.BienSoXe,
@@ -66,17 +83,13 @@ function addExternal(ID, BienSo) {
             var xedangSc = useCaher.filter(function (r) { return r.KhoangSuaChua == row.model.id })
             var timess = new Date().valueOf()
             var startr = date
-            var endr = date + 30 * 60 * 1000
             const id = ID;
-            for (i in xedangSc) {
-                var r = xedangSc[i]
-                if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() > timess) {
-                    timess = new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf()
-                    startr = timess
-                    endr = 1000 * 60 * 30 + timess
-                }
-            }
 
+            xedangSc.forEach(r => {
+                var timeend = new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf()
+                if (timeend > date) { date = timeend + 5 * 60 * 1000 }
+            })
+            if (date < timess) { date = timess }
             gantt.updateTask({
                 id,
                 label: BienSo,
@@ -86,10 +99,14 @@ function addExternal(ID, BienSo) {
                 resourceId: row.model.id,
             }
             );
+            var json = {
+                TimeStartGJ: TimesClick(date),
+                TrangThaiSCC: "Chờ SC",
+                KhoangSuaChua: row.model.id,
+                TimeEndGJ: TimesClick(date + 30 * 60 * 1000),
+            }
 
-
-            //var res = axios.patch(urlTX + "/" + id, json)
-
+            postData(json, urlTX + "/" + id, "PATCH");
         },
         elementContent: () => {
             const element = document.createElement("div");
@@ -246,4 +263,38 @@ function onChangeOptions(event) {
 
 function time(input) {
     return moment(input, 'HH:mm');
+}
+
+function huyChip(item) {
+    item = $("#TTHuyChip").val();
+    var ojb = useCaher;
+    for (var a in ojb) {
+        if (ojb[a].MaSo == item) {
+            delete ojb[a].NhomKTV;
+            delete ojb[a].KyThuatVien1;
+            delete ojb[a].KyThuatVien2;
+            delete ojb[a].TimeStartGJ;
+            delete ojb[a].TimeEndGJ;
+            ojb[a].TrangThaiSCC = "Chờ SC";
+            ojb[a].TrangThaiXuong = "04 Đã Tiếp Nhận";
+
+            let text = "Bạn muốn Xóa Chíp Tiếp Độ: " + ojb[a].BienSoXe;
+            if (
+                confirm(text) == true &&
+                (localStorage.getItem("PhanQuyen") == "DieuPhoi" ||
+                    localStorage.getItem("PhanQuyen") == "admin")
+            ) {
+                $.ajax({
+                    url: urlTX + "/" + ojb[a].id,
+                    type: "PUT",
+                    data: ojb[a],
+                    success: function (data) {
+                        getData();
+                    },
+                });
+            } else {
+                alert("Bạn không Thể xóa chíp");
+            }
+        }
+    }
 }
