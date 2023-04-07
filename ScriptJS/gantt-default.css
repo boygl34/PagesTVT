@@ -6,6 +6,7 @@
     font-family: 'Lato', sans-serif;
     font-size: 10px;
     color: #656565;
+    border: #000000 1px solid;
 }
 
 
@@ -120,6 +121,18 @@
     flex: 30% 1 1;
 }
 
+.sg-row {
+    border: #adacac 1px solid;
+}
+
+.sg-table-row {
+    border: #adacac 1px solid;
+}
+
+.sg-table-cell {
+    width: 50%;
+}
+
 .Time-laber {
     border: #fc0404 1px solid;
     height: 100%;
@@ -132,4 +145,14 @@
     background-size: 6px 6px !important;
     color: red;
     font-weight: 400;
+}
+
+.CoHen::before {
+    padding-top: 5px;
+    padding-left: 10px;
+    font-family: "Font Awesome 5 Free";
+    content: "🅗";
+    display: inline-flex;
+    position: absolute;
+    text-align: center;
 }

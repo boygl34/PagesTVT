@@ -19,7 +19,6 @@ async function LoadTimeLine() {
     for (var a = 0; a < rows.length; a++) {
         var XeDangSC = useCaher.filter(function (r) { return r.TrangThaiSCC === "Đang SC" && r.KhoangSuaChua == rows[a].id })
         if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe } else { rows[a]["DangSC"] = "" }
-
     }
     timeRanges = [{
         id: "Now",
@@ -34,43 +33,48 @@ async function LoadTimeLine() {
     $("#XeDungCV").html("")
     await XeChoSua.forEach(async (r) => {
 
+        let className = ""
+        var CoHen
+        if (r.KhachHangHen) { CoHen = "CoHen" }
         if (r.TrangThaiXuong == "04 Đã Tiếp Nhận" && r.TimeStartGJ == null) {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeChoSuaChua").html() + ` <button class="btn btn-danger ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiXuong == "03 Đang Tiếp Nhận" && r.TimeStartGJ == null) {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeChoSuaChua").html() + ` <button class="btn btn-danger ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiXuong == "05 Đang Sửa Chữa" && r.TrangThaiSCC == "Chờ SC") {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeChoSuaChua").html() + ` <button class="btn btn-danger ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
         if ((r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null) {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeChoSuaChua").html() + ` <button  class="btn btn-danger ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiXuong == "05 Dừng Công Việc") {
             await $("#XeDungCV").html(
-                $("#XeDungCV").html() + ` <button style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeDungCV").html() + ` <button class="btn btn-danger ${CoHen}"style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
 
-        if (r.TimeStartGJ) {
+        if (r.TimeStartGJ && (r.TrangThaiSCC == "Đang SC" || r.TrangThaiSCC == "Chờ SC")) {
+            if (r.TrangThaiSCC == "Đang SC") { className = "blue" } else { className = "orange" }
             tasks.push({
                 id: r.id,
                 label: r.BienSoXe,
                 from: new Date(DoiNgayDangKy(r.TimeStartGJ)).valueOf(),
                 to: new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf(),
-                classes: "red",
+                classes: `blue ${CoHen}`,
                 resourceId: r.KhoangSuaChua,
             });
         }
     })
+
     gantt.updateTasks(tasks)
     gantt.$set({ timeRanges: timeRanges })
     gantt.updateRow(rows)
