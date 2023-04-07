@@ -28,9 +28,7 @@ async function LoadTimeLine() {
         classes: "Time-laber",
         label: new Date().toLocaleTimeString().slice(0, 5)
     }];
-    gantt.$set({ timeRanges: timeRanges })
-    gantt.updateTasks(tasks)
-    gantt.updateRow(rows)
+
     let XeChoSua = useCaher.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
     $("#XeChoSuaChua").html("")
     $("#XeDungCV").html("")
@@ -46,7 +44,7 @@ async function LoadTimeLine() {
             addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiSCC == "Đang SC") {
-            gantt.updateTask({
+            tasks.push({
                 id: r.id,
                 label: r.BienSoXe,
                 from: new Date(DoiNgayDangKy(r.TimeStartGJ)).valueOf(),
@@ -56,22 +54,42 @@ async function LoadTimeLine() {
             });
         }
     })
-
+    gantt.updateTasks(tasks)
+    gantt.$set({ timeRanges: timeRanges })
+    gantt.updateRow(rows)
     document.getElementById("loading").style.display = "none"
 }
 function addExternal(ID, BienSo) {
     const external = new SvelteGanttExternal(document.getElementById(ID), {
         gantt,
         onsuccess: (row, date, gantt) => {
+            var xedangSc = useCaher.filter(function (r) { return r.KhoangSuaChua == row.model.id })
+            var timess = new Date().valueOf()
+            var startr = date
+            var endr = date + 30 * 60 * 1000
             const id = ID;
+            for (i in xedangSc) {
+                var r = xedangSc[i]
+                if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() > timess) {
+                    timess = new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf()
+                    startr = timess
+                    endr = 1000 * 60 * 30 + timess
+                }
+            }
+
             gantt.updateTask({
                 id,
                 label: BienSo,
                 from: date,
-                to: date + 3 * 60 * 60 * 1000,
+                to: date + 30 * 60 * 1000,
                 classes: "red",
                 resourceId: row.model.id,
-            });
+            }
+            );
+
+
+            //var res = axios.patch(urlTX + "/" + id, json)
+
         },
         elementContent: () => {
             const element = document.createElement("div");
@@ -84,7 +102,6 @@ function addExternal(ID, BienSo) {
 
 let currentStart = time("07:00");
 let currentEnd = time("18:00");
-
 let timeRanges = [
     {
         id: "Now",
@@ -121,9 +138,9 @@ let options = {
     ganttBodyModules: [SvelteGanttDependencies],
     taskElementHook: (node, task) => {
         let popup;
+        let Menu
         function onHover(e) {
             e.preventDefault()
-            //  console.log("[task] hover", task);
             popup = createPopup(task, node, e);
         }
 
@@ -132,14 +149,29 @@ let options = {
             if (popup) {
                 popup.remove();
             }
+
         }
         function conTestmenu(e) {
             e.preventDefault()
-            // console.log("[task] hover", task);
-            alert("contes")
+            if (document.getElementById("contextMenu").style.display == "block") {
+                document.getElementById("contextMenu").style.display = "none";
+            } else {
+                var menu = document.getElementById("contextMenu");
+                console.log(task);
+                $("#biensomenu").html(task.label);
+                menu.style.display = "block";
+                menu.style.left = e.pageX + "px";
+                menu.style.top = e.pageY + "px";
+            }
         }
         function onDouble(e) {
             e.preventDefault()
+            $("#buttonSCC").html("");
+
+            document.getElementById("FormSCC").reset();
+            document.getElementById("BienSoXe").value = task.label;
+            changvalue();
+            $("#ModalSCC").modal("show");
 
         }
         node.addEventListener("dblclick", onDouble);
@@ -156,7 +188,6 @@ let options = {
             },
         };
     },
-    //taskContent: (task) => `${task.label} ${task.from.format('HH:mm')}`
 };
 var gantt = new SvelteGantt({
     target: document.getElementById("example-gantt-events"),
@@ -177,7 +208,7 @@ gantt.api.tasks.on.changed((task) => {
     var json = {
         TimeStartGJ: TimesClick(task[0].task.model.from),
         TimeEndGJ: TimesClick(task[0].task.model.to),
-
+        KhoangSuaChua: task[0].targetRow.model.id
     }
     var res = axios.patch(urlTX + "/" + task[0].task.model.id, json)
     console.log(res);
@@ -205,6 +236,7 @@ function createPopup(task, node, event) {
     document.body.appendChild(div);
     return div;
 }
+
 
 function onChangeOptions(event) {
     const opts = event.detail;
