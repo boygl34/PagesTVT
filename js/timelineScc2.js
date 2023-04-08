@@ -2,7 +2,7 @@
 
 
 let rows = []
-let tasks = []
+let tasks
 let dependencies = []
 let Data = new vis.DataSet(useCaher)
 for (var i = 0; i < KhoangSC.length; i++) {
@@ -29,6 +29,7 @@ async function LoadTimeLine() {
     }];
 
     let XeChoSua = useCaher.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
+    XeChoSua.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
     $("#XeChoSuaChua").html("")
     $("#XeDungCV").html("")
     await XeChoSua.forEach(async (r) => {
@@ -38,12 +39,12 @@ async function LoadTimeLine() {
         if (r.KhachHangHen) { CoHen = "CoHen" }
         if (r.TrangThaiXuong == "04 Đã Tiếp Nhận" && r.TimeStartGJ == null) {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button class="btn btn-danger ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeChoSuaChua").html() + ` <button class="btn btn-success ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiXuong == "03 Đang Tiếp Nhận" && r.TimeStartGJ == null) {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button class="btn btn-danger ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeChoSuaChua").html() + ` <button class="btn btn-warning ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiXuong == "05 Đang Sửa Chữa" && r.TrangThaiSCC == "Chờ SC") {
@@ -53,7 +54,7 @@ async function LoadTimeLine() {
         }
         if ((r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null) {
             await $("#XeChoSuaChua").html(
-                $("#XeChoSuaChua").html() + ` <button  class="btn btn-danger ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
+                $("#XeChoSuaChua").html() + ` <button  class="btn btn-light ${CoHen}" style="width: 100%" id= ${r.id} > ${r.BienSoXe}</button>`);
             addExternal(r.id, r.BienSoXe)
         }
         if (r.TrangThaiXuong == "05 Dừng Công Việc") {
@@ -152,7 +153,7 @@ let options = {
     to: currentEnd,
     tableHeaders: [
         { title: "Khoang", property: "label", width: "120px", type: "tree" },
-        { title: "Dang SC", property: "DangSC", width: "120px", type: "tree" },
+        { title: "Đang SC", property: "DangSC", width: "120px", type: "tree" },
     ],
     tableWidth: 200,
     ganttTableModules: [SvelteGanttTable],
@@ -179,6 +180,7 @@ let options = {
             } else {
                 var menu = document.getElementById("contextMenu");
                 console.log(task);
+                $("#TTHuyChip").val(task.id);
                 $("#biensomenu").html(task.label);
                 menu.style.display = "block";
                 menu.style.left = e.pageX + "px";
@@ -270,35 +272,33 @@ function time(input) {
 }
 
 function huyChip(item) {
-    item = $("#TTHuyChip").val();
-    var ojb = useCaher;
-    for (var a in ojb) {
-        if (ojb[a].MaSo == item) {
-            delete ojb[a].NhomKTV;
-            delete ojb[a].KyThuatVien1;
-            delete ojb[a].KyThuatVien2;
-            delete ojb[a].TimeStartGJ;
-            delete ojb[a].TimeEndGJ;
-            ojb[a].TrangThaiSCC = "Chờ SC";
-            ojb[a].TrangThaiXuong = "04 Đã Tiếp Nhận";
+    item = $("#TTHuyChip").val() * 1;
+    var ojb = Data.get(item);
+    console.log(item, ojb);
+    delete ojb.NhomKTV;
+    delete ojb.KyThuatVien1;
+    delete ojb.KyThuatVien2;
+    delete ojb.TimeStartGJ;
+    delete ojb.TimeEndGJ;
+    ojb.TrangThaiSCC = "Chờ SC";
+    ojb.TrangThaiXuong = "04 Đã Tiếp Nhận";
 
-            let text = "Bạn muốn Xóa Chíp Tiếp Độ: " + ojb[a].BienSoXe;
-            if (
-                confirm(text) == true &&
-                (localStorage.getItem("PhanQuyen") == "DieuPhoi" ||
-                    localStorage.getItem("PhanQuyen") == "admin")
-            ) {
-                $.ajax({
-                    url: urlTX + "/" + ojb[a].id,
-                    type: "PUT",
-                    data: ojb[a],
-                    success: function (data) {
-                        getData();
-                    },
-                });
-            } else {
-                alert("Bạn không Thể xóa chíp");
-            }
-        }
+    let text = "Bạn muốn Xóa Chíp Tiếp Độ: " + ojb.BienSoXe;
+    if (
+        confirm(text) == true &&
+        (localStorage.getItem("PhanQuyen") == "DieuPhoi" ||
+            localStorage.getItem("PhanQuyen") == "admin")
+    ) {
+        $.ajax({
+            url: urlTX + "/" + item,
+            type: "PUT",
+            data: ojb,
+            success: function (data) {
+                getData();
+            },
+        });
+    } else {
+        alert("Bạn không Thể xóa chíp");
     }
 }
+
