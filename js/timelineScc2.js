@@ -16,6 +16,7 @@ for (var i = 0; i < KhoangSC.length; i++) {
 async function LoadTimeLine() {
     Data.update(useCaher)
     tasks = []
+    gantt.updateTasks(tasks)
     for (var a = 0; a < rows.length; a++) {
         var XeDangSC = useCaher.filter(function (r) { return r.TrangThaiSCC === "Đang SC" && r.KhoangSuaChua == rows[a].id })
         if (XeDangSC.length > 0) { rows[a]["DangSC"] = XeDangSC[0].BienSoXe } else { rows[a]["DangSC"] = "" }
