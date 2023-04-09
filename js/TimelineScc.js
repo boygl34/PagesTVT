@@ -150,7 +150,7 @@ function clearitem() {
   items.clear();
   LoadTimeLine()
 }
-function LoadTimeLine() {
+async function LoadTimeLine() {
   items.clear();
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
@@ -166,7 +166,7 @@ function LoadTimeLine() {
     end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
   };
   timelineRX.setOptions(option1);
-  for (var a in dataArray1) {
+   for (var a in dataArray1) {
     r = dataArray1[a];
     var hoanthanh = document.getElementById("checkbox-3").checked;
     var tthen = "";
