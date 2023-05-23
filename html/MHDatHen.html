@@ -205,8 +205,10 @@
             if (r.TrangThaiHen == "Xác Nhận Hẹn") { Kytu = "✌" }
             if (r.TrangThaiHen == "Xác Nhận 30P") { Kytu = "🆗" }
             if (r.TrangThaiHen == "Hủy Hẹn") { Kytu = "⛔" }
-            if (r.LoaiHinhSuaChua == "FIR") { r.LoaiHinhSuaChua = "SCC" }
+            if (r.LoaiHinhSuaChua == "FIR") { r.LoaiHinhSuaChua = "SCC"; mau1 = 'blue' }
+            if (r.LoaiHinhSuaChua == "Bảo Hành") { r.LoaiHinhSuaChua = "SCC"; mau1 = 'blue' }
             if (r.LoaiHinhSuaChua == "EM60") { r.LoaiHinhSuaChua = "EM" }
+            if (r.LoaiHinhDongSon == "Bảo Hành" || r.LoaiHinhDongSon == "FIX") { r.LoaiHinhDongSon = "Đồng Sơn", mau1 = 'blue' }
             if (r.LoaiHinhSuaChua == "SCC") { end = new Date(1000 * 60 * 59 + (new Date(start)).valueOf()) }
             if ((r.NoiDungHen.toUpperCase()).indexOf("BD40K") >= 0) { end = new Date(1000 * 60 * 59 + (new Date(start)).valueOf()) }
             if ((r.NoiDungHen.toUpperCase()).indexOf("BD80K") >= 0) { end = new Date(1000 * 60 * 59 + (new Date(start)).valueOf()) }
