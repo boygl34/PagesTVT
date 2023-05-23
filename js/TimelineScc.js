@@ -247,7 +247,7 @@ async function LoadTimeLine() {
         } else {
           var start = DoiNgayDangKy(r.ThoiGianHen);
           var end;
-          if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60") { end = new Date(1000 * 60 * 29 + new Date(start).valueOf()); }
+          if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60"||r.LoaiHinhSuaChua == "Bảo Hành") { end = new Date(1000 * 60 * 29 + new Date(start).valueOf()); }
           if (r.LoaiHinhSuaChua == "SCC" || r.LoaiHinhSuaChua == "FIR") { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
           if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) {
             end = new Date(1000 * 60 * 59 + new Date(start).valueOf());

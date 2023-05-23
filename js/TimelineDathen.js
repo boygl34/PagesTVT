@@ -193,6 +193,7 @@ function datadathen(r) {
     var start = DoiNgayDangKy(r.ThoiGianHen);
     var edit = false;
     var mau1 = "green";
+    var Khoang = ""
     var end = new Date(1000 * 60 * 29 + new Date(start).valueOf());
     var TimeTreHen = (new Date().getTime() - start.getTime()) / (60 * 1000);
     if ($("#Email").val() == emailnhanvienhen) {
@@ -215,12 +216,38 @@ function datadathen(r) {
     if (r.TrangThaiHen == "Hủy Hẹn") {
       Kytu = "⛔";
     }
+
     if (r.LoaiHinhSuaChua == "FIR") {
-      r.LoaiHinhSuaChua = "SCC";
+      mau1 = "fix"
+      Khoang = "SCC"
     }
-    if (r.LoaiHinhSuaChua == "EM60") {
-      r.LoaiHinhSuaChua = "EM";
+    if (r.LoaiHinhSuaChua == "Bảo Hành") {
+      Khoang = "SCC"
+      mau1 = "baohanh"
     }
+    if (r.LoaiHinhSuaChua == "EM60"||r.LoaiHinhSuaChua == "EM") {
+      Khoang = "EM"
+    }
+    if (r.LoaiHinhSuaChua == "SCC") {
+      Khoang = "SCC"
+    }
+
+    if (r.LoaiHinhDongSon == "FIR") {
+      Khoang = "Đồng Sơn"
+      mau1 = "fix"
+    }
+    if (r.LoaiHinhDongSon == "Bảo Hành") {
+      mau1 = "baohanh"
+      Khoang = "Đồng Sơn"
+    }
+    if (r.LoaiHinhDongSon == "Báo Giá BH") {
+      Khoang = r.LoaiHinhDongSon
+    }
+    if (r.LoaiHinhDongSon == "Đồng Sơn") {
+      Khoang = r.LoaiHinhDongSon
+    }
+
+
     if (r.LoaiHinhSuaChua == "SCC") {
       end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
     }
@@ -259,7 +286,7 @@ function datadathen(r) {
         className: mau1,
         editable: edit,
         id: r.MaSo,
-        group: r.LoaiHinhDongSon,
+        group:Khoang,
         start: start,
         end: new Date(1000 * 60 * 29 + new Date(start).valueOf()),
         title: r.NoiDungHen + "<br>" + r.NguoiDatHen,
@@ -269,7 +296,7 @@ function datadathen(r) {
       items.add({
         className: mau1,
         id: r.MaSo,
-        group: r.LoaiHinhSuaChua,
+        group: Khoang,
         start: start,
         editable: edit,
         end: end,

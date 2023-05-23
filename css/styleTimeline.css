@@ -103,6 +103,16 @@
   border-color: darkred;
   color: white;
 }
+.vis-item.baohanh {
+  background-color: rgb(0, 255, 234);
+  border-color: rgba(0, 0, 0, 0);
+  color: rgb(0, 0, 0);
+}
+.vis-item.fix {
+  background-color: rgb(0, 166, 255);
+  border-color: rgba(0, 0, 0, 0);
+  color: rgb(0, 0, 0);
+}
 
 
 
