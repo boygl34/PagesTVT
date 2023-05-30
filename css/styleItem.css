@@ -87,6 +87,18 @@
   font-family: Arial, sans-serif;
   display: inline-block;
 }
+.btn.FIR:after {
+  content: "_F";
+  list-style-type: circle;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+}
+.btn.Bảo:after {
+  content: "_B";
+  list-style-type: circle;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+}
 
 .btn.Đồng:after {
   content: "_Đ";

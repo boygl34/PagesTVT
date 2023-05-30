@@ -159,14 +159,14 @@ async function LoadTimeLine() {
   var tongThoiGian = 0
 
   var dataArray0 = useCaher.concat(useCaher2);
-  var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
+  var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60" || r.LoaiHinhSuaChua === "FIR" || r.LoaiHinhSuaChua === "Bảo Hành"); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
   var option1 = {
     start: new Date(new Date().valueOf() - 1000 * 60 * 60 * 1),
     end: new Date(1000 * 60 * 60 * 2 + new Date().valueOf()),
   };
   timelineRX.setOptions(option1);
-   for (var a in dataArray1) {
+  for (var a in dataArray1) {
     r = dataArray1[a];
     var hoanthanh = document.getElementById("checkbox-3").checked;
     var tthen = "";
@@ -247,7 +247,7 @@ async function LoadTimeLine() {
         } else {
           var start = DoiNgayDangKy(r.ThoiGianHen);
           var end;
-          if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60"||r.LoaiHinhSuaChua == "Bảo Hành") { end = new Date(1000 * 60 * 29 + new Date(start).valueOf()); }
+          if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60" || r.LoaiHinhSuaChua == "Bảo Hành") { end = new Date(1000 * 60 * 29 + new Date(start).valueOf()); }
           if (r.LoaiHinhSuaChua == "SCC" || r.LoaiHinhSuaChua == "FIR") { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
           if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) {
             end = new Date(1000 * 60 * 59 + new Date(start).valueOf());

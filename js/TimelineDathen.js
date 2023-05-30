@@ -218,14 +218,16 @@ function datadathen(r) {
     }
 
     if (r.LoaiHinhSuaChua == "FIR") {
+      end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
       mau1 = "fix"
       Khoang = "SCC"
     }
     if (r.LoaiHinhSuaChua == "Bảo Hành") {
+      end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
       Khoang = "SCC"
       mau1 = "baohanh"
     }
-    if (r.LoaiHinhSuaChua == "EM60"||r.LoaiHinhSuaChua == "EM") {
+    if (r.LoaiHinhSuaChua == "EM60" || r.LoaiHinhSuaChua == "EM") {
       Khoang = "EM"
     }
     if (r.LoaiHinhSuaChua == "SCC") {
@@ -286,7 +288,7 @@ function datadathen(r) {
         className: mau1,
         editable: edit,
         id: r.MaSo,
-        group:Khoang,
+        group: Khoang,
         start: start,
         end: new Date(1000 * 60 * 29 + new Date(start).valueOf()),
         title: r.NoiDungHen + "<br>" + r.NguoiDatHen,
