@@ -583,13 +583,13 @@ function TrangThaiHen(NgayHen) {
   var DenSom = (TDhen.getTime() - new Date().getTime()) / (60 * 1000);
   var DenTre = (new Date().getTime() - TDhen.getTime()) / (60 * 1000);
   var TrangThaiHen = "Không Có Hẹn";
-  if ((DenSom >= 0 && DenSom <= 30) || (DenTre >=0 && DenTre <= 5)) {
+  if ((DenSom >= 0 && DenSom <= 15) || (DenTre >= 0 && DenTre <= 10)) {
     TrangThaiHen = "Đúng Giờ";
   }
-  if (DenSom <= 60 && DenSom > 30) {
+  if (DenSom <= 60 && DenSom > 15) {
     TrangThaiHen = "Đến Sớm";
   }
-  if (DenTre <= 60 && DenTre >5) {
+  if (DenTre <= 60 && DenTre > 10) {
     TrangThaiHen = "Đến Trễ";
   }
   if (DenSom > 60 || DenTre > 60) {
